@@ -1,6 +1,6 @@
 import { TypewriterEffectSmooth } from "./ui/typewriter-effect";
 
-const Mission = () => {
+const AboutBanner = () => {
     const words = [
         {
             text: "Build",
@@ -37,4 +37,4 @@ const Mission = () => {
     )
 }
 
-export default Mission
+export default AboutBanner

@@ -1,11 +1,13 @@
-import Mission from "@/components/Mission"
+import AboutBanner from "@/components/AboutBanner"
+import OurMission from "@/components/OurMission"
 import Team from "@/components/Team"
 
 
 const AboutUs = () => {
   return (
     <section>
-      <Mission />
+      <AboutBanner />
+      <OurMission />
       <Team />
     </section>
   )
