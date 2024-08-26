@@ -1,5 +1,5 @@
 import { Button } from "./ui/button"
-import workspaceVideo from '../../public/video/workspace.mp4'
+import workspaceVideo from '/video/workspace.mp4'
 
 const Hero = () => {
     return (
