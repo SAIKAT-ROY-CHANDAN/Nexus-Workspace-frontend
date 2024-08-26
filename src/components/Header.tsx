@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import ProfileAvatar from "./ProfileAvatar";
 import { Link } from "react-router-dom";
+import { Button } from "./ui/button";
 
 
 const Header = () => {
@@ -42,29 +43,32 @@ const Header = () => {
     }, []);
 
     return (
-        <nav className={`flex items-center px-4 xl:px-8 py-2 z-50  mb-24 justify-between fixed top-0 left-0 w-full transition-all duration-300 ${isScrolled ? 'bg-slate-50 shadow-lg text-black' : 'bg-transparent text-black'
+        <nav className={`flex items-center px-4 xl:px-8 py-2 z-50  mb-24 justify-between fixed top-0 left-0 w-full transition-all duration-300 ${isScrolled ? 'bg-slate-50 shadow-lg text-black' : 'bg-transparent text-white'
             }`}>
             <div className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold transition-all duration-200 hover:scale-110">
                 <h2>Logo</h2>
             </div>
             <ul className="hidden items-center font-semibold justify-between gap-10 md:flex">
                 <li className="group flex cursor-pointer flex-col">
-                    <Link to='/'>Home</Link><span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
+                    <Link to='/'>Home</Link><span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-slate-700 transition-all duration-300 group-hover:w-full"></span>
+                </li>
+                <li className="group flex cursor-pointer flex-col">
+                    Services<span className="mt-[2px] h-[3px]  w-[0px] rounded-full bg-slate-700 transition-all duration-300 group-hover:w-full"></span>
                 </li>
                 <li className="group flex  cursor-pointer flex-col">
-                    Services<span className="mt-[2px] h-[3px]  w-[0px] rounded-full bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
+                    <Link to='contact'>Contact</Link><span className="mt-[2px] h-[3px]  w-[0px] rounded-full bg-slate-700 transition-all duration-300 group-hover:w-full"></span>
                 </li>
                 <li className="group flex  cursor-pointer flex-col">
-                    <Link to='contact'>Contact</Link><span className="mt-[2px] h-[3px]  w-[0px] rounded-full bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
-                </li>
-                <li className="group flex  cursor-pointer flex-col">
-                    <Link to='aboutUs'>About</Link><span className="mt-[2px] h-[3px]  w-[0px] rounded-full bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
-                </li>
-                <li className="md:hidden">
-                    <ProfileAvatar />
+                    <Link to='aboutUs'>About</Link><span className="mt-[2px] h-[3px]  w-[0px] rounded-full bg-slate-700 transition-all duration-300 group-hover:w-full"></span>
                 </li>
             </ul>
             <div className="flex items-center gap-2">
+                <Button>
+                    <Link to='/login'>Login</Link>
+                </Button>
+                <Button variant='secondary'>
+                    <Link to='/register'>Register</Link>
+                </Button>
                 <ProfileAvatar />
                 <div ref={dropDownMenuRef} onClick={() => setDropDownState(!dropDownState)} className="relative flex transition-transform md:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="cursor-pointer text-white" > <line x1="4" x2="20" y1="12" y2="12" /> <line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /> </svg>
@@ -81,8 +85,6 @@ const Header = () => {
                             </li>
                             <li className="cursor-pointer  px-6 py-2 text-white hover:bg-amber-600 ">
                                 Contact
-                            </li>
-                            <li>
                             </li>
                         </ul>
                     )}

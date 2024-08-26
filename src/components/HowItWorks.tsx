@@ -17,8 +17,8 @@ const HowItWorks = () => {
                     <section className="text-white  h-[70vh]  w-full bg-slate-950  grid place-content-center ">
                         <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
 
-                        <h1 className="2xl:text-7xl text-5xl px-8 font-semibold text-center tracking-tight leading-[120%]">
-                            Renting the Perfect Space <br /> for Your Meeting. Scroll down! 👇
+                        <h1 className="2xl:text-6xl text-5xl px-8 font-semibold text-center tracking-tight leading-[120%]">
+                            Discover the Easy Steps to Reserve <br /> for Your Desired Space. Scroll down! 👇
                         </h1>
                     </section>
                 </>
@@ -42,10 +42,10 @@ const HowItWorks = () => {
                         )
                     })}
                 </section>
-                
+
                 <footer className="group bg-slate-950 ">
                     <h1 className="text-[16vw]  translate-y-20 leading-[100%] uppercase font-semibold text-center bg-gradient-to-r from-gray-400 to-gray-800 bg-clip-text text-transparent transition-all ease-linear">
-                       Nexus
+                        Nexus
                     </h1>
                     <div className="bg-black h-40 relative z-10 grid place-content-center text-2xl rounded-tr-full rounded-tl-full"></div>
                 </footer>
@@ -119,10 +119,11 @@ export const Card: React.FC<CardProps> = ({
                                 viewBox="0 0 22 12"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
+                                className=''
                             >
                                 <path
                                     d="M21.5303 6.53033C21.8232 6.23744 21.8232 5.76256 21.5303 5.46967L16.7574 0.696699C16.4645 0.403806 15.9896 0.403806 15.6967 0.696699C15.4038 0.989592 15.4038 1.46447 15.6967 1.75736L19.9393 6L15.6967 10.2426C15.4038 10.5355 15.4038 11.0104 15.6967 11.3033C15.9896 11.5962 16.4645 11.5962 16.7574 11.3033L21.5303 6.53033ZM0 6.75L21 6.75V5.25L0 5.25L0 6.75Z"
-                                    fill="black"
+                                    fill="white"
                                 />
                             </svg>
                         </span>

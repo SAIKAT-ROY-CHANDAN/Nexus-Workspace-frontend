@@ -18,7 +18,8 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        "about": "url('/images/about.jpg')", 
+        "about": "url('/images/about.jpg')",
+        "contact": "url('/images/contactus.jpg')" 
       },
       keyframes: {
         "accordion-down": {

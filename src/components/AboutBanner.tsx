@@ -20,7 +20,7 @@ const AboutBanner = () => {
         },
     ];
     return (
-        <div className="flex flex-col items-center bg-about bg-cover bg-center bg-no-repeat justify-center h-[40rem]  ">
+        <div className="flex flex-col items-center bg-about bg-cover bg-center bg-no-repeat justify-center h-[40rem]">
             <p className="text-neutral-200 dark:text-neutral-600 text-xs sm:text-base  ">
                 The road to freedom starts from here
             </p>
