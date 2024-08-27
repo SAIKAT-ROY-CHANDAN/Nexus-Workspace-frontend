@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import ProfileAvatar from "./ProfileAvatar";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
-
+import logo from "../../public/images/logo-3.svg"
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -46,7 +46,7 @@ const Header = () => {
         <nav className={`flex items-center px-4 xl:px-8 py-2 z-50  mb-24 justify-between fixed top-0 left-0 w-full transition-all duration-300 ${isScrolled ? 'bg-slate-50 shadow-lg text-black' : 'bg-transparent text-white'
             }`}>
             <div className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold transition-all duration-200 hover:scale-110">
-                <h2>Logo</h2>
+                <img src={logo} alt="" className="size-14 text-black" />
             </div>
             <ul className="hidden items-center font-semibold justify-between gap-10 md:flex">
                 <li className="group flex cursor-pointer flex-col">
