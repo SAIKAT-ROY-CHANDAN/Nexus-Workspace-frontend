@@ -2,7 +2,7 @@
 
 const FeaturedRoom = () => {
     return (
-        <section className="grid grid-cols-3 gap-8 w-9/12 items-center justify-center mx-auto py-20">
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-9/12 items-center justify-center mx-auto py-20">
             <article className="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
                 <img
                     alt=""

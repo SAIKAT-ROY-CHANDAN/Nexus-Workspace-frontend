@@ -23,7 +23,7 @@ const HowItWorks = () => {
                     </section>
                 </>
 
-                <section className="text-white   w-full bg-slate-950  ">
+                <section className="text-white w-full bg-slate-950  ">
                     {projects.map((project, i) => {
                         const targetScale = 1 - (projects.length - i) * 0.05
                         return (
@@ -99,12 +99,12 @@ export const Card: React.FC<CardProps> = ({
                     scale,
                     top: `calc(-5vh + ${i * 25}px)`,
                 }}
-                className={`flex flex-col relative w-[55%] rounded-md p-10 origin-top`}
+                className={`flex flex-col relative max-sm:w-[85%] w-[70%] lg:w-[80%] 2xl:w-[55%] rounded-md max-sm:p-4 p-10 origin-top`}
             >
-                <h2 className="text-2xl text-center font-semibold">{title}</h2>
-                <div className={`flex h-full mt-5 px-8 items-center justify-between`}>
-                    <div className={`w-[40%] relative top-[10%]`}>
-                        <p className="text-lg font-semibold">{description}</p>
+                <h2 className="text-2xl text-center font-semibold max-sm:text-xl">{title}</h2>
+                <div className={`flex flex-col lg:flex-row gap-y-6 h-full mt-5 lg:px-8 items-center justify-between`}>
+                    <div className={`lg:w-[40%] relative top-[10%]`}>
+                        <p className="lg:text-lg font-semibold max-sm:text-sm">{description}</p>
                         <span className="flex items-center gap-2 pt-2">
                             <a
                                 href={'#'}
@@ -136,7 +136,7 @@ export const Card: React.FC<CardProps> = ({
                             className={`w-full h-full`}
                             style={{ scale: imageScale }}
                         >
-                            <img src={url} alt="image" className="object-cover size-[40vh]" />
+                            <img src={url} alt="image" className="object-cover lg:size-[40vh]" />
                         </motion.div>
                     </div>
                 </div>

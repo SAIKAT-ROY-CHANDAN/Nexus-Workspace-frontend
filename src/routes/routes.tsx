@@ -5,6 +5,7 @@ import Home from "@/pages/Home";
 import App from "@/App";
 import Register from "@/pages/Register";
 import Login from "@/pages/Login";
+import Rooms from "@/pages/Rooms";
 
 export const router = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
                 path: "/contact",
                 element: <Contact />,
             },
+            {
+                path: '/rooms',
+                element: <Rooms />
+            }
         ]
     },
     {
