@@ -6,6 +6,7 @@ import App from "@/App";
 import Register from "@/pages/Register";
 import Login from "@/pages/Login";
 import Rooms from "@/pages/Rooms";
+import BookRoom from "@/pages/BookRoom";
 
 export const router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
             {
                 path: '/rooms',
                 element: <Rooms />
+            },
+            {
+                path: '/single-room',
+                element: <BookRoom />
             }
         ]
     },
