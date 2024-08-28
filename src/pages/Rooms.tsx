@@ -9,8 +9,10 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import { useGetRoomsQuery } from "@/redux/api/baseApi"
 
 const Rooms = () => {
+    const { data: meetingData } = useGetRoomsQuery({})
     return (
         <>
             <div className="pt-24 flex items-center justify-center">
@@ -32,10 +34,9 @@ const Rooms = () => {
             </div>
 
             <div className="max-w-screen-2xl mx-auto grid grid-cols-4 pt-10 pb-20 justify-items-center">
-                <RoomCard />
-                <RoomCard />
-                <RoomCard />
-                <RoomCard />
+                {meetingData?.map((data) => (
+                    <RoomCard room={data} key={data._id} />
+                ))}
             </div>
         </>
     )

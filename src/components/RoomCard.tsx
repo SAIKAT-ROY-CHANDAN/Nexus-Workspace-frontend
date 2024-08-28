@@ -1,4 +1,10 @@
-const RoomCard = () => {
+import { TRoom } from "@/types/global";
+
+interface RoomCardProps {
+    room: TRoom;
+}
+
+const RoomCard = ({ room }: RoomCardProps) => {
     return (
         <div className="max-[350px] mx-auto space-y-4 rounded  p-6 md:w-[350px] dark:border-zinc-700 dark:bg-zinc-900">
             <div className="relative rounded-2xl group overflow-hidden">
@@ -12,7 +18,7 @@ const RoomCard = () => {
                 <div className="absolute bottom-0 left-0 right-0 h-0 group-hover:h-full transition-all duration-500 bg-gradient-to-r from-[#93c5fd] via-[#60a5fa] to-[#3b82f6] opacity-20"></div>
             </div>
             <div className="space-y-2">
-                <h2 className="font-medium text-slate-800 sm:text-lg md:text-xl dark:text-white/90">Stylish chair</h2>
+                <h2 className="font-medium text-slate-800 sm:text-lg md:text-xl dark:text-white/90">{room.name}</h2>
             </div>
             <div className="mt-5 flex items-center space-x-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
@@ -21,7 +27,7 @@ const RoomCard = () => {
                 <h2 className="font-medium text-gray-700 md:text-xl dark:text-white/60">4</h2>
             </div>
             <div className="mt-5 flex items-center justify-between">
-                <h2 className="font-medium text-gray-700 md:text-xl dark:text-white/60">$20.00</h2>
+                <h2 className="font-medium text-gray-700 md:text-xl dark:text-white/60">${room.pricePerSlot}</h2>
                 <button className="rounded-lg bg-slate-800 px-6 py-2 text-[12px] font-semibold text-white hover:bg-slate-900 sm:text-sm md:text-base">See Details</button>
             </div>
         </div>
