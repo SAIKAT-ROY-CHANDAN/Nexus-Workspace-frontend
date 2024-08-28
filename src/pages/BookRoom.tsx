@@ -4,7 +4,7 @@ import ProductCarousel from "@/components/ui/ProductCarousel"
 
 const BookRoom = () => {
   return (
-    <div className="grid lg:grid-cols-2 2xl:grid-cols-3 pt-4 pl-4 gap-6 lg:gap-20 mt-36 max-w-screen-2xl mx-auto bg-gray-50/50">
+    <div className="grid lg:grid-cols-2 2xl:grid-cols-3 pt-4 pl-4 gap-6 lg:gap-20 mt-36 max-w-screen-2xl mx-auto bg-gray-50/60">
       <ProductCarousel />
       <div className="2xl:col-span-2 flex flex-col gap-2 mt-10 mb-10">
         <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">Cool Sunglass</h2>
