@@ -6,15 +6,16 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "./ui/button"
+import { useCreateNewUserMutation } from "@/redux/api/authApi"
 
 const RegisterForm = () => {
+    const [createNewUser] = useCreateNewUserMutation()
     type FormData = z.infer<typeof formSchema>;
     const formSchema = z.object({
         name: z.string().min(2, { message: "Name must be at least 2 characters." }),
         email: z.string().email({ message: "Invalid email address." }),
         password: z.string().min(6, { message: "Password must be at least 6 characters." }),
     })
-
 
     const form = useForm({
         resolver: zodResolver(formSchema),
@@ -25,9 +26,18 @@ const RegisterForm = () => {
         },
     })
 
-    const onSubmit = (data: FormData) => {
-        console.log(data)
+    const onSubmit = async (data: FormData) => {
+        const userData = {
+            name: data.name,
+            email: data.email,
+            password: data.password,
+            role: 'user'
+        };
+
+        const res = await createNewUser(userData)
+        console.log(res);
     }
+
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">

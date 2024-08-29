@@ -3,6 +3,7 @@ import { Apple, Facebook, Google } from "@/svgs/GlobalSvg"
 
 
 const Register = () => {
+  
   return (
     <div className="font-[sans-serif] bg-gray-50 flex items-center md:h-screen p-4">
       <div className="w-full max-w-4xl max-md:max-w-xl mx-auto">

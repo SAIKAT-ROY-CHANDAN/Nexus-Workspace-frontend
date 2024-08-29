@@ -1,28 +1,33 @@
 import { Eye, Google, Mail } from "@/svgs/GlobalSvg"
 import { Link } from "react-router-dom"
-import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form"
 import { Input } from "./ui/input"
 import { useForm } from "react-hook-form"
 import { Button } from "./ui/button"
+import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useLoginUserMutation } from "@/redux/api/authApi"
 
-type FormData = {
-    email: string,
-    password: string
-}
+const formSchema = z.object({
+    email: z.string().email("Invalid email address"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
+});
+
+type FormData = z.infer<typeof formSchema>;
 
 const LoginForm = () => {
-
-
+    const [loginUser] = useLoginUserMutation()
     const form = useForm({
-        // resolver: zodResolver(formSchema),
+        resolver: zodResolver(formSchema),
         defaultValues: {
             email: "",
             password: "",
         },
     })
 
-    const onSubmit = (data: FormData) => {
-        console.log(data)
+    const onSubmit = async (data: FormData) => {
+        const res = await loginUser(data)
+        console.log(res.data)
     }
 
     return (
@@ -51,6 +56,7 @@ const LoginForm = () => {
                                     <Mail />
                                 </div>
                             </FormControl>
+                            <FormMessage />
                         </FormItem>
                     )}
                 />
@@ -66,13 +72,14 @@ const LoginForm = () => {
                                     <Input
                                         {...field}
                                         name="password"
-                                        type="password"
+                                        type="text"
                                         required
                                         className="w-full text-sm text-gray-800 border-b border-gray-300 focus:border-blue-600 px-2 py-3 outline-none"
                                         placeholder="Enter password" />
                                     <Eye />
                                 </div>
                             </FormControl>
+                            <FormMessage />
                         </FormItem>
                     )}
                 />
@@ -85,7 +92,7 @@ const LoginForm = () => {
                         </label>
                     </div>
                     <div>
-                        <a href="jajvascript:void(0);" className="text-blue-600 font-semibold text-sm hover:underline">
+                        <a className="text-blue-600 font-semibold text-sm hover:underline">
                             Forgot Password?
                         </a>
                     </div>
