@@ -1,5 +1,5 @@
 import { Eye, Mail, Person } from "@/svgs/GlobalSvg"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form"
 import { Input } from "./ui/input"
 import { useForm } from "react-hook-form"
@@ -7,18 +7,17 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "./ui/button"
 import { useCreateNewUserMutation } from "@/redux/api/authApi"
+import { registerFormSchema } from "@/validation/auth.validation"
+import { toast } from "sonner"
+
 
 const RegisterForm = () => {
     const [createNewUser] = useCreateNewUserMutation()
-    type FormData = z.infer<typeof formSchema>;
-    const formSchema = z.object({
-        name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-        email: z.string().email({ message: "Invalid email address." }),
-        password: z.string().min(6, { message: "Password must be at least 6 characters." }),
-    })
+    type FormData = z.infer<typeof registerFormSchema>;
+    const navigate = useNavigate()
 
     const form = useForm({
-        resolver: zodResolver(formSchema),
+        resolver: zodResolver(registerFormSchema),
         defaultValues: {
             name: "",
             email: "",
@@ -27,15 +26,25 @@ const RegisterForm = () => {
     })
 
     const onSubmit = async (data: FormData) => {
-        const userData = {
-            name: data.name,
-            email: data.email,
-            password: data.password,
-            role: 'user'
-        };
+        try {
+            const userData = {
+                name: data.name,
+                email: data.email,
+                password: data.password,
+                role: 'user'
+            };
 
-        const res = await createNewUser(userData)
-        console.log(res);
+            const res = await createNewUser(userData)
+            if (res.data.success) {
+                toast.success('Account Create Successfully')
+                navigate('/');
+            } else {
+                console.error('Login failed:', res.data.message);
+            }
+        } catch (error) {
+            console.error('An error occurred during Register:', error);
+        }
+
     }
 
     return (

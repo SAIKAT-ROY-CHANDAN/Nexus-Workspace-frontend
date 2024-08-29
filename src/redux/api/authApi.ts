@@ -1,22 +1,26 @@
 import { baseApi } from "./baseApi";
 
+interface User {
+    address: string;
+    email: string;
+    name: string;
+    phone: string;
+    role: string;
+    __v: number;
+    _id: string;
+}
+
+// Define the type for the main response data
+interface LoginResponseData {
+    token: string;
+    user: User;
+}
+
+// Define the type for the entire API response
 interface LoginResponse {
-    data: {
-        success: boolean;
-        message: string;
-        data: {
-            token: string;
-            user: {
-                address: string;
-                email: string;
-                name: string;
-                phone: string;
-                role: string;
-                __v: number;
-                _id: string;
-            };
-        };
-    };
+    success: boolean;
+    message: string;
+    data: LoginResponseData;
 }
 
 const authActionApi = baseApi.injectEndpoints({
@@ -31,14 +35,18 @@ const authActionApi = baseApi.injectEndpoints({
             }
         }),
         loginUser: builder.mutation({
-            query: (data) => {
+            query: (data) => ({
+                url: 'auth/login',
+                method: "POST",
+                body: data,
+            }),
+            transformResponse: (response: LoginResponse) => {
                 return {
-                    url: 'auth/login',
-                    method: "POST",
-                    body: data
-                }
+                    success: response.success,
+                    message: response.message,
+                    ...response.data,
+                };
             },
-            transformResponse : (response: LoginResponse) => response.data
         })
     })
 })

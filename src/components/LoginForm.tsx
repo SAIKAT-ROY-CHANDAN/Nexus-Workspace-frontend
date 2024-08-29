@@ -1,5 +1,5 @@
 import { Eye, Google, Mail } from "@/svgs/GlobalSvg"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form"
 import { Input } from "./ui/input"
 import { useForm } from "react-hook-form"
@@ -7,18 +7,16 @@ import { Button } from "./ui/button"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useLoginUserMutation } from "@/redux/api/authApi"
+import { loginFormSchema } from "@/validation/auth.validation"
+import { toast } from "sonner"
 
-const formSchema = z.object({
-    email: z.string().email("Invalid email address"),
-    password: z.string().min(6, "Password must be at least 6 characters"),
-});
-
-type FormData = z.infer<typeof formSchema>;
+type FormData = z.infer<typeof loginFormSchema>;
 
 const LoginForm = () => {
     const [loginUser] = useLoginUserMutation()
+    const navigate = useNavigate()
     const form = useForm({
-        resolver: zodResolver(formSchema),
+        resolver: zodResolver(loginFormSchema),
         defaultValues: {
             email: "",
             password: "",
@@ -26,8 +24,19 @@ const LoginForm = () => {
     })
 
     const onSubmit = async (data: FormData) => {
-        const res = await loginUser(data)
-        console.log(res.data)
+        try {
+            const res = await loginUser(data).unwrap(); 
+            console.log('Response from loginUser:', res);
+
+            if (res.success) {
+                toast.success('Account Create Successfully')
+                navigate('/');
+            } else {
+                console.error('Login failed:', res.message);
+            }
+        } catch (error) {
+            console.error('An error occurred during login:', error);
+        }
     }
 
     return (
