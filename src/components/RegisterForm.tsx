@@ -39,9 +39,11 @@ const RegisterForm = () => {
                 toast.success('Account Create Successfully')
                 navigate('/');
             } else {
+                toast.warning(`Login failed:${res.data.message}`)
                 console.error('Login failed:', res.data.message);
             }
         } catch (error) {
+            toast.warning(`Login failed`)
             console.error('An error occurred during Register:', error);
         }
 

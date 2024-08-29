@@ -9,12 +9,19 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useLoginUserMutation } from "@/redux/api/authApi"
 import { loginFormSchema } from "@/validation/auth.validation"
 import { toast } from "sonner"
+import { jwtDecode, JwtPayload } from "jwt-decode";
+import { useDispatch } from "react-redux"
+import { setRole } from "@/redux/slices/authSlice"
 
 type FormData = z.infer<typeof loginFormSchema>;
+interface CustomJwtPayload extends JwtPayload {
+    role: string;
+}
 
 const LoginForm = () => {
-    const [loginUser] = useLoginUserMutation()
-    const navigate = useNavigate()
+    const [loginUser] = useLoginUserMutation();
+    const navigate = useNavigate();
+    const dispatch = useDispatch()
     const form = useForm({
         resolver: zodResolver(loginFormSchema),
         defaultValues: {
@@ -25,11 +32,14 @@ const LoginForm = () => {
 
     const onSubmit = async (data: FormData) => {
         try {
-            const res = await loginUser(data).unwrap(); 
-            console.log('Response from loginUser:', res);
+            const res = await loginUser(data).unwrap();
 
             if (res.success) {
                 toast.success('Account Create Successfully')
+
+                const decoded = jwtDecode<CustomJwtPayload>(res.token)
+                dispatch(setRole(decoded.role))
+
                 navigate('/');
             } else {
                 console.error('Login failed:', res.message);

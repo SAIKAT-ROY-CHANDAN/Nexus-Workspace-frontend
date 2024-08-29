@@ -1,7 +1,9 @@
 import { Button } from "./ui/button"
 import workspaceVideo from '/video/workspace.mp4'
 
+
 const Hero = () => {
+
     return (
         <div className="w-full">
             <video className="w-full h-[100vh] relative object-cover" autoPlay loop muted>
