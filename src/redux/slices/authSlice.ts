@@ -13,8 +13,6 @@ export const authSlice = createSlice({
     initialState,
     reducers: {
         setRole: (state, action) => {
-            console.log("Previous role:", state.role); // Log previous state
-            console.log("New role:", action.payload); // Log new role
             state.role = action.payload
         }
     }
