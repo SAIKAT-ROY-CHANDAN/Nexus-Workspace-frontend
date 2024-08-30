@@ -1,4 +1,4 @@
-import { TRoomsResponse } from '@/types/global'
+import { TRoomsResponse, TSingleRoomResponse } from '@/types/global'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const baseApi = createApi({
@@ -13,7 +13,15 @@ export const baseApi = createApi({
             },
             transformResponse: (response: TRoomsResponse) => response.data
         }),
+        getSingleRoom: builder.query({
+            query: (id) => {
+                return {
+                    url: `/rooms/${id}`
+                }
+            },
+            transformResponse: (response: TSingleRoomResponse) => response.data
+        })
     })
 })
 
-export const { useGetRoomsQuery, useLazyGetRoomsQuery } = baseApi
+export const { useGetRoomsQuery, useGetSingleRoomQuery } = baseApi

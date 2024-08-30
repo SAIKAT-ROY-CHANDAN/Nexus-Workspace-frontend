@@ -1,4 +1,5 @@
 import { TRoom } from "@/types/global";
+import { Link } from "react-router-dom";
 
 interface RoomCardProps {
     room: TRoom;
@@ -28,7 +29,7 @@ const RoomCard = ({ room }: RoomCardProps) => {
             </div>
             <div className="mt-5 flex items-center justify-between">
                 <h2 className="font-medium text-gray-700 md:text-xl dark:text-white/60">${room.pricePerSlot}</h2>
-                <button className="rounded-lg bg-slate-800 px-6 py-2 text-[12px] font-semibold text-white hover:bg-slate-900 sm:text-sm md:text-base">See Details</button>
+                <Link to={`/rooms/${room._id}`} className="rounded-lg bg-slate-800 px-6 py-2 text-[12px] font-semibold text-white hover:bg-slate-900 sm:text-sm md:text-base">See Details</Link>
             </div>
         </div>
     )

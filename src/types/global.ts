@@ -14,3 +14,9 @@ export type TRoomsResponse = {
     message: string;
     data: TRoom[];
 }
+
+export type TSingleRoomResponse = {
+    success: boolean;
+    message: string;
+    data: TRoom;
+}

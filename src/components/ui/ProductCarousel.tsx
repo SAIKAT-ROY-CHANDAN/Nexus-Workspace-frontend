@@ -23,45 +23,43 @@ const ProductCarousel = () => {
             >
                 <>
                     {items.map((tab: any) => (
-                        <>
-                            <AnimatePresence mode="popLayout" initial={false}>
-                                {tab.id === activeItem.id && (
-                                    <motion.figure
-                                        key={tab?.id}
-                                        className="dark:bg-gray-900/60 border rounded-md p-4 backdrop-blur-sm"
+                        <AnimatePresence mode="popLayout" initial={false} key={tab.id}>
+                            {tab.id === activeItem.id && (
+                                <motion.figure
+                                    key={tab?.id}
+                                    className="dark:bg-gray-900/60 border rounded-md p-4 backdrop-blur-sm"
+                                >
+                                    <motion.div
+                                        initial={{ opacity: 0 }}
+                                        animate={{
+                                            opacity: 1,
+                                            transition: {
+                                                type: 'ease',
+                                                ease: 'easeInOut',
+                                                duration: 0.3,
+                                                delay: 0.2,
+                                            },
+                                        }}
+                                        exit={{
+                                            opacity: 0,
+                                            transition: {
+                                                type: 'ease',
+                                                ease: 'easeInOut',
+                                                duration: 0.2,
+                                            },
+                                        }}
                                     >
-                                        <motion.div
-                                            initial={{ opacity: 0 }}
-                                            animate={{
-                                                opacity: 1,
-                                                transition: {
-                                                    type: 'ease',
-                                                    ease: 'easeInOut',
-                                                    duration: 0.3,
-                                                    delay: 0.2,
-                                                },
-                                            }}
-                                            exit={{
-                                                opacity: 0,
-                                                transition: {
-                                                    type: 'ease',
-                                                    ease: 'easeInOut',
-                                                    duration: 0.2,
-                                                },
-                                            }}
-                                        >
-                                            <img
-                                                src={activeItem.imgSrc}
-                                                width={1000}
-                                                height={1000}
-                                                alt="preview_img"
-                                                className="object-contain h-96 mx-auto rounded-md"
-                                            />
-                                        </motion.div>
-                                    </motion.figure>
-                                )}
-                            </AnimatePresence>
-                        </>
+                                        <img
+                                            src={activeItem.imgSrc}
+                                            width={1000}
+                                            height={1000}
+                                            alt="preview_img"
+                                            className="object-contain h-96 mx-auto rounded-md"
+                                        />
+                                    </motion.div>
+                                </motion.figure>
+                            )}
+                        </AnimatePresence>
                     ))}
                 </>
                 <motion.div className="sm:w-[450px] mt-4 mx-auto overflow-hidden dark:bg-gray-900/60 bg-gray-100/60 border rounded-md">
@@ -74,9 +72,10 @@ const ProductCarousel = () => {
                         transition={{ duration: 0.2, ease: 'easeInOut' }}
                         className="flex  "
                     >
-                        {items?.map((itemData) => {
+                        {items?.map((itemData, index) => {
                             return (
                                 <motion.div
+                                    key={index}
                                     className={`relative p-2 flex-shrink-0`}
                                     onClick={() => setActiveItem(itemData)}
                                 >
