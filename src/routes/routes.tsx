@@ -9,6 +9,7 @@ import Rooms from "@/pages/Rooms";
 import BookRoom from "@/pages/BookRoom";
 import MyBookings from "@/pages/MyBookings";
 import Dashboard from "@/pages/Dashboard";
+import SlotBooking from "@/pages/SlotBooking";
 
 export const router = createBrowserRouter([
     {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <Dashboard />
+            },
+            {
+                path: '/slotBooking/:id',
+                element: <SlotBooking />
             }
         ]
     },

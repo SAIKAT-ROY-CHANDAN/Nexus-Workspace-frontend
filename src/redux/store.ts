@@ -16,7 +16,7 @@ const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 export const store = configureStore({
     reducer: {
         [baseApi.reducerPath]: baseApi.reducer,
-        auth: persistedAuthReducer
+        auth: persistedAuthReducer,
     },
     middleware: (getDefaultMiddleWare) => getDefaultMiddleWare({
         serializableCheck: {

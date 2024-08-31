@@ -1,27 +1,6 @@
+import { LoginResponse } from "@/types/auth.type";
 import { baseApi } from "./baseApi";
 
-interface User {
-    address: string;
-    email: string;
-    name: string;
-    phone: string;
-    role: string;
-    __v: number;
-    _id: string;
-}
-
-// Define the type for the main response data
-interface LoginResponseData {
-    token: string;
-    user: User;
-}
-
-// Define the type for the entire API response
-interface LoginResponse {
-    success: boolean;
-    message: string;
-    data: LoginResponseData;
-}
 
 const authActionApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({

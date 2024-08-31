@@ -1,8 +1,11 @@
+import { DashboardSidebar } from "@/components/DashboardSidebar"
 
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <div>
+      <DashboardSidebar />
+    </div>
   )
 }
 

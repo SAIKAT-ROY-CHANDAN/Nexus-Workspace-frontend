@@ -21,7 +21,7 @@ const ProfileAvatar = () => {
                     <DropdownMenuSeparator />
                     <DropdownMenuGroup>
                         {
-                            decodedRole === 'user' ?
+                            decodedRole !== 'user' ?
                                 <DropdownMenuItem className="cursor-pointer">
                                     <Link to='/myBookings'>My Bookings</Link>
                                 </DropdownMenuItem>

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import ProductCarousel from "@/components/ui/ProductCarousel"
 import { useGetSingleRoomQuery } from "@/redux/api/baseApi";
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 
 const BookRoom = () => {
@@ -29,7 +29,11 @@ const BookRoom = () => {
           ))}
         </p>
         <p className="text-2xl font-bold text-slate-800/85 mt-4">${room?.pricePerSlot}</p>
-        <Button className="w-9/12 mt-6 flex items-center justify-center">Book Now</Button>
+        <Link to={`/slotBooking/${id}`}>
+          <Button className="w-9/12 mt-6 flex items-center justify-center">
+            Book Now
+          </Button>
+        </Link>
       </div>
     </div>
   )
