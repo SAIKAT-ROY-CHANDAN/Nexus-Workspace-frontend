@@ -25,7 +25,6 @@ const SelectTime = ({ title, onSelect }: SelectTimeProps) => {
         }
         return times;
     };
-    console.log(title);
 
     const timeOptions = generateTimeOptions();
     return (

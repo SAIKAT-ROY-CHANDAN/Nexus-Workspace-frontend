@@ -8,8 +8,15 @@ const slotApi = baseApi.injectEndpoints({
                     url: '/slots/availability'
                 }
             }
-        })
+        }),
+        gelSlotsByQueryId: builder.query({
+            query: ({ date, id }) => {
+                return {
+                    url: `api/slots/availability?date=${date}&roomId=${id}`
+                }
+            }
+        }),
     })
 })
 
-export const { useGelSlotsQuery } = slotApi
+export const { useGelSlotsQuery, useGelSlotsByQueryIdQuery } = slotApi

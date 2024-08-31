@@ -4,11 +4,11 @@ import { authReducer } from './slices/authSlice'
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import { timeAdnDateReducer } from './slices/timeAndDate';
 
 const persistConfig = {
     key: 'root',
     storage,
-    // whitelist: ['auth'], 
 };
 
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
@@ -17,6 +17,7 @@ export const store = configureStore({
     reducer: {
         [baseApi.reducerPath]: baseApi.reducer,
         auth: persistedAuthReducer,
+        timeAndDate: timeAdnDateReducer
     },
     middleware: (getDefaultMiddleWare) => getDefaultMiddleWare({
         serializableCheck: {

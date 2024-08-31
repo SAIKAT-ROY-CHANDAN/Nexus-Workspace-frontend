@@ -1,14 +1,26 @@
 import { Calendar } from "@/components/ui/calendar"
+import { useAppDispatch } from "@/redux/hooks";
+import { setDate } from "@/redux/slices/timeAndDate";
+import { formatDate } from "@/utils/time";
 import { useState } from "react"
 
 const DateSelect = () => {
-    const [date, setDate] = useState<Date | undefined>(new Date())
+    const dispatch = useAppDispatch()
+    const [date, setDateState] = useState<Date | undefined>(new Date())
+
+    const handleDateSelect = (selectedDate: Date | undefined) => {
+        if (selectedDate) {
+            setDateState(selectedDate);
+            const formattedDate = formatDate(selectedDate);
+            dispatch(setDate(formattedDate))
+        }
+    };
 
     return (
         <Calendar
             mode="single"
             selected={date}
-            onSelect={setDate}
+            onSelect={handleDateSelect}
             className="rounded-md border"
         />
     )
