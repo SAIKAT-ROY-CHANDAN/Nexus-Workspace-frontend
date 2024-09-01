@@ -10,8 +10,8 @@ import { useLoginUserMutation } from "@/redux/api/authApi"
 import { loginFormSchema } from "@/validation/auth.validation"
 import { toast } from "sonner"
 import { jwtDecode, JwtPayload } from "jwt-decode";
-import { useDispatch } from "react-redux"
 import { setRole } from "@/redux/slices/authSlice"
+import { useAppDispatch } from "@/redux/hooks"
 
 type FormData = z.infer<typeof loginFormSchema>;
 interface CustomJwtPayload extends JwtPayload {
@@ -21,7 +21,7 @@ interface CustomJwtPayload extends JwtPayload {
 const LoginForm = () => {
     const [loginUser] = useLoginUserMutation();
     const navigate = useNavigate();
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const form = useForm({
         resolver: zodResolver(loginFormSchema),
         defaultValues: {

@@ -1,20 +1,20 @@
-import { Eye, Mail, Person } from "@/svgs/GlobalSvg"
-import { Link, useNavigate } from "react-router-dom"
+import { Eye, Mail, Mobile, Person } from "@/svgs/GlobalSvg"
+import { Link } from "react-router-dom"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form"
 import { Input } from "./ui/input"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "./ui/button"
-import { useCreateNewUserMutation } from "@/redux/api/authApi"
 import { registerFormSchema } from "@/validation/auth.validation"
-import { toast } from "sonner"
+import { FaAddressBook } from "react-icons/fa";
+import { FormData } from "@/pages/Register"
 
+type RegisterFormProps = {
+    onSubmit: (data: FormData) => Promise<void>;
+  };
+  
 
-const RegisterForm = () => {
-    const [createNewUser] = useCreateNewUserMutation()
-    type FormData = z.infer<typeof registerFormSchema>;
-    const navigate = useNavigate()
+const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
 
     const form = useForm({
         resolver: zodResolver(registerFormSchema),
@@ -22,32 +22,10 @@ const RegisterForm = () => {
             name: "",
             email: "",
             password: "",
+            phone: "",
+            address: ""
         },
     })
-
-    const onSubmit = async (data: FormData) => {
-        try {
-            const userData = {
-                name: data.name,
-                email: data.email,
-                password: data.password,
-                role: 'user'
-            };
-
-            const res = await createNewUser(userData)
-            if (res.data.success) {
-                toast.success('Account Create Successfully')
-                navigate('/');
-            } else {
-                toast.warning(`Login failed:${res.data.message}`)
-                console.error('Login failed:', res.data.message);
-            }
-        } catch (error) {
-            toast.warning(`Login failed`)
-            console.error('An error occurred during Register:', error);
-        }
-
-    }
 
     return (
         <Form {...form}>
@@ -112,6 +90,48 @@ const RegisterForm = () => {
                                             className="bg-white border border-gray-300 w-full text-sm text-gray-800 pl-4 pr-10 py-2.5 rounded-md outline-blue-500"
                                         />
                                         <Eye />
+                                    </div>
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="phone"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Phone Number</FormLabel>
+                                <FormControl>
+                                    <div className="relative flex items-center">
+                                        <Input
+                                            type="text"
+                                            placeholder="Enter number"
+                                            {...field}
+                                            className="bg-white border border-gray-300 w-full text-sm text-gray-800 pl-4 pr-10 py-2.5 rounded-md outline-blue-500"
+                                        />
+                                        <Mobile />
+                                    </div>
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="address"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Address</FormLabel>
+                                <FormControl>
+                                    <div className="relative flex items-center">
+                                        <Input
+                                            type="text"
+                                            placeholder="Enter Address"
+                                            {...field}
+                                            className="bg-white border border-gray-300 w-full text-sm text-gray-800 pl-4 pr-10 py-2.5 rounded-md outline-blue-500"
+                                        />
+                                        <FaAddressBook className="w-4 h-4 absolute right-4 cursor-pointer text-gray-800" />
                                     </div>
                                 </FormControl>
                                 <FormMessage />

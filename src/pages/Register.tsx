@@ -1,9 +1,53 @@
 import RegisterForm from "@/components/RegisterForm"
 import { Apple, Facebook, Google } from "@/svgs/GlobalSvg"
+import { toast } from "sonner"
+import { setUserData } from "@/redux/slices/authSlice"
+import { useCreateNewUserMutation } from "@/redux/api/authApi"
+import { useAppDispatch } from "@/redux/hooks"
+import { useNavigate } from "react-router-dom"
+import { z } from "zod"
+import { registerFormSchema } from "@/validation/auth.validation"
 
+export type FormData = z.infer<typeof registerFormSchema>;
 
 const Register = () => {
-  
+  const [createNewUser] = useCreateNewUserMutation()
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+
+  const onSubmit = async (data: FormData) => {
+    try {
+      const userData = {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        phone: data.phone,
+        role: 'user',
+        address: data.address
+      };
+
+      const res = await createNewUser(userData)
+
+      console.log(res);
+      if (res.data.success) {
+        toast.success('Account Create Successfully')
+        dispatch(setUserData(res.data.data));
+        navigate('/');
+      } else {
+        if (res.data.message.includes("duplicate key error")) {
+          toast.warning('This email is already in use');
+        } else {
+          toast.warning(`Registration failed: ${res.data.message}`);
+        }
+        console.error('Registration failed:', res.data.message);
+      }
+    } catch (error) {
+      toast.warning(`Login failed`)
+      console.error('An error occurred during Register:', error);
+    }
+
+  }
+
   return (
     <div className="font-[sans-serif] bg-gray-50 flex items-center md:h-screen p-4">
       <div className="w-full max-w-4xl max-md:max-w-xl mx-auto">
@@ -31,7 +75,7 @@ const Register = () => {
               </button>
             </div>
           </div>
-          <RegisterForm />
+          <RegisterForm onSubmit={onSubmit} />
         </div>
       </div>
     </div>

@@ -41,6 +41,15 @@ export const Eye = () => {
     )
 }
 
+export const Mobile = () => {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" viewBox="0 0 24 24" strokeWidth={1.5}  className="w-4 h-4 absolute right-4 cursor-pointer">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+        </svg>
+
+    )
+}
+
 export const Google = () => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width="22px" fill="#fff" className="inline shrink-0 mr-4" viewBox="0 0 512 512">

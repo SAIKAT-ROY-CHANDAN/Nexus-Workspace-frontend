@@ -3,12 +3,16 @@ import ProfileAvatar from "./ProfileAvatar";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import logo from "/images/logo-3.svg"
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { clearRole } from "@/redux/slices/authSlice";
+import { persistor } from "@/redux/store";
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
-
     const [dropDownState, setDropDownState] = useState(false);
     const dropDownMenuRef = useRef<HTMLDivElement>(null);
+    const role = useAppSelector((state) => state.auth.role);
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
         const closeDropDown = (e: MouseEvent) => {
@@ -42,6 +46,13 @@ const Header = () => {
         };
     }, []);
 
+
+    const handleLogout = () => {
+        dispatch(clearRole());
+        persistor.purge();
+    };
+
+
     return (
         <nav className={`flex items-center px-4 xl:px-8 py-2 z-50  mb-24 justify-between fixed top-0 left-0 w-full transition-all duration-300 ${isScrolled ? 'bg-slate-50 shadow-lg text-black' : 'bg-transparent'
             }`}>
@@ -64,13 +75,17 @@ const Header = () => {
                 </li>
             </ul>
             <div className="flex items-center gap-2">
-                <Button>
-                    <Link to='/login'>Login</Link>
-                </Button>
-                <Button variant='secondary'>
-                    <Link to='/register'>Register</Link>
-                </Button>
-                <ProfileAvatar />
+                {role ? <Button onClick={handleLogout}>
+                    Log Out
+                </Button> : <>
+                    <Button>
+                        <Link to='/login'>Login</Link>
+                    </Button>
+                    <Button variant='secondary'>
+                        <Link to='/register'>Register</Link>
+                    </Button>
+                </>}
+                {role && <ProfileAvatar />}
                 <div ref={dropDownMenuRef} onClick={() => setDropDownState(!dropDownState)} className="relative flex transition-transform md:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="cursor-pointer text-white" > <line x1="4" x2="20" y1="12" y2="12" /> <line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /> </svg>
                     {dropDownState && (
