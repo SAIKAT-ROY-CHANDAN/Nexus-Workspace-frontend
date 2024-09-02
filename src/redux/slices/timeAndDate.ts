@@ -5,7 +5,7 @@ const initialState = {
         start: null,
         end: null
     },
-    selectedDate: null,
+    selectedDate: '',
     selectedHours: null
 };
 
@@ -15,16 +15,13 @@ export const timeAndDateSlice = createSlice({
     reducers: {
         setTime: (state, action) => {
             const { start, end } = action.payload;
-            console.log('Setting time:', { start, end });
             state.selectedTime.start = start;
             state.selectedTime.end = end;
         },
         setDate: (state, action) => {
-            console.log('Setting date:', action.payload);
             state.selectedDate = action.payload;
         },
         setHours: (state, action) => {
-            console.log('hours', action.payload);
             state.selectedHours = action.payload;
         },
     }

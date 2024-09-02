@@ -33,7 +33,7 @@ const Rooms = () => {
                 </div>
             </div>
 
-            <div className="max-w-screen-2xl mx-auto grid grid-cols-4 pt-10 pb-20 justify-items-center">
+            <div className="max-w-screen-2xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 pt-10 pb-20 justify-items-center">
                 {meetingData?.map((data) => (
                     <RoomCard room={data} key={data._id} />
                 ))}

@@ -6,10 +6,16 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Link } from 'react-router-dom'
 import { IconMenu2, IconX } from "@tabler/icons-react";
 
+export type ChildLink = {
+    label: string;
+    href: string;
+};
+
 interface Links {
     label: string;
     href: string;
     icon: React.JSX.Element | React.ReactNode;
+    children?: ChildLink[]
 }
 
 interface SidebarContextProps {
@@ -57,7 +63,7 @@ export const Sidebar = ({
     children,
     open,
     setOpen,
-    animate,
+    // animate,
 }: {
     children: React.ReactNode;
     open?: boolean;
@@ -65,7 +71,7 @@ export const Sidebar = ({
     animate?: boolean;
 }) => {
     return (
-        <SidebarProvider open={open} setOpen={setOpen} animate={animate}>
+        <SidebarProvider open={open} setOpen={setOpen} animate={false}>
             {children}
         </SidebarProvider>
     );
@@ -165,27 +171,68 @@ export const SidebarLink = ({
     className?: string;
     props?: any
 }) => {
+    const [isOpen, setIsOpen] = useState(false);
     const { open, animate } = useSidebar();
-    return (
-        <Link
-            to={link.href}
-            className={cn(
-                "flex items-center justify-start gap-2  group/sidebar py-2",
-                className
-            )}
-            {...props}
-        >
-            {link.icon}
 
-            <motion.span
-                animate={{
-                    display: animate ? (open ? "inline-block" : "none") : "inline-block",
-                    opacity: animate ? (open ? 1 : 0) : 1,
-                }}
-                className="text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
+    const handleClick = () => {
+        if (link.children) {
+            setIsOpen(!isOpen);
+        }
+    };
+    return (
+        <div className={cn("flex flex-col", className)}>
+            <div
+                className={cn(
+                    "flex items-center justify-start cursor-pointer gap-2 group/sidebar py-2",
+                    className
+                )}
+                onClick={handleClick}
+                {...props}
             >
-                {link.label}
-            </motion.span>
-        </Link>
+                {link.icon}
+
+                <motion.span
+                    animate={{
+                        display: animate ? (open ? "inline-block" : "none") : "inline-block",
+                        opacity: animate ? (open ? 1 : 0) : 1,
+                    }}
+                    className="text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
+                >
+                    {link.label}
+                </motion.span>
+
+                {link.children && (
+                    <motion.div
+                        className="ml-auto"
+                        animate={{ rotate: isOpen ? 180 : 0 }}
+                        transition={{ duration: 0.2 }}
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-3">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                        </svg>
+
+                    </motion.div>
+                )}
+            </div>
+
+            {link.children && isOpen && (
+                <motion.div
+                    className="ml-4 mt-2 flex flex-col gap-1"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    transition={{ duration: 0.2 }}
+                >
+                    {link.children.map((child, idx) => (
+                        <Link
+                            key={idx}
+                            to={child.href}
+                            className="flex items-center gap-2 px-3 py-2 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-md"
+                        >
+                            {child.label}
+                        </Link>
+                    ))}
+                </motion.div>
+            )}
+        </div>
     );
 };

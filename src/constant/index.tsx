@@ -1,5 +1,7 @@
 import {
     IconAdjustmentsBolt,
+    IconArrowLeft,
+    IconBrandTabler,
     IconCloud,
     IconCurrencyDollar,
     IconEaseInOut,
@@ -8,6 +10,7 @@ import {
     IconRouteAltLeft,
     IconTerminal2,
 } from "@tabler/icons-react";
+import { CalendarDays, Grid2x2Check } from "lucide-react";
 
 export const projects = [
     {
@@ -195,3 +198,63 @@ export const invoices = [
         paymentMethod: "Credit Card",
     },
 ]
+
+
+export const links = [
+    {
+        label: "Room Management",
+        href: "/create-room",
+        icon: (
+            <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        ),
+        children: [
+            {
+                label: "Create Room",
+                href: "/create-room",
+            },
+            {
+                label: "View Rooms",
+                href: "/view-rooms",
+            },
+        ],
+    },
+    {
+        label: "Slot Management",
+        href: "#",
+        icon: (
+            <Grid2x2Check className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        ), children: [
+            {
+                label: "Create Slot",
+                href: "/create-slot",
+            },
+            {
+                label: "View Slots",
+                href: "/view-slots",
+            },
+        ],
+    },
+    {
+        label: "Booking Management",
+        href: "#",
+        icon: (
+            <CalendarDays className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        ), children: [
+            {
+                label: "Create Booking",
+                href: "/create-booking",
+            },
+            {
+                label: "View Bookings",
+                href: "/view-bookings",
+            },
+        ],
+    },
+    {
+        label: "Logout",
+        href: "#",
+        icon: (
+            <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        ),
+    },
+];
