@@ -1,14 +1,13 @@
-"use client";
 import { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "../components/ui/sidebar";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { links } from "@/constant";
 
 export function DashboardSidebar() {
+const [open, setOpen] = useState(false);
 
-    const [open, setOpen] = useState(false);
     return (
         <div
             className={cn(
@@ -30,7 +29,7 @@ export function DashboardSidebar() {
                         <SidebarLink
                             link={{
                                 label: "Manu Arora",
-                                href: "#",
+                                href: "/",
                                 icon: (
                                     <img
                                         src="https://assets.aceternity.com/manu.png"
@@ -45,6 +44,7 @@ export function DashboardSidebar() {
                     </div>
                 </SidebarBody>
             </Sidebar>
+            <Outlet></Outlet>
         </div>
     );
 }

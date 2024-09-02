@@ -10,6 +10,9 @@ import BookRoom from "@/pages/BookRoom";
 import MyBookings from "@/pages/MyBookings";
 import Dashboard from "@/pages/Dashboard";
 import SlotBooking from "@/pages/SlotBooking";
+import CreateRoom from "@/pages/CreateRoom";
+import ViewRooms from "@/pages/ViewRooms";
+import RoomUpdate from "@/pages/RoomUpdate";
 
 export const router = createBrowserRouter([
     {
@@ -41,13 +44,27 @@ export const router = createBrowserRouter([
                 element: <MyBookings />
             },
             {
-                path: '/dashboard',
-                element: <Dashboard />
-            },
-            {
                 path: '/slotBooking/:id',
                 element: <SlotBooking />
-            }
+            },
+            {
+                path: '/dashboard',
+                element: <Dashboard />,
+                children: [
+                    {
+                        path: "create-room",
+                        element: <CreateRoom />
+                    },
+                    {
+                        path: 'view-rooms',
+                        element: <ViewRooms />
+                    },
+                    {
+                        path: 'update',
+                        element: <RoomUpdate />
+                    },
+                ]
+            },
         ]
     },
     {
