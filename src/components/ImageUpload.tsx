@@ -1,13 +1,20 @@
 import { useState } from "react";
 import { FileUpload } from "./ui/file-upload"
+import { uploadFilesToImgBB } from "@/utils/uploadImage";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 
 const ImageUpload = () => {
   const [files, setFiles] = useState<File[]>([]);
+  const dispatch = useAppDispatch()
+  const images = useAppSelector((state) => state.imageLink.links);
+
   console.log(files);
+  console.log(images);
+
   const handleFileUpload = (files: File[]) => {
     setFiles(files);
-    console.log(files);
+    uploadFilesToImgBB(files, dispatch);
   };
 
   return (

@@ -1,9 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import ImageUpload from "@/components/ImageUpload"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
 
 const CreateRoom = () => {
+
+  const handleCreateRoom = async () => {
+    console.log("hello");
+  };
+
+
   return (
     <section className="w-full h-screen">
       <div className="flex mt-10 justify-center">
@@ -21,7 +28,7 @@ const CreateRoom = () => {
             <Input type="text" className="p-2 w-full focus-within:ring-1 outline-none rounded-lg 2xl:col-span-2 text-gray-800 text-sm" placeholder="Amenities" />
           </div>
           <ImageUpload />
-          <Button>Submit</Button>
+          <Button onClick={handleCreateRoom}>Submit</Button>
         </div>
       </div>
     </section>
