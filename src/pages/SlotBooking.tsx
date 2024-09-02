@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import DateSelect from "@/components/DateSelect"
 import UserInfoForm from "@/components/UserInfoForm"
 import { useGelSlotsByQueryIdQuery } from "@/redux/api/slotApi";
@@ -45,7 +46,7 @@ const SlotBooking = () => {
                             {/* <TimeSelect /> */}
                             <div className="">
                                 <div className="grid grid-cols-3 gap-3">
-                                    {data.map((slot) => (
+                                    {data?.map((slot: any) => (
                                         <div className="border w-full text-center border-slate-800 rounded-lg" key={slot._id}>
                                             <p className="text-sm">{slot.date}</p>
                                             <div className="flex text-xs items-center justify-center">

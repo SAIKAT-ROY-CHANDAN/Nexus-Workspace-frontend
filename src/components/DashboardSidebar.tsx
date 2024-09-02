@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { links } from "@/constant";
 
 export function DashboardSidebar() {
-const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false);
 
     return (
         <div
@@ -44,7 +44,7 @@ const [open, setOpen] = useState(false);
                     </div>
                 </SidebarBody>
             </Sidebar>
-            <Outlet></Outlet>
+                <Outlet></Outlet>
         </div>
     );
 }

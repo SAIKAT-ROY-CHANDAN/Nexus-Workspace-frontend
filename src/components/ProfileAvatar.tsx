@@ -22,13 +22,17 @@ const ProfileAvatar = () => {
                     <DropdownMenuGroup>
                         {
                             decodedRole !== 'user' ?
-                                <DropdownMenuItem className="cursor-pointer">
-                                    <Link to='/myBookings'>My Bookings</Link>
-                                </DropdownMenuItem>
+                                <Link to='/myBookings'>
+                                    <DropdownMenuItem className="cursor-pointer">
+                                        My Bookings
+                                    </DropdownMenuItem>
+                                </Link>
                                 :
-                                <DropdownMenuItem className="cursor-pointer">
-                                    <Link to='/dashboard'>Dashboard</Link>
-                                </DropdownMenuItem>
+                                <Link to='/dashboard'>
+                                    <DropdownMenuItem className="cursor-pointer">
+                                        Dashboard
+                                    </DropdownMenuItem>
+                                </Link>
                         }
                     </DropdownMenuGroup>
                     <DropdownMenuItem className="cursor-pointer">
