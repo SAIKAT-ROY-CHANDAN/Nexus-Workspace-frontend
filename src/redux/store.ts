@@ -6,6 +6,7 @@ import storage from 'redux-persist/lib/storage';
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import { timeAdnDateReducer } from './slices/timeAndDate';
 import { uploadReducer } from './slices/fileImage';
+import { amenitiesReducer } from './slices/amenites';
 
 const persistConfig = {
     key: 'root',
@@ -19,7 +20,8 @@ export const store = configureStore({
         [baseApi.reducerPath]: baseApi.reducer,
         auth: persistedAuthReducer,
         timeAndDate: timeAdnDateReducer,
-        imageLink: uploadReducer
+        imageLink: uploadReducer,
+        amenities: amenitiesReducer
     },
     middleware: (getDefaultMiddleWare) => getDefaultMiddleWare({
         serializableCheck: {

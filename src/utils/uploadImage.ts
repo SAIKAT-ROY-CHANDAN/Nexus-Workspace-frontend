@@ -1,8 +1,10 @@
-import { addLink } from "@/redux/slices/fileImage";
-import { Dispatch } from "@reduxjs/toolkit";
+import { addLinks } from '@/redux/slices/fileImage';
+import { Dispatch } from 'redux';
+
 
 export const uploadFilesToImgBB = async (files: File[], dispatch: Dispatch) => {
-    console.log(files);
+    const imageLinks: string[] = [];
+
     for (const file of files) {
         const formData = new FormData();
         formData.append('image', file);
@@ -14,10 +16,19 @@ export const uploadFilesToImgBB = async (files: File[], dispatch: Dispatch) => {
             });
 
             const result = await response.json();
-            console.log('Uploaded to ImgBB:', result.data.url);
-            dispatch(addLink(result.data.url))
+            if (result.success) {
+                imageLinks.push(result.data.url); 
+                console.log('Uploaded to ImgBB:', result.data.url); 
+            } else {
+                console.error('Upload failed:', result.message);
+            }
         } catch (error) {
             console.error('Upload failed:', error);
         }
     }
+
+    if (imageLinks.length > 0) {
+        dispatch(addLinks(imageLinks));
+    }
+
 };

@@ -6,7 +6,8 @@ export type TRoom = {
     pricePerSlot: number,
     amenities: string[],
     isDeleted: boolean,
-    _id: string
+    _id?: string,
+    image: string[]
 }
 
 export type TRoomsResponse = {
