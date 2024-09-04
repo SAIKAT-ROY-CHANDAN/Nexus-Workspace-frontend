@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import ProfileAvatar from "./ProfileAvatar";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
 import logo from "/images/logo-3.svg"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -12,7 +12,9 @@ const Header = () => {
     const [dropDownState, setDropDownState] = useState(false);
     const dropDownMenuRef = useRef<HTMLDivElement>(null);
     const role = useAppSelector((state) => state.auth.role);
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
+    const location = useLocation()
+    console.log(location);
 
     useEffect(() => {
         const closeDropDown = (e: MouseEvent) => {
@@ -46,6 +48,16 @@ const Header = () => {
         };
     }, []);
 
+    const getTextColor = () => {
+        if (location.pathname === '/') {
+            return isScrolled ? 'text-black' : 'text-white';
+        } else if (location.pathname === '/aboutUs') {
+            return isScrolled ? 'text-black' : 'text-white';
+        } else {
+            return 'text-black';
+        }
+    };
+
 
     const handleLogout = () => {
         dispatch(clearRole());
@@ -54,8 +66,7 @@ const Header = () => {
 
 
     return (
-        <nav className={`flex items-center px-4 xl:px-8 py-2 z-50  mb-24 justify-between fixed top-0 left-0 w-full transition-all duration-300 ${isScrolled ? 'bg-slate-50 shadow-lg text-black' : 'bg-transparent'
-            }`}>
+        <nav className={`flex items-center px-4 xl:px-8 py-2 z-50 mb-24 justify-between fixed top-0 left-0 w-full transition-all duration-300 ${isScrolled ? 'bg-slate-50 shadow-lg' : 'bg-transparent'} ${getTextColor()}`}>
             <div className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold transition-all duration-200 hover:scale-110">
                 <img src={logo} alt="" className="size-14 text-black" />
             </div>
