@@ -4,12 +4,13 @@ import { setDate } from "@/redux/slices/timeAndDate";
 import { formatDate } from "@/utils/time";
 import { useState } from "react"
 
-const DateSelect = () => {
+const DateSelect = ({ refetch }) => {
     const dispatch = useAppDispatch()
     const [date, setDateState] = useState<Date | undefined>(new Date())
 
     const handleDateSelect = (selectedDate: Date | undefined) => {
         if (selectedDate) {
+            refetch()
             setDateState(selectedDate);
             const formattedDate = formatDate(selectedDate);
             dispatch(setDate(formattedDate))
