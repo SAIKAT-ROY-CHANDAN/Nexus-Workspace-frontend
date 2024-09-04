@@ -19,7 +19,8 @@ const slotApi = baseApi.injectEndpoints({
             transformResponse: (response) => {
                 return response.data;
             },
-            providesTags: (result, error, { id }) => [{ type: 'Slots', id }],
+            // providesTags: (result, error, { id }) => [{ type: 'Slots', id }],
+            providesTags: ({ id }) => [{ type: 'Slots', id }],
         }),
     })
 })

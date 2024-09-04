@@ -216,10 +216,6 @@ export const links = [
                 label: "View Rooms",
                 href: "/dashboard/view-rooms",
             },
-            {
-                label: "Room Update",
-                href: "/dashboard/update",
-            },
         ],
     },
     {

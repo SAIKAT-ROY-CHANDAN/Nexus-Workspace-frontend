@@ -12,7 +12,6 @@ import Dashboard from "@/pages/Dashboard";
 import SlotBooking from "@/pages/SlotBooking";
 import CreateRoom from "@/pages/CreateRoom";
 import ViewRooms from "@/pages/ViewRooms";
-import RoomUpdate from "@/pages/RoomUpdate";
 
 export const router = createBrowserRouter([
     {
@@ -58,10 +57,6 @@ export const router = createBrowserRouter([
                     {
                         path: 'view-rooms',
                         element: <ViewRooms />
-                    },
-                    {
-                        path: 'update',
-                        element: <RoomUpdate />
                     },
                 ]
             },

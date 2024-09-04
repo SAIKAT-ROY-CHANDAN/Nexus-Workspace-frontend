@@ -13,8 +13,17 @@ const bookingApi = baseApi.injectEndpoints({
                     }
                 }
             },
-        })
+        }),
+        getAllBookings: builder.query({
+            query: (token) => ({
+                url: '/bookings',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }),
+            transformResponse: (response) => response.data,
+        }),
     })
 })
 
-export const { useCreateBookingMutation } = bookingApi
+export const { useCreateBookingMutation, useGetAllBookingsQuery } = bookingApi
