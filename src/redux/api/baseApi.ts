@@ -12,7 +12,8 @@ export const baseApi = createApi({
                     url: '/rooms'
                 }
             },
-            transformResponse: (response: TRoomsResponse) => response.data
+            transformResponse: (response: TRoomsResponse) => response.data,
+            providesTags: ['Slots']
         }),
         getSingleRoom: builder.query({
             query: (id) => {
@@ -20,7 +21,8 @@ export const baseApi = createApi({
                     url: `/rooms/${id}`
                 }
             },
-            transformResponse: (response: TSingleRoomResponse) => response.data
+            transformResponse: (response: TSingleRoomResponse) => response.data,
+            providesTags: ['Slots']
         }),
         createRoom: builder.mutation({
             query: ({ roomData, token }) => {
@@ -34,8 +36,22 @@ export const baseApi = createApi({
                     }
                 }
             },
+        }),
+        updateRoom: builder.mutation({
+            query: ({ updatedData, token, roomId }) => {
+                console.log(updatedData);
+                return {
+                    url: `/rooms/${roomId}`,
+                    method: 'PATCH',
+                    body: updatedData,
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            },
+            invalidatesTags: ['Slots']
         })
     })
 })
 
-export const { useGetRoomsQuery, useGetSingleRoomQuery, useCreateRoomMutation, } = baseApi
+export const { useGetRoomsQuery, useGetSingleRoomQuery, useCreateRoomMutation, useUpdateRoomMutation } = baseApi

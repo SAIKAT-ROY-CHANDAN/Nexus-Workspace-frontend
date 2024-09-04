@@ -223,32 +223,14 @@ export const links = [
         href: "#",
         icon: (
             <Grid2x2Check className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-        ), children: [
-            {
-                label: "Create Slot",
-                href: "/create-slot",
-            },
-            {
-                label: "View Slots",
-                href: "/view-slots",
-            },
-        ],
+        )
     },
     {
         label: "Booking Management",
         href: "#",
         icon: (
             <CalendarDays className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-        ), children: [
-            {
-                label: "Create Booking",
-                href: "/create-booking",
-            },
-            {
-                label: "View Bookings",
-                href: "/view-bookings",
-            },
-        ],
+        )
     },
     {
         label: "Logout",

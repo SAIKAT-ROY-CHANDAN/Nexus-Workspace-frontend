@@ -1,10 +1,12 @@
-import { Button } from "@/components/ui/button"
+import { RoomUpdateModal } from "@/components/RoomUpdateModal"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { useGetRoomsQuery } from "@/redux/api/baseApi"
-const ViewRooms = () => {
+import { MdOutlineDelete } from "react-icons/md";
 
+
+const ViewRooms = () => {
   const { data: roomData } = useGetRoomsQuery({})
-  console.log(roomData);
+
   return (
     <Table className="max-w-7xl mx-auto mt-24">
       <TableHeader>
@@ -28,8 +30,15 @@ const ViewRooms = () => {
             <TableCell className="">{room.capacity}</TableCell>
             <TableCell className="">{room.pricePerSlot}</TableCell>
             <TableCell className="flex gap-x-4">
-              <Button>+</Button>
-              <Button>-</Button>
+              <RoomUpdateModal roomId={room._id} />
+              <button className="group relative inline-flex h-9 items-center justify-center overflow-hidden rounded-md border dark:border-[#656fe2] border-black font-medium">
+                <div className="inline-flex h-10 translate-y-0 items-center justify-center  bg-gradient-to-r dark:from-[#070e41] dark:to-[#263381] from-[#f7f8ff] to-[#ffffff] px-6 dark:text-white text-black transition group-hover:-translate-y-[150%]">
+                  Delete
+                </div>
+                <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black dark:bg-[#656fe2] px-6 text-neutral-50 transition duration-300 group-hover:translate-y-0">
+                  <MdOutlineDelete className="size-6" />
+                </div>
+              </button>
             </TableCell>
           </TableRow>
         ))}
