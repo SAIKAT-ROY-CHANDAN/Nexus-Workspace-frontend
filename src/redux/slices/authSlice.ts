@@ -7,6 +7,7 @@ interface AuthRole {
     phone: string;
     address: string;
     role: string;
+    token: string
 }
 
 const initialState: AuthRole = {
@@ -15,7 +16,8 @@ const initialState: AuthRole = {
     email: '',
     phone: '',
     address: '',
-    role: ''
+    role: '',
+    token: ''
 }
 
 
@@ -37,8 +39,11 @@ export const authSlice = createSlice({
             state.address = action.payload.address;
             state.role = action.payload.role;
         },
+        setToken: (state, action: PayloadAction<string>) => {
+            state.token = action.payload; 
+        },
     }
 })
 
-export const { setRole, clearRole, setUserData } = authSlice.actions
+export const { setRole, clearRole, setUserData, setToken } = authSlice.actions
 export const authReducer = authSlice.reducer

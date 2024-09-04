@@ -31,7 +31,7 @@ const UserInfoForm = ({ handleSlotBooking, selectedSlot }: any) => {
             slots: selectedSlot ? [selectedSlot] : [],
         };
 
-        console.log("Form Data:", formData);
+        // console.log("Form Data:", formData);
         handleSlotBooking(formData);
     };
 

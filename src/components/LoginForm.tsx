@@ -10,7 +10,7 @@ import { useLoginUserMutation } from "@/redux/api/authApi"
 import { loginFormSchema } from "@/validation/auth.validation"
 import { toast } from "sonner"
 import { jwtDecode, JwtPayload } from "jwt-decode";
-import { setRole } from "@/redux/slices/authSlice"
+import { setRole, setToken } from "@/redux/slices/authSlice"
 import { useAppDispatch } from "@/redux/hooks"
 
 type FormData = z.infer<typeof loginFormSchema>;
@@ -38,9 +38,10 @@ const LoginForm = () => {
                 toast.success('Account Create Successfully')
 
                 const decoded = jwtDecode<CustomJwtPayload>(res.token)
+                dispatch(setToken(res.token))
                 dispatch(setRole(decoded.role))
-
                 navigate('/');
+                
             } else {
                 console.error('Login failed:', res.message);
             }

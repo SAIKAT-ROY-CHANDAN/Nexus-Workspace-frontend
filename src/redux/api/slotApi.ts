@@ -17,21 +17,11 @@ const slotApi = baseApi.injectEndpoints({
                 }
             },
             transformResponse: (response) => {
-                console.log('API Response:', response);
                 return response.data;
             },
             providesTags: (result, error, { id }) => [{ type: 'Slots', id }],
         }),
-        createSlot: builder.mutation({
-            query: (data) => {
-                return {
-                    url: '/bookings',
-                    method: 'POST',
-                    body: data
-                }
-            },
-        })
     })
 })
 
-export const { useGelSlotsQuery, useGelSlotsByQueryIdQuery, useCreateSlotMutation } = slotApi
+export const { useGelSlotsQuery, useGelSlotsByQueryIdQuery } = slotApi

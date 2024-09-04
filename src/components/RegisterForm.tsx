@@ -15,7 +15,6 @@ type RegisterFormProps = {
   
 
 const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
-
     const form = useForm({
         resolver: zodResolver(registerFormSchema),
         defaultValues: {

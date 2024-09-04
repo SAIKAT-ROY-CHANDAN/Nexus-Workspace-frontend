@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import DateSelect from "@/components/DateSelect"
 import UserInfoForm from "@/components/UserInfoForm"
+import { useCreateBookingMutation } from "@/redux/api/bookingApi";
 import { useGelSlotsByQueryIdQuery } from "@/redux/api/slotApi";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setDate, setTime, toggleSlotSelection } from "@/redux/slices/timeAndDate";
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from "sonner";
 
 const SlotBooking = () => {
     const { selectedTime, selectedDate, selectedSlots } = useAppSelector((state) => state.timeAndDate);
@@ -13,13 +14,10 @@ const SlotBooking = () => {
     const { id } = useParams();
     const { data, refetch } = useGelSlotsByQueryIdQuery({ date: selectedDate, id: id },
         { refetchOnFocus: true, refetchOnMountOrArgChange: true, refetchOnReconnect: true })
+    const [createBooking] = useCreateBookingMutation()
+    const token = useAppSelector((state) => state.auth.token)
 
     console.log(data);
-
-    useEffect(() => {
-        // This will refetch the data every time `selectedDate` or `id` changes
-        refetch();
-    }, [selectedDate, id, refetch]);
 
     const handleSlotSelection = (slot: { _id: string; date: string; startTime: string; endTime: string }) => {
         dispatch(toggleSlotSelection(slot._id));
@@ -36,6 +34,19 @@ const SlotBooking = () => {
             user: formData.user,
             slots: selectedSlots,
         };
+
+
+        try {
+            const response = await createBooking({
+                slotDetails,
+                token,
+            }).unwrap();
+            toast.success('Booking successful')
+            console.log("Booking successful:", response);
+        } catch (error) {
+            console.error("Booking failed:", error);
+            toast.success('Booking failed')
+        }
 
         console.log(slotDetails);
     };
