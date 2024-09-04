@@ -6,14 +6,15 @@ interface RoomCardProps {
 }
 
 const RoomCard = ({ room }: RoomCardProps) => {
+    const imageUrl = room?.image[0] || "https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80";
     return (
-        <div className="max-[350px] mx-auto space-y-4 rounded  p-6 md:w-[350px] dark:border-zinc-700 dark:bg-zinc-900">
+        <div className="max-[350px] mx-auto space-y-4 rounded bg-gray-50/30 p-6 md:w-[350px] dark:border-zinc-700 dark:bg-zinc-900">
             <div className="relative rounded-2xl group overflow-hidden">
                 <img
                     width={350}
                     height={190}
                     className="h-full w-full object-cover"
-                    src="https://images.unsplash.com/photo-1489269637500-aa0e75768394?q=80&w=2041&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    src={imageUrl}
                     alt="card navigate ui"
                 />
                 <div className="absolute bottom-0 left-0 right-0 h-0 group-hover:h-full transition-all duration-500 bg-gradient-to-r from-[#93c5fd] via-[#60a5fa] to-[#3b82f6] opacity-20"></div>
@@ -29,7 +30,7 @@ const RoomCard = ({ room }: RoomCardProps) => {
             </div>
             <div className="mt-5 flex items-center justify-between">
                 <h2 className="font-medium text-gray-700 md:text-xl dark:text-white/60">${room.pricePerSlot}</h2>
-                <Link to={`/rooms/${room._id}`} className="rounded-lg bg-slate-800 px-6 py-2 text-[12px] font-semibold text-white hover:bg-slate-900 sm:text-sm md:text-base">See Details</Link>
+                <Link to={`/rooms/${room._id}`} className="rounded-lg bg-slate-800 px-4 py-2 text-[12px] font-semibold text-white hover:bg-slate-900 sm:text-sm">See Details</Link>
             </div>
         </div>
     )

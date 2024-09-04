@@ -5,11 +5,15 @@ interface FeatureCardProps {
 }
 
 const FeatureCard = ({ feature }: FeatureCardProps) => {
+
+    const imageUrl = feature?.image[0] || "https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80";
+
+
     return (
         <article className="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
             <img
                 alt=""
-                src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+                src={imageUrl}
                 className="h-56 w-full object-cover hover:scale-105 transition-transform duration-300"
             />
             <div className="bg-white p-4 sm:p-6">

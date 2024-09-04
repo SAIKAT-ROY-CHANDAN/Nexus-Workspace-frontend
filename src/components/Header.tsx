@@ -14,7 +14,6 @@ const Header = () => {
     const role = useAppSelector((state) => state.auth.role);
     const dispatch = useAppDispatch();
     const location = useLocation()
-    console.log(location);
 
     useEffect(() => {
         const closeDropDown = (e: MouseEvent) => {

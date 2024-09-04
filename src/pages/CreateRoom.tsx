@@ -2,6 +2,7 @@
 import ImageUpload from "@/components/ImageUpload"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { useCreateRoomMutation } from "@/redux/api/baseApi";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addAmenity, removeAmenity } from "@/redux/slices/amenites";
 import { TRoom } from "@/types/global";
@@ -9,6 +10,7 @@ import { roomSchema } from "@/validation/room.validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import * as z from "zod";
 
 type RoomFormValues = z.infer<typeof roomSchema>;
@@ -16,8 +18,10 @@ type RoomFormValues = z.infer<typeof roomSchema>;
 const CreateRoom = () => {
   const images = useAppSelector((state) => state.imageLink.links);
   const amenitiesFromRedux = useAppSelector((state) => state.amenities.amenities);
+  const token = useAppSelector((state) => state.auth.token);
   const [inputValue, setInputValue] = useState('');
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
+  const [createRoom] = useCreateRoomMutation()
 
   const {
     register,
@@ -47,7 +51,7 @@ const CreateRoom = () => {
     dispatch(removeAmenity(index));
   };
 
-  const onSubmit = (data: RoomFormValues) => {
+  const onSubmit = async (data: RoomFormValues) => {
     const roomData: TRoom = {
       name: data.name,
       roomNo: Number(data.roomNo),
@@ -59,8 +63,20 @@ const CreateRoom = () => {
       image: images,
     };
 
-    console.log("Form Data:", roomData); 
+    console.log("Form Data:", roomData);
     console.log("Uploaded Images:", images);
+
+    try {
+      const response = await createRoom({
+        roomData,
+        token,
+      }).unwrap();
+      toast.success('Room created successfully')
+      console.log("Room create successfully:", response);
+    } catch (error) {
+      console.error("Room creation failed:", error);
+      toast.success('Room creation failed')
+    }
   };
 
 

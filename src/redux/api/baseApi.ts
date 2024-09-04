@@ -21,8 +21,21 @@ export const baseApi = createApi({
                 }
             },
             transformResponse: (response: TSingleRoomResponse) => response.data
+        }),
+        createRoom: builder.mutation({
+            query: ({ roomData, token }) => {
+                console.log(roomData);
+                return {
+                    url: '/rooms',
+                    method: 'POST',
+                    body: roomData,
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            },
         })
     })
 })
 
-export const { useGetRoomsQuery, useGetSingleRoomQuery } = baseApi
+export const { useGetRoomsQuery, useGetSingleRoomQuery, useCreateRoomMutation, } = baseApi
