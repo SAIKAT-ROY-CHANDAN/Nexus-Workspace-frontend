@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { baseApi } from "./baseApi";
 
 const slotApi = baseApi.injectEndpoints({
@@ -8,16 +7,20 @@ const slotApi = baseApi.injectEndpoints({
                 return {
                     url: '/slots/availability'
                 }
-            }
+            },
+            providesTags: ['Slots'],
         }),
         gelSlotsByQueryId: builder.query({
             query: ({ date, id }) => {
-                console.log(date, id);
                 return {
                     url: `/slots/availability?date=${date}&roomId=${id}`
                 }
             },
-            transformResponse: (response: any) => response.data
+            transformResponse: (response) => {
+                console.log('API Response:', response);
+                return response.data;
+            },
+            providesTags: (result, error, { id }) => [{ type: 'Slots', id }],
         }),
         createSlot: builder.mutation({
             query: (data) => {

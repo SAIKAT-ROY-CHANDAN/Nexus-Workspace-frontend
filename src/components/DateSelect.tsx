@@ -10,10 +10,11 @@ const DateSelect = ({ refetch }) => {
 
     const handleDateSelect = (selectedDate: Date | undefined) => {
         if (selectedDate) {
-            refetch()
             setDateState(selectedDate);
             const formattedDate = formatDate(selectedDate);
             dispatch(setDate(formattedDate))
+            refetch()
+            console.log(refetch);
         }
     };
 

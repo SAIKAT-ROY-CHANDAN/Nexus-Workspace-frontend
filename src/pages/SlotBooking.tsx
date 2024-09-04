@@ -4,15 +4,22 @@ import UserInfoForm from "@/components/UserInfoForm"
 import { useGelSlotsByQueryIdQuery } from "@/redux/api/slotApi";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setDate, setTime, toggleSlotSelection } from "@/redux/slices/timeAndDate";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const SlotBooking = () => {
     const { selectedTime, selectedDate, selectedSlots } = useAppSelector((state) => state.timeAndDate);
     const dispatch = useAppDispatch()
     const { id } = useParams();
-    const { data, refetch } = useGelSlotsByQueryIdQuery({ date: selectedDate, id: id }, { refetchOnMountOrArgChange: true })
+    const { data, refetch } = useGelSlotsByQueryIdQuery({ date: selectedDate, id: id },
+        { refetchOnFocus: true, refetchOnMountOrArgChange: true, refetchOnReconnect: true })
 
     console.log(data);
+
+    useEffect(() => {
+        // This will refetch the data every time `selectedDate` or `id` changes
+        refetch();
+    }, [selectedDate, id, refetch]);
 
     const handleSlotSelection = (slot: { _id: string; date: string; startTime: string; endTime: string }) => {
         dispatch(toggleSlotSelection(slot._id));
