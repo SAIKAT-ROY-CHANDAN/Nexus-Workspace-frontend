@@ -179,42 +179,66 @@ export const SidebarLink = ({
             setIsOpen(!isOpen);
         }
     };
+
     return (
         <div className={cn("flex flex-col", className)}>
-            <div
-                className={cn(
-                    "flex items-center justify-start cursor-pointer gap-2 group/sidebar py-2",
-                    className
-                )}
-                onClick={handleClick}
-                {...props}
-            >
-                {link.icon}
-
-                <motion.span
-                    animate={{
-                        display: animate ? (open ? "inline-block" : "none") : "inline-block",
-                        opacity: animate ? (open ? 1 : 0) : 1,
-                    }}
-                    className="text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
+            {/* For links that have children, keep the toggleable behavior */}
+            {link.children ? (
+                <div
+                    className={cn(
+                        "flex items-center justify-start cursor-pointer gap-2 group/sidebar py-2",
+                        className
+                    )}
+                    onClick={handleClick}
+                    {...props}
                 >
-                    {link.label}
-                </motion.span>
+                    {link.icon}
 
-                {link.children && (
+                    <motion.span
+                        animate={{
+                            display: animate ? (open ? "inline-block" : "none") : "inline-block",
+                            opacity: animate ? (open ? 1 : 0) : 1,
+                        }}
+                        className="text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
+                    >
+                        {link.label}
+                    </motion.span>
+
                     <motion.div
                         className="ml-auto"
                         animate={{ rotate: isOpen ? 180 : 0 }}
                         transition={{ duration: 0.2 }}
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-3">
-                            <path strokeWidth="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                         </svg>
-
                     </motion.div>
-                )}
-            </div>
+                </div>
+            ) : (
+                // For links that don't have children, make the entire div a link
+                <Link
+                    to={link.href}
+                    className={cn(
+                        "flex items-center justify-start gap-2 group/sidebar py-2 cursor-pointer",
+                        className
+                    )}
+                    {...props}
+                >
+                    {link.icon}
 
+                    <motion.span
+                        animate={{
+                            display: animate ? (open ? "inline-block" : "none") : "inline-block",
+                            opacity: animate ? (open ? 1 : 0) : 1,
+                        }}
+                        className="text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
+                    >
+                        {link.label}
+                    </motion.span>
+                </Link>
+            )}
+
+            {/* Children links */}
             {link.children && isOpen && (
                 <motion.div
                     className="ml-4 mt-2 flex flex-col gap-1"

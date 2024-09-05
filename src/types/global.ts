@@ -33,3 +33,22 @@ export type TBooking = {
     isDeleted: boolean,
     totalAmount?: number
 }
+
+
+export type TSlot = {
+    room: Types.ObjectId;
+    date: string;
+    startTime: string;
+    endTime: string;
+    isBooked: boolean
+}
+
+export type TSlotRoom = {
+    room: TRoom
+    date: string;     
+    startTime: string;
+    endTime: string;  
+    isBooked: boolean;
+    _id?: string;     
+};
+  

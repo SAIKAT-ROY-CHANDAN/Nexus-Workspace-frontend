@@ -1,13 +1,25 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { TSlotRoom } from "@/types/global";
 import { baseApi } from "./baseApi";
+
+export type TApiResponse<T> = {
+    success: boolean;
+    message: string;
+    data: T;
+  };
+  
+  // Now, declare the response type for an array of TSlotRoom
+  export type TSlotRoomsResponse = TApiResponse<TSlotRoom[]>
 
 const slotApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        gelSlots: builder.query({
+        getSlots: builder.query({
             query: () => {
                 return {
                     url: '/slots/availability'
                 }
             },
+            transformResponse: (response: TSlotRoomsResponse) => response.data,
             providesTags: ['Slots'],
         }),
         gelSlotsByQueryId: builder.query({
@@ -16,7 +28,7 @@ const slotApi = baseApi.injectEndpoints({
                     url: `/slots/availability?date=${date}&roomId=${id}`
                 }
             },
-            transformResponse: (response) => {
+            transformResponse: (response: any) => {
                 return response.data;
             },
             // providesTags: (result, error, { id }) => [{ type: 'Slots', id }],
@@ -25,4 +37,4 @@ const slotApi = baseApi.injectEndpoints({
     })
 })
 
-export const { useGelSlotsQuery, useGelSlotsByQueryIdQuery } = slotApi
+export const { useGetSlotsQuery, useGelSlotsByQueryIdQuery } = slotApi

@@ -12,6 +12,8 @@ import Dashboard from "@/pages/Dashboard";
 import SlotBooking from "@/pages/SlotBooking";
 import CreateRoom from "@/pages/CreateRoom";
 import ViewRooms from "@/pages/ViewRooms";
+import SlotManagement from "@/pages/SlotManagement";
+import BookingManagement from "@/pages/BookingManagement";
 
 export const router = createBrowserRouter([
     {
@@ -57,6 +59,14 @@ export const router = createBrowserRouter([
                     {
                         path: 'view-rooms',
                         element: <ViewRooms />
+                    },
+                    {
+                        path: 'slot-management',
+                        element: <SlotManagement />
+                    },
+                    {
+                        path: 'booking-management',
+                        element: <BookingManagement />
                     },
                 ]
             },

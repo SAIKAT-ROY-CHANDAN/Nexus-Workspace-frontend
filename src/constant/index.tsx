@@ -220,14 +220,14 @@ export const links = [
     },
     {
         label: "Slot Management",
-        href: "#",
+        href: "/dashboard/slot-management",
         icon: (
             <Grid2x2Check className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         )
     },
     {
         label: "Booking Management",
-        href: "#",
+        href: "/dashboard/booking-management",
         icon: (
             <CalendarDays className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         )
