@@ -22,13 +22,13 @@ export function RoomUpdateModal({ roomId }: any) {
     const onSubmit = async (data: any) => {
         const updatedData = {
             ...data,
+            floorNo: Number(data.floorNo),
+            roomNo: Number(data.roomNo),
             amenities: data.amenities.split(',').map((item: string) => item.trim()),
         };
-
-        
+      
         try {
-            const res = await updateRoom({ updatedData, token, roomId })
-            
+            const res = await updateRoom({ updatedData, token, roomId })            
             console.log(res);
             if (res.data.success) {
                 toast.success('Update Room Successfully')

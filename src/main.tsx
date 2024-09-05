@@ -14,7 +14,7 @@ createRoot(document.getElementById('root')!).render(
       <PersistGate loading={null} persistor={persistor}>
         <RouterProvider router={router} />
       </PersistGate>
-      <Toaster position='bottom-center' duration={4} />
+      <Toaster position='bottom-right'/>
     </Provider>
   </StrictMode>,
 )

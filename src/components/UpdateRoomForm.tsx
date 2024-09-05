@@ -6,6 +6,8 @@ const UpdateRoomForm = ({ onSubmit, formMethods, roomData }: any) => {
     const { register, handleSubmit } = useForm({
         defaultValues: {
             ...roomData,
+            floorNo: Number(roomData.floorNo),
+            roomNo: Number(roomData.roomNo),
             amenities: roomData.amenities.join(', ')
         }
     });

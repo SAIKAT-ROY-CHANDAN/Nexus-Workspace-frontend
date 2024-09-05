@@ -50,8 +50,26 @@ export const baseApi = createApi({
                 }
             },
             invalidatesTags: ['Slots']
-        })
+        }),
+        deleteRoom: builder.mutation({
+            query: ({ token, roomId }) => {
+                return {
+                    url: `/rooms/${roomId}`,
+                    method: 'DELETE',
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            },
+            invalidatesTags: ['Slots']
+        }),
     })
 })
 
-export const { useGetRoomsQuery, useGetSingleRoomQuery, useCreateRoomMutation, useUpdateRoomMutation } = baseApi
+export const {
+    useGetRoomsQuery,
+    useGetSingleRoomQuery,
+    useCreateRoomMutation,
+    useUpdateRoomMutation,
+    useDeleteRoomMutation
+} = baseApi
