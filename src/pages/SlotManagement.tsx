@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { RoomUpdateModal } from "@/components/RoomUpdateModal"
-import { Button } from "@/components/ui/button"
+import SlotForm from "@/components/SlotForm"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { useGetSlotsQuery } from "@/redux/api/slotApi"
-import { PlusIcon } from "@/svgs/GlobalSvg"
 import { MdOutlineDelete } from "react-icons/md"
 
 const SlotManagement = () => {
@@ -14,9 +13,7 @@ const SlotManagement = () => {
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">
-            <Button>
-              <PlusIcon />
-            </Button>
+              <SlotForm />
           </TableHead>
           <TableHead className="flex-1">Room Name</TableHead>
           <TableHead className="">Room No</TableHead>

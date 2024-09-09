@@ -48,7 +48,6 @@ const SlotBooking = () => {
             toast.success('Booking failed')
         }
 
-        console.log(slotDetails);
     };
 
 
@@ -59,7 +58,6 @@ const SlotBooking = () => {
                     <div>
                         <DateSelect refetch={refetch} />
                         <div className="mt-2">
-                            {/* <TimeSelect /> */}
                             <div className="">
                                 <div className="grid grid-cols-3 gap-y-3">
                                     {data?.map((slot: any) => (

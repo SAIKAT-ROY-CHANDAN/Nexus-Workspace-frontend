@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { baseApi } from "./baseApi";
 
 const bookingApi = baseApi.injectEndpoints({
@@ -15,13 +16,19 @@ const bookingApi = baseApi.injectEndpoints({
             },
         }),
         getAllBookings: builder.query({
-            query: (token) => ({
-                url: '/bookings',
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            }),
-            transformResponse: (response) => response.data,
+            query: (token) => {
+                console.log(token);
+                return {
+                    url: '/bookings',
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            },
+            transformResponse: (response: any) => {
+                console.log(response);
+                return response.data
+            },
         }),
     })
 })

@@ -13,7 +13,7 @@ const RoomCard = ({ room }: RoomCardProps) => {
                 <img
                     width={350}
                     height={190}
-                    className="h-full w-full object-cover"
+                    className="h-44 w-full object-cover"
                     src={imageUrl}
                     alt="card navigate ui"
                 />
