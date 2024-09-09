@@ -14,6 +14,7 @@ import CreateRoom from "@/pages/CreateRoom";
 import ViewRooms from "@/pages/ViewRooms";
 import SlotManagement from "@/pages/SlotManagement";
 import BookingManagement from "@/pages/BookingManagement";
+import Checkout from "@/pages/Checkout";
 
 export const router = createBrowserRouter([
     {
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
             {
                 path: '/slotBooking/:id',
                 element: <SlotBooking />
+            },
+            {
+                path: '/checkout',
+                element: <Checkout />
             },
             {
                 path: '/dashboard',
