@@ -42,6 +42,8 @@ const SlotBooking = () => {
                 token,
             }).unwrap();
             toast.success('Booking successful')
+
+            window.location.href = response.data.payment_url
             console.log("Booking successful:", response);
         } catch (error) {
             console.error("Booking failed:", error);
