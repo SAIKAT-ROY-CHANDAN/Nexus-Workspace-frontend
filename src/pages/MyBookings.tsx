@@ -2,44 +2,52 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { invoices } from "@/constant"
+import { useGetMyBookingsQuery } from "@/redux/api/bookingApi"
+import { useAppSelector } from "@/redux/hooks"
 
 
 const MyBookings = () => {
-
+  const token = useAppSelector((state) => state.auth.token)
+  const { data } = useGetMyBookingsQuery(token)
+  console.log(data);
   return (
-    <Table className="max-w-7xl mx-auto mt-24">
+    <Table className="max-w-screen-xl mx-auto mt-24">
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
+          <TableHead className="w-[100px]"></TableHead>
+          <TableHead className="w-[120px]">Room Name</TableHead>
+          <TableHead>Date</TableHead>
+          <TableHead>Time</TableHead>
+          <TableHead className="text-right">Status</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {invoices.map((invoice) => (
-          <TableRow key={invoice.invoice}>
+        {data?.map((booking) => (
+          <TableRow key={booking._id}>
             <TableCell className="font-medium">
-              <img src="https://pagedone.io/asset/uploads/1697620805.png" alt="Gucci image" />
+              <img
+                src={booking?.room?.image?.[0] || "https://rb.gy/tkc7m8"}
+                alt="Room image"
+                className="rounded"
+              />
             </TableCell>
-            <TableCell>{invoice.paymentStatus}</TableCell>
-            <TableCell>{invoice.paymentMethod}</TableCell>
-            <TableCell className="text-right">{invoice.totalAmount}</TableCell>
+            <TableCell>{booking?.room?.name}</TableCell>
+            <TableCell>{booking?.date}</TableCell>
+            <TableCell>
+              <div className="flex gap-2">
+                <span>{booking?.slots[0].startTime}</span>
+                -
+                <span>{booking?.slots[0].endTime}</span>
+              </div>
+            </TableCell>
+            <TableCell className="text-right capitalize">{booking.isConfirmed}</TableCell>
           </TableRow>
         ))}
       </TableBody>
-      <TableFooter>
-        <TableRow>
-          <TableCell colSpan={3}>Total</TableCell>
-          <TableCell className="text-right">$2,500.00</TableCell>
-        </TableRow>
-      </TableFooter>
     </Table>
   )
 }

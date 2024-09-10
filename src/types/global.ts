@@ -45,10 +45,28 @@ export type TSlot = {
 
 export type TSlotRoom = {
     room: TRoom
-    date: string;     
+    date: string;
     startTime: string;
-    endTime: string;  
+    endTime: string;
     isBooked: boolean;
-    _id?: string;     
+    _id?: string;
 };
-  
+
+
+export type TBookings = {
+    _id: string;
+    date: string;
+    isConfirmed: string;
+    isDeleted: boolean;
+    room: TRoom;
+    slots: TSlot[];
+    totalAmount: number;
+    __v: number;
+    image: string[]
+};
+
+export type TBookingResponse = {
+    success: boolean;
+    message: string;
+    data: TBookings[];
+};
