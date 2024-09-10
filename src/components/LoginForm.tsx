@@ -41,11 +41,12 @@ const LoginForm = () => {
                 dispatch(setToken(res.token))
                 dispatch(setRole(decoded.role))
                 navigate('/');
-                
+
             } else {
                 console.error('Login failed:', res.message);
             }
         } catch (error) {
+            toast.warning(`${error.data.message}`)
             console.error('An error occurred during login:', error);
         }
     }
