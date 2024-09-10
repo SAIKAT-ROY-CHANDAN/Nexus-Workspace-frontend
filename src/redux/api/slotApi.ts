@@ -6,10 +6,10 @@ export type TApiResponse<T> = {
     success: boolean;
     message: string;
     data: T;
-  };
-  
-  // Now, declare the response type for an array of TSlotRoom
-  export type TSlotRoomsResponse = TApiResponse<TSlotRoom[]>
+};
+
+// Now, declare the response type for an array of TSlotRoom
+export type TSlotRoomsResponse = TApiResponse<TSlotRoom[]>
 
 const slotApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
@@ -34,7 +34,19 @@ const slotApi = baseApi.injectEndpoints({
             // providesTags: (result, error, { id }) => [{ type: 'Slots', id }],
             providesTags: ({ id }) => [{ type: 'Slots', id }],
         }),
+        createSlot: builder.mutation({
+            query: (data) => {
+                return {
+                    url: `/slots`,
+                    method: "POST",
+                    body: data
+                }
+            },
+            transformResponse: (response: any) => {
+                return response.data;
+            },
+        }),
     })
 })
 
-export const { useGetSlotsQuery, useGelSlotsByQueryIdQuery } = slotApi
+export const { useGetSlotsQuery, useGelSlotsByQueryIdQuery, useCreateSlotMutation } = slotApi

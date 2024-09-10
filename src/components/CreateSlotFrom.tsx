@@ -5,6 +5,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { Calendar } from "./ui/calendar";
 import { Button } from "./ui/button";
 import { useGetRoomsQuery } from "@/redux/api/baseApi";
+import { useCreateSlotMutation } from "@/redux/api/slotApi";
 
 const CreateSlotFrom = () => {
 
@@ -18,8 +19,8 @@ const CreateSlotFrom = () => {
     );
     const dispatch = useAppDispatch()
     const { data: roomData } = useGetRoomsQuery({})
+    const [createSlot] = useCreateSlotMutation()
 
-    console.log(date);
 
     const handleRoomChange = (e: ChangeEvent<HTMLSelectElement>) => {
         const roomId = e.target.value;
@@ -27,7 +28,7 @@ const CreateSlotFrom = () => {
         console.log("Selected Room ID:", roomId);
     };
 
-    const handleSubmit = (e: FormEvent<HTMLElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLElement>) => {
         e.preventDefault();
         setErrorMessage("");
 
@@ -47,7 +48,9 @@ const CreateSlotFrom = () => {
             endTime: endTime
         };
 
-        console.log(submissionData);
+        const res = await createSlot(submissionData)
+
+        console.log(res);
     };
 
     const generateTimeOptions = () => {
