@@ -71,7 +71,7 @@ export const Sidebar = ({
     animate?: boolean;
 }) => {
     return (
-        <SidebarProvider open={open} setOpen={setOpen} animate={false}>
+        <SidebarProvider open={open} setOpen={setOpen} animate={true}>
             {children}
         </SidebarProvider>
     );
