@@ -54,12 +54,30 @@ const slotApi = baseApi.injectEndpoints({
                     body: updatedData
                 }
             },
-            invalidatesTags: (result, error, { id }) => [
+            invalidatesTags: (_result, _error, { id }) => [
                 { type: 'Slots', id },
-                { type: 'Slots' }, // This will invalidate the general slots query
+                { type: 'Slots' },
             ],
-        })
+        }),
+        deleteSlot: builder.mutation({
+            query: (id) => {
+                return {
+                    url: `/slots/${id}`,
+                    method: "DELETE",
+                }
+            },
+            invalidatesTags: (_result, _error, { id }) => [
+                { type: 'Slots', id },
+                { type: 'Slots' },
+            ],
+        }),
     })
 })
 
-export const { useGetSlotsQuery, useGelSlotsByQueryIdQuery, useCreateSlotMutation, useUpdatedSlotMutation } = slotApi
+export const {
+    useGetSlotsQuery,
+    useGelSlotsByQueryIdQuery,
+    useCreateSlotMutation,
+    useUpdatedSlotMutation,
+    useDeleteSlotMutation
+} = slotApi

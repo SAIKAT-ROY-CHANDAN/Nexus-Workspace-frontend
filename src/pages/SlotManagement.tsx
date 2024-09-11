@@ -1,13 +1,15 @@
- import DataPagination from "@/components/DataPagination"
+import DataPagination from "@/components/DataPagination"
 import SlotForm from "@/components/SlotForm"
 import SlotUpdateModal from "@/components/SlotUpdateModal"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { useGetSlotsQuery } from "@/redux/api/slotApi"
+import { useDeleteSlotMutation, useGetSlotsQuery } from "@/redux/api/slotApi"
 import { SetStateAction, useState } from "react"
 import { MdOutlineDelete } from "react-icons/md"
+import { toast } from "sonner"
 
 const SlotManagement = () => {
   const { data: slotData, isLoading } = useGetSlotsQuery({})
+  const [deleteSlot] = useDeleteSlotMutation()
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8
 
@@ -16,6 +18,18 @@ const SlotManagement = () => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentSlots = slotData?.slice(startIndex, endIndex);
+
+  const handleSlotDelete = async (id: string) => {
+
+    try {
+      const res = await deleteSlot(id);
+      console.log(res);
+      toast.success('Slot deleted successfully');
+    } catch (error) {
+      console.error('Error deleting slot:', error);
+      toast.error('Failed to delete the slot.');
+    }
+  }
 
   const handlePageChange = (page: SetStateAction<number>) => {
     setCurrentPage(page);
@@ -59,6 +73,7 @@ const SlotManagement = () => {
                 <TableCell className="flex gap-x-4">
                   <SlotUpdateModal id={slot._id as string} roomId={slot.room._id as string} />
                   <button
+                    onClick={() => handleSlotDelete(slot._id as string)}
                     className="group relative inline-flex h-9 items-center justify-center overflow-hidden rounded-md border dark:border-[#656fe2] border-black font-medium">
                     <div className="inline-flex h-10 translate-y-0 items-center justify-center  bg-gradient-to-r dark:from-[#070e41] dark:to-[#263381] from-[#f7f8ff] to-[#ffffff] px-6 dark:text-white text-black transition group-hover:-translate-y-[150%]">
                       Delete
