@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import DataPagination from "@/components/DataPagination"
+ import DataPagination from "@/components/DataPagination"
 import SlotForm from "@/components/SlotForm"
 import SlotUpdateModal from "@/components/SlotUpdateModal"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
@@ -58,7 +57,7 @@ const SlotManagement = () => {
                 <TableCell className="">{slot.startTime}</TableCell>
                 <TableCell className="">{slot.endTime}</TableCell>
                 <TableCell className="flex gap-x-4">
-                  <SlotUpdateModal />
+                  <SlotUpdateModal id={slot._id as string} roomId={slot.room._id as string} />
                   <button
                     className="group relative inline-flex h-9 items-center justify-center overflow-hidden rounded-md border dark:border-[#656fe2] border-black font-medium">
                     <div className="inline-flex h-10 translate-y-0 items-center justify-center  bg-gradient-to-r dark:from-[#070e41] dark:to-[#263381] from-[#f7f8ff] to-[#ffffff] px-6 dark:text-white text-black transition group-hover:-translate-y-[150%]">

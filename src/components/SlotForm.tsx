@@ -24,9 +24,9 @@ const SlotForm = () => {
                 <ModalBody>
                     <ModalContent>
                         <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-8">
-                            Add Slot
+                            Add New Slot
                         </h4>
-
+                        {/* Create Slot Form */}
                         <CreateSlotFrom />
                     </ModalContent>
                     <ModalFooter className="gap-4">

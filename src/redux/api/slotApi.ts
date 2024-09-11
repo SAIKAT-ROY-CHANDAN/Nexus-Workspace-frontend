@@ -46,7 +46,20 @@ const slotApi = baseApi.injectEndpoints({
                 return response.data;
             },
         }),
+        updatedSlot: builder.mutation({
+            query: ({ id, updatedData }) => {
+                return {
+                    url: `/slots/${id}`,
+                    method: "PATCH",
+                    body: updatedData
+                }
+            },
+            invalidatesTags: (result, error, { id }) => [
+                { type: 'Slots', id },
+                { type: 'Slots' }, // This will invalidate the general slots query
+            ],
+        })
     })
 })
 
-export const { useGetSlotsQuery, useGelSlotsByQueryIdQuery, useCreateSlotMutation } = slotApi
+export const { useGetSlotsQuery, useGelSlotsByQueryIdQuery, useCreateSlotMutation, useUpdatedSlotMutation } = slotApi

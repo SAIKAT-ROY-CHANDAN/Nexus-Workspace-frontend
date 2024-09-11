@@ -6,6 +6,7 @@ import { Calendar } from "./ui/calendar";
 import { Button } from "./ui/button";
 import { useGetRoomsQuery } from "@/redux/api/baseApi";
 import { useCreateSlotMutation } from "@/redux/api/slotApi";
+import { generateTimeOptions } from "@/utils/generateTimeOptions";
 
 const CreateSlotFrom = () => {
 
@@ -51,19 +52,6 @@ const CreateSlotFrom = () => {
         const res = await createSlot(submissionData)
 
         console.log(res);
-    };
-
-    const generateTimeOptions = () => {
-        const options = [];
-        for (let hour = 0; hour < 24; hour++) {
-            const formattedHour = hour.toString().padStart(2, '0');
-            options.push(
-                <option key={formattedHour} value={`${formattedHour}:00`}>
-                    {`${formattedHour}:00`}
-                </option>
-            );
-        }
-        return options;
     };
 
     const handleDateSelect = (selectedDate: Date | undefined) => {
