@@ -18,7 +18,6 @@ const bookingApi = baseApi.injectEndpoints({
         }),
         getAllBookings: builder.query({
             query: (token) => {
-                console.log(token);
                 return {
                     url: '/bookings',
                     headers: {
@@ -26,6 +25,7 @@ const bookingApi = baseApi.injectEndpoints({
                     },
                 }
             },
+            providesTags: ['Bookings'],
             transformResponse: (response: any) => {
                 console.log(response);
                 return response.data
@@ -33,7 +33,6 @@ const bookingApi = baseApi.injectEndpoints({
         }),
         getMyBookings: builder.query({
             query: (token) => {
-                console.log(token);
                 return {
                     url: '/my-bookings',
                     headers: {
@@ -46,7 +45,20 @@ const bookingApi = baseApi.injectEndpoints({
                 return response.data
             },
         }),
+        approveBooking: builder.mutation({
+            query: ({ id, token, status }) => {
+                return {
+                    url: `/bookings/status/${id}`,
+                    method: 'PATCH',
+                    body: { status },
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            },
+            invalidatesTags: ['Bookings']
+        }),
     })
 })
 
-export const { useCreateBookingMutation, useGetAllBookingsQuery, useGetMyBookingsQuery } = bookingApi
+export const { useCreateBookingMutation, useGetAllBookingsQuery, useGetMyBookingsQuery, useApproveBookingMutation } = bookingApi
