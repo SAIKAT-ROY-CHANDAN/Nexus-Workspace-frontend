@@ -58,7 +58,25 @@ const bookingApi = baseApi.injectEndpoints({
             },
             invalidatesTags: ['Bookings']
         }),
+        deleteBooking: builder.mutation({
+            query: ({ id, token }) => {
+                return {
+                    url: `/bookings/${id}`,
+                    method: 'DELETE',
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            },
+            invalidatesTags: ['Bookings']
+        }),
     })
 })
 
-export const { useCreateBookingMutation, useGetAllBookingsQuery, useGetMyBookingsQuery, useApproveBookingMutation } = bookingApi
+export const {
+    useCreateBookingMutation,
+    useGetAllBookingsQuery,
+    useGetMyBookingsQuery,
+    useApproveBookingMutation,
+    useDeleteBookingMutation
+} = bookingApi
