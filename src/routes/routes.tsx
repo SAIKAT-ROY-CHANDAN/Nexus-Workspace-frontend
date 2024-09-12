@@ -15,10 +15,12 @@ import ViewRooms from "@/pages/ViewRooms";
 import SlotManagement from "@/pages/SlotManagement";
 import BookingManagement from "@/pages/BookingManagement";
 import Checkout from "@/pages/Checkout";
+import ErrorPage from "@/pages/ErrorPage";
 
 export const router = createBrowserRouter([
     {
         path: '/',
+        errorElement: <ErrorPage />,
         element: <App />,
         children: [
             {

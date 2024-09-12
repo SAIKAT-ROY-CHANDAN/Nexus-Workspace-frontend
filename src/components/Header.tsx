@@ -66,9 +66,9 @@ const Header = () => {
 
     return (
         <nav className={`flex items-center px-4 xl:px-8 py-2 z-50 mb-24 justify-between fixed top-0 left-0 w-full transition-all duration-300 ${isScrolled ? 'bg-slate-50 shadow-lg' : 'bg-transparent'} ${getTextColor()}`}>
-            <div className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold transition-all duration-200 hover:scale-110">
+            <Link to='/' className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold transition-all duration-200 hover:scale-110">
                 <img src={logo} alt="" className="size-14 text-black" />
-            </div>
+            </Link>
             <ul className="hidden items-center font-semibold justify-between gap-10 md:flex">
                 <li className="group flex cursor-pointer flex-col">
                     <Link to='/'>Home</Link><span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-slate-700 transition-all duration-300 group-hover:w-full"></span>

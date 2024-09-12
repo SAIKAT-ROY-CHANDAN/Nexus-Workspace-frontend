@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { items } from '@/constant'
 
-const ProductCarousel = () => {
+const ProductCarousel = ({ room }: any) => {
     const [activeItem, setActiveItem] = useState(items[0])
     const [width, setWidth] = useState(0)
     const carousel = useRef<HTMLDivElement>(null)
@@ -13,6 +13,7 @@ const ProductCarousel = () => {
         }
     }, [carousel]);
 
+    console.log(room);
 
     return (
         <>
