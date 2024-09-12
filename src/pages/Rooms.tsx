@@ -32,7 +32,7 @@ const Rooms = () => {
         <>
             <div className="pt-24 flex items-center justify-center">
                 <div className="flex w-full max-w-screen-md items-center space-x-2">
-                    <Input type="email" placeholder="Email" />
+                    <Input type="text" placeholder="Search" />
                     <Button type="submit">Search</Button>
                     <Select>
                         <SelectTrigger className="w-[180px]">

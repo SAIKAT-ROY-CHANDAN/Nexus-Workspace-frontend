@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Eye, Google, Mail } from "@/svgs/GlobalSvg"
 import { Link, useNavigate } from "react-router-dom"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form"
@@ -35,7 +36,7 @@ const LoginForm = () => {
             const res = await loginUser(data).unwrap();
 
             if (res.success) {
-                toast.success('Account Create Successfully')
+                toast.success('Account Logged in')
 
                 const decoded = jwtDecode<CustomJwtPayload>(res.token)
                 dispatch(setToken(res.token))
@@ -45,7 +46,7 @@ const LoginForm = () => {
             } else {
                 console.error('Login failed:', res.message);
             }
-        } catch (error) {
+        } catch (error: any) {
             toast.warning(`${error.data.message}`)
             console.error('An error occurred during login:', error);
         }

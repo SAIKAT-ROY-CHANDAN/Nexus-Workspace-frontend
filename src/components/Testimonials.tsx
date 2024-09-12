@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import DotShape from "@/svgs/DotShape";
 import LeftArrow from "@/svgs/LeftArrow";
 import RightARrow from "@/svgs/RightARrow";
@@ -6,7 +7,7 @@ import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 const Testimonial = () => {
-    const sliderRef = useRef<Swiper | null>(null);
+    const sliderRef = useRef<any>(null);
 
     const handlePrev = useCallback(() => {
         if (!sliderRef.current) return;
