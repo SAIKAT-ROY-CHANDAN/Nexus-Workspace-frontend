@@ -25,7 +25,7 @@ const ProductCarousel = ({ room }: any) => {
                 onClick={(e) => e.stopPropagation()}
             >
                 <>
-                    {roomImages.map((imageSrc: string | { imgSrc: string }, index: number) => (
+                    {roomImages.map((_imageSrc: string | { imgSrc: string }, index: number) => (
                         <AnimatePresence mode="popLayout" initial={false} key={index}>
                             {roomImages.indexOf(activeItem) === index && (
                                 <motion.figure
