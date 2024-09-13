@@ -7,10 +7,11 @@ export const baseApi = createApi({
     tagTypes: ['Slots', 'Bookings'],
     endpoints: (builder) => ({
         getRooms: builder.query({
-            query: () => {
+            query: ({ search, sortBy }) => {
                 return {
-                    url: '/rooms'
-                }
+                    url: '/rooms',
+                    params: { search, sort: sortBy }
+                };
             },
             transformResponse: (response: TRoomsResponse) => response.data,
             providesTags: ['Slots']
@@ -71,5 +72,6 @@ export const {
     useGetSingleRoomQuery,
     useCreateRoomMutation,
     useUpdateRoomMutation,
-    useDeleteRoomMutation
+    useDeleteRoomMutation,
+    useLazyGetRoomsQuery
 } = baseApi

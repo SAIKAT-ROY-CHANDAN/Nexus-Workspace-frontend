@@ -45,6 +45,7 @@ const slotApi = baseApi.injectEndpoints({
             transformResponse: (response: any) => {
                 return response.data;
             },
+            invalidatesTags: ({ id }) => [{ type: 'Slots', id }]
         }),
         updatedSlot: builder.mutation({
             query: ({ id, updatedData }) => {

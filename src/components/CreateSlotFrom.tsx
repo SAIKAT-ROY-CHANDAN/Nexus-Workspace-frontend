@@ -7,6 +7,7 @@ import { Button } from "./ui/button";
 import { useGetRoomsQuery } from "@/redux/api/baseApi";
 import { useCreateSlotMutation } from "@/redux/api/slotApi";
 import { generateTimeOptions } from "@/utils/generateTimeOptions";
+import { toast } from "sonner";
 
 const CreateSlotFrom = () => {
 
@@ -49,9 +50,19 @@ const CreateSlotFrom = () => {
             endTime: endTime
         };
 
-        const res = await createSlot(submissionData)
+        try {
+            const res = await createSlot(submissionData);
+            if (res.data.success) {
+                toast.success('Slot is created');
+            } else {
+                toast.warning('Failed to create the slot.');
+            }
 
-        console.log(res);
+            console.log(res);
+        } catch (error) {
+            toast.warning('An error occurred while creating the slot.');
+            console.error(error);
+        }
     };
 
     const handleDateSelect = (selectedDate: Date | undefined) => {
