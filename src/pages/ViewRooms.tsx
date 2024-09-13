@@ -57,7 +57,7 @@ const ViewRooms = () => {
             {currentRoom?.map((room) => (
               <TableRow key={room._id}>
                 <TableCell className="font-medium">
-                  <img className="rounded-md h-12" src={room?.image[0] || "https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"} alt="Gucci image" />
+                  <img className="rounded-md w-full object-cover h-12" src={room?.image[0] || "https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"} alt="Gucci image" />
                 </TableCell>
                 <TableCell>{room.name}</TableCell>
                 <TableCell>{room.floorNo}</TableCell>
