@@ -11,7 +11,7 @@ import { useLoginUserMutation } from "@/redux/api/authApi"
 import { loginFormSchema } from "@/validation/auth.validation"
 import { toast } from "sonner"
 import { jwtDecode, JwtPayload } from "jwt-decode";
-import { setRole, setToken } from "@/redux/slices/authSlice"
+import { setRole, setToken, setUserData } from "@/redux/slices/authSlice"
 import { useAppDispatch } from "@/redux/hooks"
 
 type FormData = z.infer<typeof loginFormSchema>;
@@ -34,13 +34,23 @@ const LoginForm = () => {
     const onSubmit = async (data: FormData) => {
         try {
             const res = await loginUser(data).unwrap();
-
+            console.log(res);
             if (res.success) {
                 toast.success('Account Logged in')
 
                 const decoded = jwtDecode<CustomJwtPayload>(res.token)
                 dispatch(setToken(res.token))
                 dispatch(setRole(decoded.role))
+                dispatch(setUserData({
+                    _id: res.user._id,
+                    name: res.user.name,
+                    email: res.user.email,
+                    phone: res.user.phone,
+                    address: res.user.address,
+                    role: res.user.role,
+                    token: res.token
+                }));
+
                 navigate('/');
 
             } else {

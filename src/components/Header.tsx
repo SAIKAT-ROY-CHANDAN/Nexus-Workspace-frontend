@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
 import logo from "/images/logo-3.svg"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { clearRole } from "@/redux/slices/authSlice";
+import { clearRole, removeUserData } from "@/redux/slices/authSlice";
 import { persistor } from "@/redux/store";
 
 const Header = () => {
@@ -60,6 +60,7 @@ const Header = () => {
 
     const handleLogout = () => {
         dispatch(clearRole());
+        dispatch(removeUserData());
         persistor.purge();
     };
 

@@ -19,7 +19,7 @@ const Rooms = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(8);
 
-    const [triggerGetRooms, { data: roomData }] = useLazyGetRoomsQuery();
+    const [triggerGetRooms, { data: roomData, isLoading }] = useLazyGetRoomsQuery();
 
     const totalItems = roomData?.length || 0;
     const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -44,6 +44,10 @@ const Rooms = () => {
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     };
+
+    if(isLoading){
+        return <p className="text-center translate-y-64 text-2xl font-semibold">Loading...</p>
+    }
 
     return (
         <>
@@ -80,7 +84,7 @@ const Rooms = () => {
                     <RoomCard room={data} key={data._id} />
                 ))}
             </div>
-            
+
             <div className="w-full mb-20">
                 <DataPagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
             </div>

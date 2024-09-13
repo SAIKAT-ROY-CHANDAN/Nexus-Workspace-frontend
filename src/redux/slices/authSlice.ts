@@ -32,6 +32,7 @@ export const authSlice = createSlice({
             state.role = '';
         },
         setUserData: (state, action: PayloadAction<AuthRole>) => {
+            console.log(action);
             state._id = action.payload._id;
             state.name = action.payload.name;
             state.email = action.payload.email;
@@ -39,11 +40,20 @@ export const authSlice = createSlice({
             state.address = action.payload.address;
             state.role = action.payload.role;
         },
+        removeUserData: (state) => {
+            state._id = '';
+            state.name = '';
+            state.email = '';
+            state.phone = '';
+            state.address = '';
+            state.role = '';
+            state.token = '';
+        },
         setToken: (state, action: PayloadAction<string>) => {
-            state.token = action.payload; 
+            state.token = action.payload;
         },
     }
 })
 
-export const { setRole, clearRole, setUserData, setToken } = authSlice.actions
+export const { setRole, clearRole, setUserData, setToken, removeUserData } = authSlice.actions
 export const authReducer = authSlice.reducer
