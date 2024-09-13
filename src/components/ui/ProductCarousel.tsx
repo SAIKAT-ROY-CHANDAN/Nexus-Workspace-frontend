@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useRef, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { items } from '@/constant'
+import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { items as defaultItems } from '@/constant';
 
 const ProductCarousel = ({ room }: any) => {
-    const [activeItem, setActiveItem] = useState(items[0])
-    const [width, setWidth] = useState(0)
-    const carousel = useRef<HTMLDivElement>(null)
+    const roomImages = room?.image?.length ? room.image : defaultItems; // Fallback to default items if room images are unavailable
+    const [activeItem, setActiveItem] = useState(roomImages[0]);
+    const [width, setWidth] = useState(0);
+    const carousel = useRef<HTMLDivElement>(null);
+
     useEffect(() => {
         if (carousel.current) {
             setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
@@ -23,11 +25,11 @@ const ProductCarousel = ({ room }: any) => {
                 onClick={(e) => e.stopPropagation()}
             >
                 <>
-                    {items.map((tab: any) => (
-                        <AnimatePresence mode="popLayout" initial={false} key={tab.id}>
-                            {tab.id === activeItem.id && (
+                    {roomImages.map((imageSrc: string | { imgSrc: string }, index: number) => (
+                        <AnimatePresence mode="popLayout" initial={false} key={index}>
+                            {roomImages.indexOf(activeItem) === index && (
                                 <motion.figure
-                                    key={tab?.id}
+                                    key={index}
                                     className="dark:bg-gray-900/60 border rounded-md p-4 backdrop-blur-sm"
                                 >
                                     <motion.div
@@ -51,7 +53,7 @@ const ProductCarousel = ({ room }: any) => {
                                         }}
                                     >
                                         <img
-                                            src={activeItem.imgSrc}
+                                            src={typeof activeItem === 'string' ? activeItem : activeItem.imgSrc} // Adjust based on type
                                             width={1000}
                                             height={1000}
                                             alt="preview_img"
@@ -71,23 +73,23 @@ const ProductCarousel = ({ room }: any) => {
                         dragConstraints={{ right: 0, left: -width }}
                         dragTransition={{ bounceDamping: 30 }}
                         transition={{ duration: 0.2, ease: 'easeInOut' }}
-                        className="flex  "
+                        className="flex"
                     >
-                        {items?.map((itemData, index) => {
+                        {roomImages?.map((imageSrc: string | { imgSrc: string }, index: number) => {
                             return (
                                 <motion.div
                                     key={index}
                                     className={`relative p-2 flex-shrink-0`}
-                                    onClick={() => setActiveItem(itemData)}
+                                    onClick={() => setActiveItem(imageSrc)}
                                 >
                                     <img
-                                        src={itemData?.imgSrc}
+                                        src={typeof imageSrc === 'string' ? imageSrc : imageSrc.imgSrc} // Handle both cases
                                         width={400}
                                         height={400}
                                         alt="img"
                                         className="w-28 h-16 object-cover cursor-pointer relative z-[2] rounded-md pointer-events-none"
                                     />
-                                    {itemData?.id === activeItem?.id && (
+                                    {roomImages.indexOf(activeItem) === index && (
                                         <motion.div
                                             layoutId="slider"
                                             transition={{
@@ -100,13 +102,13 @@ const ProductCarousel = ({ room }: any) => {
                                         ></motion.div>
                                     )}
                                 </motion.div>
-                            )
+                            );
                         })}
                     </motion.div>
                 </motion.div>
             </motion.div>
         </>
-    )
-}
+    );
+};
 
-export default ProductCarousel
+export default ProductCarousel;

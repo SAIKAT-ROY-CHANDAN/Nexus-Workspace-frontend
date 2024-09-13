@@ -7,6 +7,7 @@ interface RoomCardProps {
 
 const RoomCard = ({ room }: RoomCardProps) => {
     const imageUrl = room?.image[0] || "https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80";
+
     return (
         <div className="max-[350px] mx-auto space-y-4 rounded bg-gray-50/30 p-6 md:w-[350px] dark:border-zinc-700 dark:bg-zinc-900">
             <div className="relative rounded-2xl group overflow-hidden">
@@ -26,11 +27,12 @@ const RoomCard = ({ room }: RoomCardProps) => {
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
                     <path d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z" />
                 </svg>
-                <h2 className="font-medium text-gray-700 md:text-xl dark:text-white/60">4</h2>
+                <h2 className="font-medium text-gray-700 md:text-xl dark:text-white/60">{room.capacity}</h2>
             </div>
             <div className="mt-5 flex items-center justify-between">
                 <h2 className="font-medium text-gray-700 md:text-xl dark:text-white/60">${room.pricePerSlot}</h2>
-                <Link to={`/rooms/${room._id}`} className="rounded-lg bg-slate-800 px-4 py-2 text-[12px] font-semibold text-white hover:bg-slate-900 sm:text-sm">See Details</Link>
+                <Link to={`/rooms/${room._id}`} className="rounded-lg bg-slate-800 px-4 py-2 text-[12px] font-semibold text-white hover:bg-slate-900 sm:text-sm">See Details
+                </Link>
             </div>
         </div>
     )
