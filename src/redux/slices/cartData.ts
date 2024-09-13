@@ -1,6 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
+interface Room {
+    _id: string;
+    name: string;
+    roomNo: number;
+    floorNo: number;
+    capacity: number;
+    image: string;
+    amenities: string[];
+    isDeleted: boolean;
+    pricePerSlot: number;
+}
+
+
+interface RoomState {
+    rooms: Room[];
+}
+
+const initialState: RoomState = {
     rooms: [],
 };
 
@@ -9,19 +26,18 @@ const roomSlice = createSlice({
     initialState,
     reducers: {
         addRoom: (state, action) => {
-            console.log(action.payload);
             state.rooms.push(action.payload);
         },
 
-        updateRoom: (state, action) => {
+        updateRoom: (state, action: PayloadAction<{ id: string; updatedData: Room }>) => {
             const { id, updatedData } = action.payload;
-            const index = state.rooms.findIndex((room) => room.room === id);
+            const index = state.rooms.findIndex((room) => room._id === id);
             if (index !== -1) {
                 state.rooms[index] = updatedData;
             }
         },
-        removeRoom: (state, action) => {
-            state.rooms = state.rooms.filter((room) => room.room !== action.payload);
+        removeRoom: (state, action: PayloadAction<string>) => {
+            state.rooms = state.rooms.filter((room) => room._id !== action.payload);
         },
     },
 });
