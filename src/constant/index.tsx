@@ -107,7 +107,7 @@ export const items = [
     {
         id: '1',
         imgSrc:
-            'https://res.cloudinary.com/dzl9yxixg/image/upload/v1714741157/photo-1697985189201-293f0ddfc36d_mam2av.jpg',
+            'https://images.unsplash.com/photo-1499955085172-a104c9463ece?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         title: 'Sunrise Splendor',
         description:
             'The first light of day illuminates the rugged peaks, casting a golden glow over the scenic landscape.',
@@ -115,7 +115,7 @@ export const items = [
     {
         id: '2',
         imgSrc:
-            'https://res.cloudinary.com/dzl9yxixg/image/upload/v1714566083/maria-fernanda-pissioli-DTZV8WDM1Ho-unsplash_g1appd.jpg',
+            'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         title: 'Misty Mountain Pass',
         description:
             'A mysterious, fog-covered path winds through the serene and rugged mountain terrain.',
@@ -123,7 +123,7 @@ export const items = [
     {
         id: '3',
         imgSrc:
-            'https://res.cloudinary.com/dzl9yxixg/image/upload/v1714558603/one_b9cqx0.jpg',
+            'https://images.unsplash.com/photo-1671507755642-b3bbde48766f?q=80&w=2189&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         title: 'Pathway to Peaks',
         description:
             'A rugged path leads adventurers toward distant mountain peaks, promising breathtaking views and challenging terrain.',
@@ -131,7 +131,7 @@ export const items = [
     {
         id: '5',
         imgSrc:
-            'https://res.cloudinary.com/dzl9yxixg/image/upload/v1714741159/photo-1713865248397-6a3825850fc7_mh5rxg.jpg',
+            'https://images.unsplash.com/photo-1677100091551-748c921e6609?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         title: 'Eagle’s View',
         description:
             'An aerial perspective showcases the breathtaking expanse of the mountain range, revealing nature’s grand design.',
@@ -139,7 +139,7 @@ export const items = [
     {
         id: '6',
         imgSrc:
-            'https://res.cloudinary.com/dzl9yxixg/image/upload/v1714741157/photo-1713223289172-e45b0ed96eae_cdizhk.jpg',
+            'https://images.unsplash.com/photo-1715355936284-d702fe27fbb1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         title: 'Alpine Twilight',
         description:
             'The last light of the day fades behind the alpine skyline, creating a striking silhouette against the twilight sky.',

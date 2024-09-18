@@ -15,8 +15,6 @@ const ProductCarousel = ({ room }: any) => {
         }
     }, [carousel]);
 
-    console.log(room);
-
     return (
         <>
             <motion.div

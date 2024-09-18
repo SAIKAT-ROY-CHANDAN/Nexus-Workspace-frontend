@@ -34,7 +34,6 @@ const LoginForm = () => {
     const onSubmit = async (data: FormData) => {
         try {
             const res = await loginUser(data).unwrap();
-            console.log(res);
             if (res.success) {
                 toast.success('Account Logged in')
 

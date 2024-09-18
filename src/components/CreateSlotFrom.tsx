@@ -27,7 +27,6 @@ const CreateSlotFrom = () => {
     const handleRoomChange = (e: ChangeEvent<HTMLSelectElement>) => {
         const roomId = e.target.value;
         setSelectedRoom(roomId);
-        console.log("Selected Room ID:", roomId);
     };
 
     const handleSubmit = async (e: FormEvent<HTMLElement>) => {

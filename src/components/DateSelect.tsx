@@ -15,7 +15,6 @@ const DateSelect = ({ refetch }: any) => {
             const formattedDate = formatDate(selectedDate);
             dispatch(setDate(formattedDate))
             refetch()
-            console.log(refetch);
         }
     };
 
