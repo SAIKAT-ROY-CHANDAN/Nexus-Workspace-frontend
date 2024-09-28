@@ -1,8 +1,8 @@
-import '@/styles/unauthorized.css'
+import '@/global.css/unauthorized.css'
 
 const Unauthorized = () => {
   return (
-    <div className='translate-y-28'>
+    <div className="unauthorized-page h-screen"> {/* Add a unique wrapper class here */}
       <div className="gandalf">
         <div className="fireball"></div>
         <div className="skirt"></div>
@@ -18,10 +18,10 @@ const Unauthorized = () => {
       </div>
       <div className="message">
         <h1>403 - You Shall Not Pass</h1>
-        <p>Uh oh, Gandalf is blocking the way!<br />Maybe you have tried to access the route that you'r not meant too</p>
+        <p>Uh oh, Gandalf is blocking the way!<br />Maybe you have tried to access the route that you're not meant to</p>
       </div>
     </div>
   )
 }
 
-export default Unauthorized
+export default Unauthorized;

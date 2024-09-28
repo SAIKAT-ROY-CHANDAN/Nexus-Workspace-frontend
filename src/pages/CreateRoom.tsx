@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import ImageUpload from "@/components/ImageUpload"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -35,6 +34,8 @@ const CreateRoom = () => {
     },
   });
 
+  console.log(errors);
+
   useEffect(() => {
     setValue('amenities', amenitiesFromRedux);
   }, [amenitiesFromRedux, setValue]);
@@ -63,7 +64,7 @@ const CreateRoom = () => {
       image: images,
     };
 
-    console.log("Form Data:", roomData);
+    console.log("Room Data:", data);
     console.log("Uploaded Images:", images);
 
     try {

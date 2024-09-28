@@ -6,8 +6,8 @@ import { useAppDispatch } from "@/redux/hooks";
 const ImageUpload = () => {
   const dispatch = useAppDispatch()
 
-  const handleFileUpload = (files: File[]) => {
-    uploadFilesToImgBB(files, dispatch);
+  const handleFileUpload = async (files: File[]) => {
+    await uploadFilesToImgBB(files, dispatch);
   };
 
   return (

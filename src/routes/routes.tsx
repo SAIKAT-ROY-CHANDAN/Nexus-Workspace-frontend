@@ -19,6 +19,7 @@ import ErrorPage from "@/pages/ErrorPage";
 import Unauthorized from "@/pages/Unauthorized";
 import AdminRoute from "./AdminRoute";
 import UserRoute from "./UserRoute";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -44,7 +45,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/rooms/:id',
-                element: <BookRoom />
+                element: (<PrivateRoute>
+                    <BookRoom />
+                </PrivateRoute>)
             },
             {
                 path: '/myBookings',
@@ -54,7 +57,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/slotBooking/:id',
-                element: <SlotBooking />
+                element: <PrivateRoute>
+                        <SlotBooking />
+                </PrivateRoute>
             },
             {
                 path: '/checkout',

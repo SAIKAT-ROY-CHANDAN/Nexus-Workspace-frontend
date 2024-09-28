@@ -9,7 +9,7 @@ import { toast } from "sonner";
 
 
 const ViewRooms = () => {
-  const { data: roomData } = useGetRoomsQuery({})
+  const { data: roomData, isLoading: roomDataLoading } = useGetRoomsQuery({})
   const [deleteRoom, { isLoading }] = useDeleteRoomMutation()
   const token = useAppSelector((state) => state.auth.token)
   const [currentPage, setCurrentPage] = useState(1);
@@ -38,6 +38,12 @@ const ViewRooms = () => {
       console.error('Failed to delete room:', error);
     }
   };
+
+  if (roomDataLoading) {
+    return (
+      <div className="flex items-center w-full justify-center text-4xl">Loading...</div>
+    )
+  }
 
   return (
     <div className="w-full">
