@@ -1,14 +1,16 @@
 import { Outlet } from "react-router-dom"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
+import ScrollToTop from "./components/ScrollTop"
 
 function App() {
   return (
     <>
       <Header />
       <div className="min-h-[calc(100vh-150px)]">
-        <Outlet></Outlet>
+        <Outlet />
       </div>
+      <ScrollToTop />
       <Footer />
     </>
   )

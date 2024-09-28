@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { items as defaultItems } from '@/constant';
 
 const ProductCarousel = ({ room }: any) => {
-    const roomImages = room?.image?.length ? room.image : defaultItems; // Fallback to default items if room images are unavailable
+    const roomImages = room?.image?.length ? room.image : defaultItems;
     const [activeItem, setActiveItem] = useState(roomImages[0]);
     const [width, setWidth] = useState(0);
     const carousel = useRef<HTMLDivElement>(null);
