@@ -12,7 +12,12 @@ import { useAppSelector } from "@/redux/hooks"
 
 const MyBookings = () => {
   const token = useAppSelector((state) => state.auth.token)
-  const { data } = useGetMyBookingsQuery(token)
+  const { data, isLoading } = useGetMyBookingsQuery(token)
+
+  if(isLoading){
+    return <p className="text-center text-3xl">Loading....</p>
+  }
+
   console.log(data);
   return (
     <Table className="max-w-screen-xl mx-auto mt-24">
@@ -27,7 +32,7 @@ const MyBookings = () => {
       </TableHeader>
       <TableBody>
         {data?.map((booking) => (
-          <TableRow key={booking._id}>
+          <TableRow key={booking?._id}>
             <TableCell className="font-medium">
               <img
                 src={booking?.room?.image?.[0] || "https://rb.gy/tkc7m8"}
@@ -39,12 +44,12 @@ const MyBookings = () => {
             <TableCell>{booking?.date}</TableCell>
             <TableCell>
               <div className="flex gap-2">
-                <span>{booking?.slots[0].startTime}</span>
+                <span>{booking?.slots[0]?.startTime}</span>
                 -
-                <span>{booking?.slots[0].endTime}</span>
+                <span>{booking?.slots[0]?.endTime}</span>
               </div>
             </TableCell>
-            <TableCell className="text-right capitalize">{booking.isConfirmed}</TableCell>
+            <TableCell className="text-right capitalize">{booking?.isConfirmed}</TableCell>
           </TableRow>
         ))}
       </TableBody>

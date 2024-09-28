@@ -16,6 +16,9 @@ import SlotManagement from "@/pages/SlotManagement";
 import BookingManagement from "@/pages/BookingManagement";
 import Checkout from "@/pages/Checkout";
 import ErrorPage from "@/pages/ErrorPage";
+import Unauthorized from "@/pages/Unauthorized";
+import AdminRoute from "./AdminRoute";
+import UserRoute from "./UserRoute";
 
 export const router = createBrowserRouter([
     {
@@ -45,7 +48,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/myBookings',
-                element: <MyBookings />
+                element: <UserRoute>
+                    <MyBookings />
+                </UserRoute>
             },
             {
                 path: '/slotBooking/:id',
@@ -57,23 +62,33 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard',
-                element: <Dashboard />,
+                element: <AdminRoute>
+                    <Dashboard />
+                </AdminRoute>,
                 children: [
                     {
                         path: "create-room",
-                        element: <CreateRoom />
+                        element: <AdminRoute>
+                            <CreateRoom />
+                        </AdminRoute>
                     },
                     {
                         path: 'view-rooms',
-                        element: <ViewRooms />
+                        element: <AdminRoute>
+                            <ViewRooms />
+                        </AdminRoute>
                     },
                     {
                         path: 'slot-management',
-                        element: <SlotManagement />
+                        element: <AdminRoute>
+                            <SlotManagement />
+                        </AdminRoute>
                     },
                     {
                         path: 'booking-management',
-                        element: <BookingManagement />
+                        element: <AdminRoute>
+                            <BookingManagement />
+                        </AdminRoute>
                     },
                 ]
             },
@@ -86,5 +101,9 @@ export const router = createBrowserRouter([
     {
         path: '/login',
         element: <Login />
+    },
+    {
+        path: '/unauthorized',
+        element: <Unauthorized />
     },
 ]);
