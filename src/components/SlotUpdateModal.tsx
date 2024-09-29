@@ -45,12 +45,20 @@ const SlotUpdateModal = ({ id, roomId }: Props) => {
 
         try {
             const res = await updatedSlot({ id, updatedData }).unwrap();
-            toast.success(`${res.message}`)
-            console.log('Updated Slot:', res);
+
+            if (res?.success) {
+                toast.success(`${res.message}`);
+                console.log('Updated Slot:', res);
+            } else {
+                toast.warning(`${res.message || 'Failed to update the slot.'}`);
+                setError(res.message || 'Failed to update the slot.');
+            }
         } catch (err: any) {
-            toast.success(`${err.message}`)
-            setError(err.message || 'Failed to update the slot.');
-        };
+            const errorMessage = err?.data?.message || err.message || 'Failed to update the slot.';
+            toast.warning(errorMessage);
+            console.log('Error:', err);
+            setError(errorMessage);
+        }
 
     };
 

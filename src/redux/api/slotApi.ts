@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { TSlotRoom } from "@/types/global";
 import { baseApi } from "./baseApi";
@@ -8,7 +9,6 @@ export type TApiResponse<T> = {
     data: T;
 };
 
-// Now, declare the response type for an array of TSlotRoom
 export type TSlotRoomsResponse = TApiResponse<TSlotRoom[]>
 
 const slotApi = baseApi.injectEndpoints({
@@ -31,7 +31,6 @@ const slotApi = baseApi.injectEndpoints({
             transformResponse: (response: any) => {
                 return response.data;
             },
-            // providesTags: (result, error, { id }) => [{ type: 'Slots', id }],
             providesTags: ({ id }) => [{ type: 'Slots', id }],
         }),
         createSlot: builder.mutation({
@@ -43,9 +42,21 @@ const slotApi = baseApi.injectEndpoints({
                 }
             },
             transformResponse: (response: any) => {
-                return response.data;
+                return {
+                    success: response?.success || false,
+                    message: response?.message || 'An error occurred',
+                    data: response?.data || {},
+                };
             },
-            invalidatesTags: ({ id }) => [{ type: 'Slots', id }]
+            invalidatesTags: (response, _error, _args) => {
+                console.log('Response:', response);
+
+                if (response?.data?._id) {
+                    return [{ type: 'Slots', id: response.data._id }];
+                }
+
+                return ['Slots'];
+            },
         }),
         updatedSlot: builder.mutation({
             query: ({ id, updatedData }) => {

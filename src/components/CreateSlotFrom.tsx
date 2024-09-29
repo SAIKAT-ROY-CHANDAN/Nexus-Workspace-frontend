@@ -23,7 +23,6 @@ const CreateSlotFrom = () => {
     const { data: roomData } = useGetRoomsQuery({})
     const [createSlot] = useCreateSlotMutation()
 
-
     const handleRoomChange = (e: ChangeEvent<HTMLSelectElement>) => {
         const roomId = e.target.value;
         setSelectedRoom(roomId);
@@ -49,19 +48,25 @@ const CreateSlotFrom = () => {
             endTime: endTime
         };
 
+        const toastId = toast.loading('Creating slot...');
+
         try {
             const res = await createSlot(submissionData);
-            if (res.data.success) {
-                toast.success('Slot is created');
-            } else {
-                toast.warning('Failed to create the slot.');
-            }
 
             console.log(res);
+
+            if (res?.data?.success) {
+                toast.success('Slot is Created')
+            } else if (res.error) {
+                toast.error('Failed To Create Slot')
+            }
+
         } catch (error) {
             toast.warning('An error occurred while creating the slot.');
             console.error(error);
         }
+
+        toast.dismiss(toastId);
     };
 
     const handleDateSelect = (selectedDate: Date | undefined) => {
