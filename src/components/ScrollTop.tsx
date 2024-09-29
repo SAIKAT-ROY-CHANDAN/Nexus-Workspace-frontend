@@ -28,7 +28,7 @@ const ScrollToTop = () => {
         isVisible && (
             <button
                 onClick={scrollToTop}
-                className="fixed bottom-5 right-5 bg-white text-blue-500 p-3 rounded-full hover:bg-slate-100 border-blue-200 border"
+                className="fixed bottom-5 right-5 bg-white text-black/75 p-3 rounded-full hover:bg-slate-100 border-black/70 border"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />

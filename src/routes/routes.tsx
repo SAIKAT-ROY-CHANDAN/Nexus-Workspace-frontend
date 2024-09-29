@@ -46,7 +46,9 @@ export const router = createBrowserRouter([
             {
                 path: '/rooms/:id',
                 element: (<PrivateRoute>
-                    <BookRoom />
+                    <UserRoute>
+                        <BookRoom />
+                    </UserRoute>
                 </PrivateRoute>)
             },
             {
@@ -58,7 +60,9 @@ export const router = createBrowserRouter([
             {
                 path: '/slotBooking/:id',
                 element: <PrivateRoute>
+                    <UserRoute>
                         <SlotBooking />
+                    </UserRoute>
                 </PrivateRoute>
             },
             {

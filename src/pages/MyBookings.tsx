@@ -27,7 +27,7 @@ const MyBookings = () => {
           <TableHead className="w-[120px]">Room Name</TableHead>
           <TableHead>Date</TableHead>
           <TableHead>Time</TableHead>
-          <TableHead className="text-right">Status</TableHead>
+          <TableHead className="w-[100px]">Status</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -49,7 +49,7 @@ const MyBookings = () => {
                 <span>{booking?.slots[0]?.endTime}</span>
               </div>
             </TableCell>
-            <TableCell className="text-right capitalize">{booking?.isConfirmed}</TableCell>
+            <TableCell className="text-right capitalize text-red-500">{booking?.isConfirmed}</TableCell>
           </TableRow>
         ))}
       </TableBody>

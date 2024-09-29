@@ -1,3 +1,4 @@
+import { useAppSelector } from "@/redux/hooks";
 import { TRoom } from "@/types/global";
 import { Link } from "react-router-dom";
 
@@ -6,6 +7,8 @@ interface RoomCardProps {
 }
 
 const RoomCard = ({ room }: RoomCardProps) => {
+    const role = useAppSelector((state) => state.auth.role)
+
     const imageUrl = room?.image[0] || "https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80";
 
     return (
@@ -31,8 +34,17 @@ const RoomCard = ({ room }: RoomCardProps) => {
             </div>
             <div className="mt-5 flex items-center justify-between">
                 <h2 className="font-medium text-gray-700 md:text-xl dark:text-white/60">${room.pricePerSlot}</h2>
-                <Link to={`/rooms/${room._id}`} className="rounded-lg bg-slate-800 px-4 py-2 text-[12px] font-semibold text-white hover:bg-slate-900 sm:text-sm">See Details
-                </Link>
+                {
+                    role === 'admin' ?
+                        <>
+                            <button disabled className="rounded-lg bg-slate-700 px-4 py-2 text-[12px] font-semibold text-white sm:text-sm">See Details
+                            </button>
+                        </> :
+                        <>
+                            <Link to={`/rooms/${room._id}`} className="rounded-lg bg-slate-800 px-4 py-2 text-[12px] font-semibold text-white hover:bg-slate-900 sm:text-sm">See Details
+                            </Link>
+                        </>
+                }
             </div>
         </div>
     )
