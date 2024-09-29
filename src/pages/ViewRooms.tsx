@@ -61,18 +61,18 @@ const ViewRooms = () => {
           </TableHeader>
           <TableBody>
             {currentRoom?.map((room) => (
-              <TableRow key={room._id}>
+              <TableRow key={room?._id}>
                 <TableCell className="font-medium">
                   <img className="rounded-md w-full object-cover h-12" src={room?.image[0] || "https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"} alt="Gucci image" />
                 </TableCell>
-                <TableCell>{room.name}</TableCell>
-                <TableCell>{room.floorNo}</TableCell>
-                <TableCell className="">{room.capacity}</TableCell>
-                <TableCell className="">{room.pricePerSlot}</TableCell>
+                <TableCell>{room?.name}</TableCell>
+                <TableCell>{room?.floorNo}</TableCell>
+                <TableCell className="">{room?.capacity}</TableCell>
+                <TableCell className="">{room?.pricePerSlot}</TableCell>
                 <TableCell className="flex items-center justify-center gap-x-4">
-                  <RoomUpdateModal roomId={room._id} />
+                  <RoomUpdateModal roomId={room?._id} />
                   <button
-                    onClick={() => handleDelete(room._id)}
+                    onClick={() => handleDelete(room?._id)}
                     disabled={isLoading}
                     className="group relative inline-flex h-9 items-center justify-center overflow-hidden rounded-md border dark:border-[#656fe2] border-black font-medium">
                     <div className="inline-flex h-10 translate-y-0 items-center justify-center  bg-gradient-to-r dark:from-[#070e41] dark:to-[#263381] from-[#f7f8ff] to-[#ffffff] px-6 dark:text-white text-black transition group-hover:-translate-y-[150%]">

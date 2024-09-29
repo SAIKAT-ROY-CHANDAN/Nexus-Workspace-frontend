@@ -19,16 +19,29 @@ export function RoomUpdateModal({ roomId }: any) {
     const [updateRoom] = useUpdateRoomMutation()
     const formMethods = useRef<(() => void) | null>(null);
 
+
+
     const onSubmit = async (data: any) => {
         const updatedData = {
             ...data,
+            pricePerSlot: Number(data.pricePerSlot),
             floorNo: Number(data.floorNo),
             roomNo: Number(data.roomNo),
             amenities: data.amenities.split(',').map((item: string) => item.trim()),
         };
-      
+
+        // Use toast.promise to handle loading, success, and error states
+        toast.promise(
+            updateRoom({ updatedData, token, roomId }),
+            {
+                loading: 'Updating room...',
+                success: 'Room updated successfully!',
+                error: 'Failed to update room.',
+            }
+        );
+
         try {
-            const res = await updateRoom({ updatedData, token, roomId })            
+            const res = await updateRoom({ updatedData, token, roomId })
             console.log(res);
             if (res.data.success) {
                 toast.success('Update Room Successfully')
