@@ -7,6 +7,7 @@ import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist
 import { timeAndDateReducer } from './slices/timeAndDate';
 import { uploadReducer } from './slices/fileImage';
 import { amenitiesReducer } from './slices/amenites';
+import { totalPriceSliceReducer } from './slices/totalPrice';
 
 const persistConfig = {
     key: 'root',
@@ -21,7 +22,8 @@ export const store = configureStore({
         auth: persistedAuthReducer,
         timeAndDate: timeAndDateReducer,
         imageLink: uploadReducer,
-        amenities: amenitiesReducer
+        amenities: amenitiesReducer,
+        totalPrice: totalPriceSliceReducer
     },
     middleware: (getDefaultMiddleWare) => getDefaultMiddleWare({
         serializableCheck: {

@@ -44,6 +44,10 @@ export const router = createBrowserRouter([
                 element: <Rooms />
             },
             {
+                path: '/checkout',
+                element: <Checkout />
+            },
+            {
                 path: '/rooms/:id',
                 element: (<PrivateRoute>
                     <UserRoute>
