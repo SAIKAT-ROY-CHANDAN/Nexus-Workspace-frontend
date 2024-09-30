@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/table"
 import { useGetMyBookingsQuery } from "@/redux/api/bookingApi"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
-import { setTotalPrice } from "@/redux/slices/totalPrice"
+import { setBookingIds, setTotalPrice } from "@/redux/slices/totalPrice"
 import { useEffect } from "react"
 
 const CheckoutItem = () => {
@@ -20,20 +20,19 @@ const CheckoutItem = () => {
         if (data) {
             const totalPrice = data.reduce((acc, booking) => acc + (booking?.totalAmount || 0), 0);
             dispatch(setTotalPrice(totalPrice));
+
+            const bookingIds = data.map(booking => booking._id);
+            dispatch(setBookingIds(bookingIds));
         }
+
     }, [data, dispatch]);
 
     if (isLoading) {
         return <p className="text-center text-3xl">Loading....</p>
     }
 
-    const totalPrice = data?.reduce((acc, booking) => acc + (booking?.totalAmount || 0), 0);
-
-    console.log('Total Price of All Bookings:', totalPrice);
-
-
     return (
-        <Table className="max-w-screen-xl mx-auto mt-24">
+        <Table className="max-w-screen-xl mx-auto mt-6">
             <TableHeader>
                 <TableRow>
                     <TableHead className="w-[100px]"></TableHead>

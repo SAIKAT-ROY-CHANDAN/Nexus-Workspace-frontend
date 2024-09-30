@@ -59,7 +59,7 @@ const SlotBooking = () => {
                 <div className="flex flex-row items-center justify-center">
                     <DateSelect refetch={refetch} />
                 </div>
-                <div className="">
+                <div>
                     <UserInfoForm handleSlotBooking={handleSlotBooking} selectedSlot={selectedSlots} />
                 </div>
             </div>

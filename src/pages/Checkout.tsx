@@ -3,11 +3,17 @@ import { useAppSelector } from "@/redux/hooks";
 
 const Checkout = () => {
     const totalPrice = useAppSelector((state) => state.totalPrice.totalPrice);
+    const bookingIds = useAppSelector((state) => state.totalPrice.bookingIds);
     const userInfo = useAppSelector((state) => state.auth);
 
+
+    const handlePayment = () => {
+        console.log('Booking IDs:', bookingIds);
+    };
+
     return (
-        <div className="font-sans mt-12 mx-8">
-            <div className="grid lg:grid-cols-3 gap-9 max-lg:max-w-7xl mx-auto w-full items-center">
+        <div className="font-sans mt-20 mx-8">
+            <div className="grid lg:grid-cols-3 gap-9 max-lg:max-w-7xl mx-auto w-full">
                 <div className="col-span-2">
                     <CheckoutItem />
                 </div>
@@ -21,7 +27,12 @@ const Checkout = () => {
                             Total <span className="ml-auto">{totalPrice}</span>
                         </li>
                     </ul>
-                    <button type="button" className="mt-8 max-w-md text-sm px-6 py-3 w-full bg-black hover:bg-black/70 text-white font-semibold tracking-wide rounded-lg">Pay Now</button>
+                    <button
+                        onClick={handlePayment}
+                        type="button"
+                        className="mt-8 max-w-md text-sm px-6 py-3 w-full bg-black hover:bg-black/70 text-white font-semibold tracking-wide rounded-lg">
+                        Pay Now
+                    </button>
                 </div>
             </div>
         </div>

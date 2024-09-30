@@ -27,7 +27,6 @@ const bookingApi = baseApi.injectEndpoints({
             },
             providesTags: ['Bookings'],
             transformResponse: (response: any) => {
-                console.log(response);
                 return response.data
             },
         }),
@@ -41,7 +40,6 @@ const bookingApi = baseApi.injectEndpoints({
                 }
             },
             transformResponse: (response: TBookingResponse) => {
-                console.log(response);
                 return response.data
             },
         }),
