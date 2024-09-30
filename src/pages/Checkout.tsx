@@ -1,14 +1,38 @@
 import CheckoutItem from "@/components/CheckoutItem"
+import { useInitiatePaymentMutation } from "@/redux/api/payemnt";
 import { useAppSelector } from "@/redux/hooks";
 
 const Checkout = () => {
     const totalPrice = useAppSelector((state) => state.totalPrice.totalPrice);
     const bookingIds = useAppSelector((state) => state.totalPrice.bookingIds);
     const userInfo = useAppSelector((state) => state.auth);
+    const [initiatePayment, { isLoading }] = useInitiatePaymentMutation();
 
 
-    const handlePayment = () => {
-        console.log('Booking IDs:', bookingIds);
+    const handlePayment = async () => {
+        console.log(bookingIds);
+
+        if (bookingIds.length === 0) {
+            console.error('No booking IDs available for payment');
+            return;
+        }
+
+        try {
+            const paymentResult = await initiatePayment({
+                bookingIds,
+                user: {
+                    name: userInfo.name,
+                    email: userInfo.email,
+                    phone: userInfo.phone,
+                    address: userInfo.address,
+                    totalPrice
+                }
+            }).unwrap();
+
+            console.log('Payment Result:', paymentResult);
+        } catch (error) {
+            console.error('Payment failed:', error);
+        }
     };
 
     return (
@@ -29,6 +53,7 @@ const Checkout = () => {
                     </ul>
                     <button
                         onClick={handlePayment}
+                        disabled={isLoading || bookingIds.length === 0}
                         type="button"
                         className="mt-8 max-w-md text-sm px-6 py-3 w-full bg-black hover:bg-black/70 text-white font-semibold tracking-wide rounded-lg">
                         Pay Now
