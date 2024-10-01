@@ -35,7 +35,7 @@ const CheckoutItem = () => {
         <Table className="max-w-screen-xl mx-auto mt-6">
             <TableHeader>
                 <TableRow>
-                    <TableHead className="w-[100px]"></TableHead>
+                    <TableHead className="w-[100px] max-sm:hidden"></TableHead>
                     <TableHead className="w-[120px]">Room Name</TableHead>
                     <TableHead>Date</TableHead>
                     <TableHead>Time</TableHead>
@@ -45,7 +45,7 @@ const CheckoutItem = () => {
             <TableBody>
                 {data?.map((booking) => (
                     <TableRow key={booking?._id}>
-                        <TableCell className="font-medium">
+                        <TableCell className="font-medium max-sm:hidden">
                             <img
                                 src={booking?.room?.image?.[0] || "https://rb.gy/tkc7m8"}
                                 alt="Room image"

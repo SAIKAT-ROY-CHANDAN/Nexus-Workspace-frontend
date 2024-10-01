@@ -15,6 +15,7 @@ const bookingApi = baseApi.injectEndpoints({
                     }
                 }
             },
+            invalidatesTags: ['Bookings']
         }),
         getAllBookings: builder.query({
             query: (token) => {
@@ -37,6 +38,17 @@ const bookingApi = baseApi.injectEndpoints({
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
+                }
+            },
+            transformResponse: (response: TBookingResponse) => {
+                return response.data
+            },
+            providesTags: ['Bookings']
+        }),
+        getPaidBookings: builder.query({
+            query: () => {
+                return {
+                    url: '/bookings/paid',
                 }
             },
             transformResponse: (response: TBookingResponse) => {
@@ -76,5 +88,6 @@ export const {
     useGetAllBookingsQuery,
     useGetMyBookingsQuery,
     useApproveBookingMutation,
-    useDeleteBookingMutation
+    useDeleteBookingMutation,
+    useGetPaidBookingsQuery
 } = bookingApi

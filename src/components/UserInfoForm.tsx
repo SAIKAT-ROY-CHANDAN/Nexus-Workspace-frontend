@@ -24,7 +24,7 @@ const UserInfoForm = ({ handleSlotBooking, selectedSlot }: any) => {
         },
     });
 
-    const onSubmit = (data: any) => {
+    const onSubmit = async (data: any) => {
         const formData = {
             ...data,
             user: _id,
@@ -32,7 +32,7 @@ const UserInfoForm = ({ handleSlotBooking, selectedSlot }: any) => {
         };
 
         // console.log("Form Data:", formData);
-        handleSlotBooking(formData);
+        await handleSlotBooking(formData);
     };
 
     return (

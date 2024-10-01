@@ -12,8 +12,7 @@ const SlotBooking = () => {
     const { selectedTime, selectedDate, selectedSlots } = useAppSelector((state) => state.timeAndDate);
     const dispatch = useAppDispatch()
     const { id } = useParams();
-    const { data, refetch } = useGelSlotsByQueryIdQuery({ date: selectedDate, id: id },
-        { refetchOnFocus: true, refetchOnMountOrArgChange: true, refetchOnReconnect: true })
+    const { data, refetch } = useGelSlotsByQueryIdQuery({ date: selectedDate, id: id })
     const [createBooking] = useCreateBookingMutation()
     const token = useAppSelector((state) => state.auth.token)
 
@@ -37,14 +36,11 @@ const SlotBooking = () => {
 
 
         try {
-            const response = await createBooking({
+            await createBooking({
                 slotDetails,
                 token,
             }).unwrap();
             toast.success('Booking successful')
-
-            window.location.href = response.data.payment_url
-            // console.log("Booking successful:", response);
         } catch (error) {
             console.error("Booking failed:", error);
             toast.success('Booking failed')
