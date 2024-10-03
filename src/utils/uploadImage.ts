@@ -1,9 +1,12 @@
-import { addLinks } from '@/redux/slices/fileImage';
+import { addLinks, setLoading } from '@/redux/slices/fileImage';
 import { Dispatch } from 'redux';
 
 
 export const uploadFilesToImgBB = async (files: File[], dispatch: Dispatch) => {
     const imageLinks: string[] = [];
+
+    dispatch(setLoading(true));
+
 
     for (const file of files) {
         const formData = new FormData();
@@ -31,4 +34,5 @@ export const uploadFilesToImgBB = async (files: File[], dispatch: Dispatch) => {
         dispatch(addLinks(imageLinks));
     }
 
+    dispatch(setLoading(false));
 };

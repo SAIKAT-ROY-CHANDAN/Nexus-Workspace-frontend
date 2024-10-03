@@ -16,6 +16,7 @@ const CheckoutItem = () => {
     const { data, isLoading } = useGetMyBookingsQuery(token)
     const dispatch = useAppDispatch()
 
+    console.log(data);
     useEffect(() => {
         if (data) {
             const totalPrice = data.reduce((acc, booking) => acc + (booking?.totalAmount || 0), 0);
@@ -55,10 +56,12 @@ const CheckoutItem = () => {
                         <TableCell>{booking?.room?.name}</TableCell>
                         <TableCell>{booking?.date}</TableCell>
                         <TableCell>
-                            <div className="flex gap-2">
-                                <span>{booking?.slots[0]?.startTime}</span>
-                                -
-                                <span>{booking?.slots[0]?.endTime}</span>
+                            <div className="flex flex-col gap-2">
+                                {booking?.slots?.map((slot, index) => (
+                                    <div key={index} className="flex gap-2">
+                                        <span>{slot?.startTime}</span> - <span>{slot?.endTime}</span>
+                                    </div>
+                                ))}
                             </div>
                         </TableCell>
                         <TableCell className="text-right capitalize">{booking?.totalAmount}</TableCell>

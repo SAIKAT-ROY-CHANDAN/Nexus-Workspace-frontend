@@ -17,6 +17,7 @@ type RoomFormValues = z.infer<typeof roomSchema>;
 const CreateRoom = () => {
   const images = useAppSelector((state) => state.imageLink.links);
   const amenitiesFromRedux = useAppSelector((state) => state.amenities.amenities);
+  const loading = useAppSelector((state) => state.imageLink.loading);
   const token = useAppSelector((state) => state.auth.token);
   const [inputValue, setInputValue] = useState('');
   const dispatch = useAppDispatch();
@@ -154,7 +155,9 @@ const CreateRoom = () => {
               </div>
             </div>
             <ImageUpload />
-            <Button type="submit">Submit</Button>
+            <Button type="submit" disabled={loading}>
+              {loading ? <span>Loading...</span> : <span>Submit</span>}
+            </Button>
           </form>
         </div>
       </div>
