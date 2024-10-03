@@ -8,15 +8,12 @@ const Checkout = () => {
     const userInfo = useAppSelector((state) => state.auth);
     const [initiatePayment, { isLoading }] = useInitiatePaymentMutation();
 
-
     const handlePayment = async () => {
-        console.log(bookingIds);
-
         if (bookingIds.length === 0) {
             console.error('No booking IDs available for payment');
             return;
         }
-
+        
         try {
             const paymentResult = await initiatePayment({
                 bookingIds,
@@ -29,7 +26,12 @@ const Checkout = () => {
                 }
             }).unwrap();
 
-            console.log('Payment Result:', paymentResult);
+            if (paymentResult.success) {
+                window.location.href = paymentResult.data.paymentUrl;
+            } else {
+                console.error('Payment failed:', paymentResult.message);
+            }
+
         } catch (error) {
             console.error('Payment failed:', error);
         }

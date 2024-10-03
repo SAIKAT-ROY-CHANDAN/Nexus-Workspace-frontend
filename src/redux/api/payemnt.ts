@@ -4,14 +4,17 @@ import { baseApi } from "./baseApi";
 const paymentApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         initiatePayment: builder.mutation({
-            query: ({ bookingIds, user }: { bookingIds: string[], user: any }) => ({
-                url: '/payment', 
-                method: 'POST',
-                body: { 
-                    bookingIds,
-                    user  
-                },
-            }),
+            query: ({ bookingIds, user }: { bookingIds: string[], user: any }) => {
+                console.log(bookingIds, user);
+                return {
+                    url: '/payment',
+                    method: 'POST',
+                    body: {
+                        bookingIds,
+                        user
+                    },
+                }
+            },
         }),
     }),
 });

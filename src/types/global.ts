@@ -31,7 +31,7 @@ export type TBooking = {
     user: Types.ObjectId,
     isConfirmed: string,
     isDeleted: boolean,
-    totalAmount?: number
+    totalAmount?: number,
 }
 
 
@@ -62,7 +62,8 @@ export type TBookings = {
     slots: TSlot[];
     totalAmount: number;
     __v: number;
-    image: string[]
+    image: string[];
+    paymentStatus?: string
 };
 
 export type TBookingResponse = {

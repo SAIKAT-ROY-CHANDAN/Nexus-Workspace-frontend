@@ -13,9 +13,9 @@ import { SetStateAction, useState } from "react"
 
 const MyBookings = () => {
   const { data, isLoading } = useGetPaidBookingsQuery({})
+  
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8
-
   const totalItems = data?.length || 0;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -63,16 +63,18 @@ const MyBookings = () => {
                   <span>{booking?.slots[0]?.endTime}</span>
                 </div>
               </TableCell>
-              <TableCell className="capitalize text-green-500">paid</TableCell>
+              <TableCell className="capitalize text-green-600">{booking?.paymentStatus}</TableCell>
               <TableCell className="text-right capitalize text-red-500">{booking?.isConfirmed}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
 
-      <div className="w-full mb-14 mt-5">
-        <DataPagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
-      </div>
+      {totalItems > itemsPerPage && (
+        <div className="w-full mb-14 mt-5">
+          <DataPagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+        </div>
+      )}
     </div>
   )
 }
