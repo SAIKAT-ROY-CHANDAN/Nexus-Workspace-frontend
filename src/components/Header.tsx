@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
 import logo from "/images/logo-3.svg"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { clearRole, removeUserData } from "@/redux/slices/authSlice";
+import { clearRole, removeToken, removeUserData } from "@/redux/slices/authSlice";
 import { persistor } from "@/redux/store";
 import { CartIcon } from "@/svgs/GlobalSvg";
 
@@ -13,6 +13,7 @@ const Header = () => {
     const [dropDownState, setDropDownState] = useState(false);
     const dropDownMenuRef = useRef<HTMLDivElement>(null);
     const role = useAppSelector((state) => state.auth.role);
+    const token = useAppSelector((state) => state.auth.token);
     const dispatch = useAppDispatch();
     const location = useLocation()
 
@@ -61,6 +62,7 @@ const Header = () => {
 
     const handleLogout = () => {
         dispatch(clearRole());
+        dispatch(removeToken());
         dispatch(removeUserData());
         persistor.purge();
     };
@@ -98,7 +100,7 @@ const Header = () => {
                     </Button>
                 </>}
                 {role && <ProfileAvatar />}
-                {role === 'admin' ? null :
+                {role === 'admin' || !token ? null :
                     <Link to='/checkout'>
                         <CartIcon />
                     </Link>}

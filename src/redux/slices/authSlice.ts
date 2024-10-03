@@ -52,8 +52,11 @@ export const authSlice = createSlice({
         setToken: (state, action: PayloadAction<string>) => {
             state.token = action.payload;
         },
+        removeToken: (state) => {
+            state.token = '';
+        },
     }
 })
 
-export const { setRole, clearRole, setUserData, setToken, removeUserData } = authSlice.actions
+export const { setRole, clearRole, setUserData, setToken, removeUserData, removeToken } = authSlice.actions
 export const authReducer = authSlice.reducer
