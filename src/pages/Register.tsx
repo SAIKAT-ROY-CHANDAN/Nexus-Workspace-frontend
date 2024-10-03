@@ -32,7 +32,7 @@ const Register = () => {
       if (res.data.success) {
         toast.success('Account Create Successfully')
         dispatch(setUserData(res.data.data));
-        navigate('/');
+        navigate('/login');
       } else {
         if (res.data.message.includes("duplicate key error")) {
           toast.warning('This email is already in use');
