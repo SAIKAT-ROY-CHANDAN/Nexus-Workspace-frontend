@@ -42,7 +42,7 @@ const Register = () => {
         console.error('Registration failed:', res.data.message);
       }
     } catch (error) {
-      toast.warning(`Login failed`)
+      toast.warning(`Registration failed`)
       console.error('An error occurred during Register:', error);
     }
 
