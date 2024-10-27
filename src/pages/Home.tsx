@@ -1,6 +1,7 @@
 import FeaturedRoom from "@/components/FeaturedRoom"
 import Hero from "@/components/Hero"
 import HowItWorks from "@/components/HowItWorks"
+import InfoTab from "@/components/InfoTab"
 import Services from "@/components/Services"
 import Testimonial from "@/components/Testimonials"
 
@@ -12,6 +13,7 @@ const Home = () => {
             <FeaturedRoom />
             <Services />
             <HowItWorks />
+            <InfoTab />
             <Testimonial />
         </>
     )

@@ -240,3 +240,31 @@ export const links = [
         ),
     },
 ];
+
+export const tabs = [
+    {
+        title: 'Flexible Workspace Options',
+        id: 'flexible',
+        description:
+            'At Nexus Workspace, we offer a variety of flexible workspace options to meet the needs of freelancers, startups, and established businesses. From private offices to shared coworking spaces, find a workspace that adapts to you.',
+        imageUrl:
+            'https://images.unsplash.com/photo-1496664444929-8c75efb9546f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    },
+    {
+        title: 'Modern Amenities & Services',
+        id: 'amenities',
+        description:
+            'Enjoy high-speed internet, meeting rooms, break areas, and more at Nexus Workspace. Our amenities are designed to enhance productivity and comfort, creating a seamless work experience for every professional.',
+        imageUrl:
+            'https://images.unsplash.com/photo-1416339442236-8ceb164046f8?q=80&w=2003&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    },
+    {
+        title: 'Why Choose Nexus Workspace?',
+        id: 'why-choose',
+        description:
+            'Nexus Workspace combines modern design with the latest technology to create an ideal environment for work and collaboration. With locations in prime areas and a supportive community, Nexus is where your business can grow.',
+        imageUrl:
+            'https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    },
+];
+

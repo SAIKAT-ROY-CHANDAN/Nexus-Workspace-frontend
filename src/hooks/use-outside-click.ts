@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-function-type */
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const useOutsideClick = (
     ref: React.RefObject<HTMLDivElement>,
@@ -23,3 +23,22 @@ export const useOutsideClick = (
         };
     }, [ref, callback]);
 };
+
+
+
+export function useMediaQuery(query: any) {
+    const [matches, setMatches] = useState(false);
+  
+    useEffect(() => {
+      const mediaQuery = window.matchMedia(query);
+      setMatches(mediaQuery.matches);
+  
+      const handleChange = () => setMatches(mediaQuery.matches);
+      mediaQuery.addEventListener('change', handleChange);
+  
+      return () => mediaQuery.removeEventListener('change', handleChange);
+    }, [query]);
+  
+    return matches;
+  }
+  
