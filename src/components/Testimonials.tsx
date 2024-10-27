@@ -6,6 +6,35 @@ import { useCallback, useRef } from "react";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+const testimonials = [
+    {
+        image: "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        reviewImg: "https://cdn.tailgrids.com/2.0/image/marketing/images/testimonials/testimonial-01/lineicon.svg",
+        reviewAlt: "lineicon",
+        details: "Working with this team has transformed our approach to marketing. Their innovative strategies helped us reach new heights in engagement and sales.",
+        name: "Emma Johnson",
+        position: "Marketing Manager",
+    },
+    {
+        image: "https://images.unsplash.com/photo-1630026317249-c1c83b21ea07?q=80&w=1970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        reviewImg: "https://cdn.tailgrids.com/2.0/image/marketing/images/testimonials/testimonial-01/lineicon.svg",
+        reviewAlt: "lineicon",
+        details: "The user experience design provided by this team is outstanding. They've made our application more intuitive and visually appealing.",
+        name: "James Smith",
+        position: "Product Designer",
+    },
+    {
+        image: "https://images.unsplash.com/photo-1695927621677-ec96e048dce2?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        reviewImg: "https://cdn.tailgrids.com/2.0/image/marketing/images/testimonials/testimonial-01/lineicon.svg",
+        reviewAlt: "lineicon",
+        details: "Their development team is top-notch. They delivered our project on time and exceeded our expectations with their coding expertise.",
+        name: "Brown Ledger",
+        position: "Lead Developer",
+    },
+];
+
+
+
 const Testimonial = () => {
     const sliderRef = useRef<any>(null);
 
@@ -20,56 +49,36 @@ const Testimonial = () => {
     }, []);
 
     return (
-        <>
-            <section className="pb-20 pt-20 dark:bg-dark lg:pb-[120px] lg:pt-[120px]">
-                <div className="container mx-auto">
-                    <Swiper slidesPerView={1} ref={sliderRef}>
-                        <SwiperSlide>
+        <section className="pb-20 pt-20 dark:bg-dark lg:pb-[120px] lg:pt-[120px]">
+            <div className="container mx-auto">
+                <Swiper slidesPerView={1} ref={sliderRef}>
+                    {testimonials.map((testimonial, index) => (
+                        <SwiperSlide key={index}>
                             <SingleTestimonial
-                                image="https://cdn.tailgrids.com/2.0/image/marketing/images/testimonials/testimonial-01/image-01.jpg"
-                                reviewImg="https://cdn.tailgrids.com/2.0/image/marketing/images/testimonials/testimonial-01/lineicon.svg"
-                                reviewAlt="lineicon"
-                                details="Velit est sit voluptas eum sapiente omnis! Porro, impedit minus quam reprehenderit tempore sint quaerat id! Mollitia perspiciatis est asperiores commodi labore!"
-                                name="Larry Diamond"
-                                position="Chief Executive Officer."
+                                image={testimonial.image}
+                                reviewImg={testimonial.reviewImg}
+                                reviewAlt={testimonial.reviewAlt}
+                                details={testimonial.details}
+                                name={testimonial.name}
+                                position={testimonial.position}
                             />
                         </SwiperSlide>
-                        <SwiperSlide>
-                            <SingleTestimonial
-                                image="https://cdn.tailgrids.com/2.0/image/marketing/images/testimonials/testimonial-01/image-01.jpg"
-                                reviewImg="https://cdn.tailgrids.com/2.0/image/marketing/images/testimonials/testimonial-01/lineicon.svg"
-                                reviewAlt="lineicon"
-                                details="Velit est sit voluptas eum sapiente omnis! Porro, impedit minus quam reprehenderit tempore sint quaerat id! Mollitia perspiciatis est asperiores commodi labore!"
-                                name="Larry Diamond"
-                                position="Chief Executive Officer."
-                            />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <SingleTestimonial
-                                image="https://img.freepik.com/free-photo/serious-confident-red-haired-business-lady-wearing-jacket-standing-with-arms-folded_74855-10381.jpg?t=st=1724607207~exp=1724610807~hmac=5e6383df160d66e01412818d2681181b3362a9a4079169e005978b1d2392b28b&w=740"
-                                reviewImg="https://cdn.tailgrids.com/2.0/image/marketing/images/testimonials/testimonial-01/lineicon.svg"
-                                reviewAlt="lineicon"
-                                details="Velit est sit voluptas eum sapiente omnis! Porro, impedit minus quam reprehenderit tempore sint quaerat id! Mollitia perspiciatis est asperiores commodi labore!"
-                                name="Larry Diamond"
-                                position="Chief Executive Officer."
-                            />
-                        </SwiperSlide>
-                        <div className="absolute left-0 right-0 z-10 flex items-center justify-center gap-5 sm:bottom-0">
-                            <div className="prev-arrow cursor-pointer" onClick={handlePrev}>
-                                <button className="d flex h-[60px] w-[60px] items-center justify-center rounded-full border border-stroke bg-white text-dark transition-all hover:border-transparent hover:drop-shadow-testimonial dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:hover:drop-shadow-none">
-                                    <LeftArrow />
-                                </button>
-                            </div>
-                            <div className="next-arrow cursor-pointer" onClick={handleNext}>
-                                <button className="d flex h-[60px] w-[60px] items-center justify-center rounded-full border border-stroke bg-white text-dark transition-all hover:border-transparent hover:drop-shadow-testimonial dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:hover:drop-shadow-none">
-                                    <RightARrow />
-                                </button>
-                            </div>
+                    ))}
+                    <div className="absolute left-0 right-0 z-10 flex items-center justify-center gap-5 sm:bottom-0">
+                        <div className="prev-arrow cursor-pointer" onClick={handlePrev}>
+                            <button className="d flex h-[60px] w-[60px] items-center justify-center rounded-full border border-stroke bg-white text-dark transition-all hover:border-transparent hover:drop-shadow-testimonial dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:hover:drop-shadow-none">
+                                <LeftArrow />
+                            </button>
                         </div>
-                    </Swiper>
-                </div>
-            </section>
-        </>
+                        <div className="next-arrow cursor-pointer" onClick={handleNext}>
+                            <button className="d flex h-[60px] w-[60px] items-center justify-center rounded-full border border-stroke bg-white text-dark transition-all hover:border-transparent hover:drop-shadow-testimonial dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:hover:drop-shadow-none">
+                                <RightARrow />
+                            </button>
+                        </div>
+                    </div>
+                </Swiper>
+            </div>
+        </section>
     );
 };
 
@@ -93,11 +102,11 @@ const SingleTestimonial = ({
     position,
 }: Review) => {
     return (
-        <div className="relative flex justify-center ">
+        <div className="relative flex justify-center">
             <div className="relative w-full pb-16 md:w-11/12 lg:w-10/12 xl:w-8/12">
                 <div className="w-full items-center md:flex">
                     <div className="relative mb-12 w-full max-w-[310px] md:mb-0 md:mr-12 md:max-w-[250px] lg:mr-14 lg:max-w-[280px] 2xl:mr-16">
-                        <img src={image} alt="image" className="w-full" />
+                        <img src={image} alt="image" className="w-full h-96 object-cover" />
                         <span className="absolute -left-6 -top-6 z-[-1] hidden sm:block">
                             <DotShape />
                         </span>
@@ -140,4 +149,3 @@ const SingleTestimonial = ({
         </div>
     );
 };
-

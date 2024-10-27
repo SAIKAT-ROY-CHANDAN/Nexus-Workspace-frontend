@@ -26,6 +26,9 @@ const ProfileAvatar = () => {
                                     <DropdownMenuItem className="cursor-pointer">
                                         My Bookings
                                     </DropdownMenuItem>
+                                    <DropdownMenuItem className="cursor-pointer">
+                                        Dashboard
+                                    </DropdownMenuItem>
                                 </Link>
                                 :
                                 <Link to='/dashboard'>

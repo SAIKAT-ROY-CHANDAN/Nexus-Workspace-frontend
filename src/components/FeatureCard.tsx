@@ -1,13 +1,26 @@
 import { TRoom } from "@/types/global";
+import { Link } from "react-router-dom";
 
 interface FeatureCardProps {
     feature: TRoom;
+    index: number
 }
 
-const FeatureCard = ({ feature }: FeatureCardProps) => {
+const FeatureCard = ({ feature, index }: FeatureCardProps) => {
 
     const imageUrl = feature?.image[0] || "https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80";
 
+    const descriptions = [
+        "Experience a luxurious escape with panoramic views and modern decor.",
+        "Step into a cozy space with all essentials, perfect for a relaxing stay.",
+        "Enjoy open-air balconies and a spacious layout in this serene retreat.",
+        "A modern, urban design with quick access to all the city’s best spots.",
+        "Unwind in a stylish suite designed for comfort and relaxation.",
+        "Discover this chic room featuring elegant furnishings and soft lighting."
+    ];
+
+    // Get a unique description based on the room’s index
+    const description = descriptions[index % descriptions.length];
 
     return (
         <article className="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
@@ -17,18 +30,15 @@ const FeatureCard = ({ feature }: FeatureCardProps) => {
                 className="h-56 w-full object-cover hover:scale-105 transition-transform duration-300"
             />
             <div className="bg-white p-4 sm:p-6">
-                <time dateTime="2022-10-10" className="block text-xs text-gray-500"> 10th Oct 2022 </time>
-
-                <a href="#">
+                <p className="block text-xs text-gray-500">$ {feature.pricePerSlot}</p>
+                <a>
                     <h3 className="mt-0.5 text-lg text-gray-900">{feature.name}</h3>
                 </a>
+                <p className="mt-2 line-clamp-2 text-sm/relaxed text-gray-500">{description}</p>
 
-                <p className="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                    pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                    mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                    dignissimos. Molestias explicabo corporis voluptatem?
-                </p>
+                <div className="flex justify-end">
+                    <Link to={`/rooms/${feature._id}`} className="bg-black text-xs rounded-3xl text-white py-1 px-2 font-medium">Add Cart</Link>
+                </div>
             </div>
         </article>
     )
