@@ -36,7 +36,7 @@ const FeatureCard = ({ feature, index }: FeatureCardProps) => {
                 </a>
                 <p className="mt-2 line-clamp-2 text-sm/relaxed text-gray-500">{description}</p>
 
-                <div className="flex justify-end">
+                <div className="flex justify-end mt-2">
                     <Link to={`/rooms/${feature._id}`} className="bg-black text-xs rounded-3xl text-white py-1 px-2 font-medium">Add Cart</Link>
                 </div>
             </div>

@@ -20,6 +20,7 @@ import Unauthorized from "@/pages/Unauthorized";
 import AdminRoute from "./AdminRoute";
 import UserRoute from "./UserRoute";
 import PrivateRoute from "./PrivateRoute";
+import UserDashboard from "@/pages/UserDashboard";
 
 export const router = createBrowserRouter([
     {
@@ -63,6 +64,12 @@ export const router = createBrowserRouter([
                 path: '/myBookings',
                 element: <UserRoute>
                     <MyBookings />
+                </UserRoute>
+            },
+            {
+                path: '/userDashboard',
+                element: <UserRoute>
+                    <UserDashboard />
                 </UserRoute>
             },
             {

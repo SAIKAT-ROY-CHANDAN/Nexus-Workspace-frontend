@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Sidebar, SidebarBody, SidebarLink } from "../components/ui/sidebar";
+import { Sidebar, SidebarBody, SidebarLink } from "./ui/admin-sidebar";
 import { Link, Outlet } from "react-router-dom";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
