@@ -7,7 +7,7 @@ const Profile = () => {
     const phone = useAppSelector((state) => state.auth.phone)
 
     return (
-        <div className="grid grid-cols-5 gap-8 w-[90%] mx-auto mt-20">
+        <div className="grid grid-cols-5 gap-8 w-[90%] mx-auto mt-20 overflow-auto mb-10 xl:mb-0">
             <div className="col-span-5 xl:col-span-3">
                 <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                     <div className="border-b border-stroke py-4 px-7 dark:border-strokedark">

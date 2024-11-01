@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/admin-sidebar";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { BookOpenCheck, ShoppingCart, User } from "lucide-react";
@@ -8,13 +8,15 @@ import { IconArrowLeft } from "@tabler/icons-react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { clearRole, removeToken, removeUserData } from "@/redux/slices/authSlice";
 import { persistor } from "@/redux/store";
+import Chart from "@/components/UserCharts/Chart";
 
 
 export function UserDashboard() {
   const [open, setOpen] = useState(false);
   const name = useAppSelector((state) => state.auth.name)
   const dispatch = useAppDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = () => {
     dispatch(clearRole());
@@ -99,10 +101,19 @@ export function UserDashboard() {
           </div>
         </SidebarBody>
       </Sidebar>
-      <Outlet></Outlet>
+      <div className="flex-1 p-4">
+        {location.pathname === '/userDashboard' ? (
+          <div className="overflow-auto">
+            <Chart />
+          </div>
+        ) : (
+          <Outlet />
+        )}
+      </div>
     </div>
   );
 }
+
 export const Logo = () => {
   return (
     <Link
