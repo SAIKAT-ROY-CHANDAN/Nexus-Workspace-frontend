@@ -23,7 +23,7 @@ const FeatureCard = ({ feature, index }: FeatureCardProps) => {
     const description = descriptions[index % descriptions.length];
 
     return (
-        <article className="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
+        <article className="overflow-hidden rounded-lg h-[410px] shadow transition hover:shadow-lg">
             <img
                 alt=""
                 src={imageUrl}

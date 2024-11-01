@@ -1,4 +1,6 @@
 import DataPagination from "@/components/DataPagination"
+import MyBookingLoading from "@/components/loading/MyBookingLoading"
+
 import {
   Table,
   TableBody,
@@ -13,7 +15,7 @@ import { SetStateAction, useState } from "react"
 
 const MyBookings = () => {
   const { data, isLoading } = useGetPaidBookingsQuery({})
-  
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8
   const totalItems = data?.length || 0;
@@ -27,12 +29,14 @@ const MyBookings = () => {
   };
 
   if (isLoading) {
-    return <p className="text-center text-3xl">Loading....</p>
+    return (
+      <MyBookingLoading />
+    )
   }
 
   console.log(data);
   return (
-    <div>
+    <div className="w-full">
       <Table className="max-w-screen-xl mx-auto mt-24">
         <TableHeader>
           <TableRow>

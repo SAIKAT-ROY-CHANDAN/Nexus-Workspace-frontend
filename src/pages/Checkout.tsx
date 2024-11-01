@@ -38,7 +38,7 @@ const Checkout = () => {
     };
 
     return (
-        <div className="font-sans mt-20 mx-8">
+        <div className="font-sans mt-20 mx-8 w-full">
             <div className="grid lg:grid-cols-3 gap-9 max-lg:max-w-7xl mx-auto w-full">
                 <div className="col-span-2">
                     <CheckoutItem />

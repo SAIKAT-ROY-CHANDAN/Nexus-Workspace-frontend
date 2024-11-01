@@ -20,7 +20,9 @@ import Unauthorized from "@/pages/Unauthorized";
 import AdminRoute from "./AdminRoute";
 import UserRoute from "./UserRoute";
 import PrivateRoute from "./PrivateRoute";
-import UserDashboard from "@/pages/UserDashboard";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { UserDashboard } from "@/pages/UserDashboard";
+
 
 export const router = createBrowserRouter([
     {
@@ -60,18 +62,12 @@ export const router = createBrowserRouter([
                     </UserRoute>
                 </PrivateRoute>)
             },
-            {
-                path: '/myBookings',
-                element: <UserRoute>
-                    <MyBookings />
-                </UserRoute>
-            },
-            {
-                path: '/userDashboard',
-                element: <UserRoute>
-                    <UserDashboard />
-                </UserRoute>
-            },
+            // {
+            //     path: '/myBookings',
+            //     element: <UserRoute>
+            //         <MyBookings />
+            //     </UserRoute>
+            // },
             {
                 path: '/slotBooking/:id',
                 element: <PrivateRoute>
@@ -116,6 +112,26 @@ export const router = createBrowserRouter([
                     },
                 ]
             },
+            {
+                path: '/userDashboard',
+                element: <UserRoute>
+                    <SidebarProvider>
+                        <UserDashboard />
+                    </SidebarProvider>
+                </UserRoute>,
+                children: [
+                    {
+                        path: "my-bookings",
+                        element: <UserRoute>
+                            <MyBookings />
+                        </UserRoute>
+                    },
+                    {
+                        path: 'checkout',
+                        element: <Checkout />
+                    },
+                ]
+            }
         ]
     },
     {

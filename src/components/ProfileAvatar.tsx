@@ -23,11 +23,6 @@ const ProfileAvatar = () => {
                         {
                             decodedRole == 'user' ?
                                 <>
-                                    <Link to='/myBookings'>
-                                        <DropdownMenuItem className="cursor-pointer">
-                                            My Bookings
-                                        </DropdownMenuItem>
-                                    </Link>
                                  {/* User Dashboard */}
                                     <Link to='/userDashboard'>
                                         <DropdownMenuItem className="cursor-pointer">
@@ -44,9 +39,6 @@ const ProfileAvatar = () => {
                                 </Link>
                         }
                     </DropdownMenuGroup>
-                    <DropdownMenuItem className="cursor-pointer">
-                        <Link to='/'>Profile</Link>
-                    </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem className="cursor-pointer">
                         Log out

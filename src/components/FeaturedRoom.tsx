@@ -22,7 +22,6 @@ const FeaturedRoom = () => {
                         </div>
                         <div className="mt-5 flex justify-between items-center font-medium">
                             <div className="h-6 w-1/4 rounded bg-gray-300"></div>
-                            <div className="h-10 w-24 bg-gray-700 rounded-lg"></div>
                         </div>
                     </div>
                 ))}

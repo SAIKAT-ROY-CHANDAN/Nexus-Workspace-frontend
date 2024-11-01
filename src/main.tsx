@@ -9,13 +9,14 @@ import { Toaster } from './components/ui/sonner.tsx'
 import { PersistGate } from 'redux-persist/integration/react'
 
 
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
           <RouterProvider router={router} />
+          <Toaster position='bottom-right' />
       </PersistGate>
-      <Toaster position='bottom-right' />
     </Provider>
   </StrictMode>,
 )

@@ -1,4 +1,5 @@
 import DataPagination from "@/components/DataPagination";
+import RoomLoading from "@/components/loading/RoomLoading";
 import RoomCard from "@/components/RoomCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,9 +19,7 @@ const Rooms = () => {
     const [sortBy, setSortBy] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(8);
-
     const [triggerGetRooms, { data: roomData, isLoading }] = useLazyGetRoomsQuery();
-
     const totalItems = roomData?.length || 0;
     const totalPages = Math.ceil(totalItems / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -45,8 +44,8 @@ const Rooms = () => {
         setCurrentPage(page);
     };
 
-    if(isLoading){
-        return <p className="text-center translate-y-64 text-2xl font-semibold">Loading...</p>
+    if(!isLoading){
+        return <RoomLoading />
     }
 
     return (

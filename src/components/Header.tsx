@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import ProfileAvatar from "./ProfileAvatar";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
 import logo from "/images/logo-3.svg"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -16,6 +16,7 @@ const Header = () => {
     const token = useAppSelector((state) => state.auth.token);
     const dispatch = useAppDispatch();
     const location = useLocation()
+    const navigate = useNavigate()
 
     useEffect(() => {
         const closeDropDown = (e: MouseEvent) => {
@@ -65,6 +66,8 @@ const Header = () => {
         dispatch(removeToken());
         dispatch(removeUserData());
         persistor.purge();
+
+        navigate('/')
     };
 
 
