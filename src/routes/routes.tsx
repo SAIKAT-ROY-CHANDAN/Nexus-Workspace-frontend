@@ -22,6 +22,7 @@ import UserRoute from "./UserRoute";
 import PrivateRoute from "./PrivateRoute";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { UserDashboard } from "@/pages/UserDashboard";
+import Profile from "@/pages/Profile";
 
 
 export const router = createBrowserRouter([
@@ -46,14 +47,14 @@ export const router = createBrowserRouter([
                 path: '/rooms',
                 element: <Rooms />
             },
-            {
-                path: '/checkout',
-                element: <PrivateRoute>
-                    <UserRoute>
-                        <Checkout />
-                    </UserRoute>
-                </PrivateRoute>
-            },
+            // {
+            //     path: '/checkout',
+            //     element: <PrivateRoute>
+            //         <UserRoute>
+            //             <Checkout />
+            //         </UserRoute>
+            //     </PrivateRoute>
+            // },
             {
                 path: '/rooms/:id',
                 element: (<PrivateRoute>
@@ -129,6 +130,10 @@ export const router = createBrowserRouter([
                     {
                         path: 'checkout',
                         element: <Checkout />
+                    },
+                    {
+                        path: 'profile',
+                        element: <Profile />
                     },
                 ]
             }

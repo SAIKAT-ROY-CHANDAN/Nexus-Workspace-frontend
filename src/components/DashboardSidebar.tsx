@@ -4,9 +4,11 @@ import { Link, Outlet } from "react-router-dom";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { links } from "@/constant";
+import { useAppSelector } from "@/redux/hooks";
 
 export function DashboardSidebar() {
     const [open, setOpen] = useState(false);
+    const name = useAppSelector((state) => state.auth.name)
 
     return (
         <div
@@ -28,7 +30,7 @@ export function DashboardSidebar() {
                     <div>
                         <SidebarLink
                             link={{
-                                label: "Manu Arora",
+                                label: `${name}`,
                                 href: "/",
                                 icon: (
                                     <img
@@ -44,7 +46,7 @@ export function DashboardSidebar() {
                     </div>
                 </SidebarBody>
             </Sidebar>
-                <Outlet></Outlet>
+            <Outlet></Outlet>
         </div>
     );
 }

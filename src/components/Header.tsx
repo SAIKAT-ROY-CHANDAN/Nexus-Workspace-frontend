@@ -6,14 +6,13 @@ import logo from "/images/logo-3.svg"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { clearRole, removeToken, removeUserData } from "@/redux/slices/authSlice";
 import { persistor } from "@/redux/store";
-import { CartIcon } from "@/svgs/GlobalSvg";
+
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [dropDownState, setDropDownState] = useState(false);
     const dropDownMenuRef = useRef<HTMLDivElement>(null);
     const role = useAppSelector((state) => state.auth.role);
-    const token = useAppSelector((state) => state.auth.token);
     const dispatch = useAppDispatch();
     const location = useLocation()
     const navigate = useNavigate()
@@ -103,10 +102,6 @@ const Header = () => {
                     </Button>
                 </>}
                 {role && <ProfileAvatar />}
-                {role === 'admin' || !token ? null :
-                    <Link to='/checkout'>
-                        <CartIcon />
-                    </Link>}
                 <div ref={dropDownMenuRef} onClick={() => setDropDownState(!dropDownState)} className="relative flex transition-transform md:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="cursor-pointer text-white" > <line x1="4" x2="20" y1="12" y2="12" /> <line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /> </svg>
                     {dropDownState && (

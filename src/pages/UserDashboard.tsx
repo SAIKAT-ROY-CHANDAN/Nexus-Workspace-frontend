@@ -1,13 +1,29 @@
 import { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/admin-sidebar";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { BookOpenCheck, ShoppingCart, User } from "lucide-react";
 import { IconArrowLeft } from "@tabler/icons-react";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { clearRole, removeToken, removeUserData } from "@/redux/slices/authSlice";
+import { persistor } from "@/redux/store";
+
 
 export function UserDashboard() {
   const [open, setOpen] = useState(false);
+  const name = useAppSelector((state) => state.auth.name)
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    dispatch(clearRole());
+    dispatch(removeToken());
+    dispatch(removeUserData());
+    persistor.purge();
+
+    navigate('/')
+  };
 
   const links = [
     {
@@ -37,8 +53,11 @@ export function UserDashboard() {
       icon: (
         <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
+      action: handleLogout,
     },
   ];
+
+
 
 
   return (
@@ -54,14 +73,17 @@ export function UserDashboard() {
             {open ? <Logo /> : <LogoIcon />}
             <div className="mt-8 flex flex-col gap-2">
               {links.map((link, idx) => (
-                <SidebarLink key={idx} link={link} />
+                <SidebarLink
+                  key={idx}
+                  link={link}
+                />
               ))}
             </div>
           </div>
           <div>
             <SidebarLink
               link={{
-                label: "Manu Arora",
+                label: `${name}`,
                 href: "/",
                 icon: (
                   <img
@@ -85,13 +107,13 @@ export const Logo = () => {
   return (
     <Link
       to="/"
-      className="font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20"
+      className="font-normal flex space-x-2 items-center text-sm text-slate-700 py-1 relative z-20"
     >
-      <div className="h-5 w-6 bg-black dark:bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
+      <div className="h-5 w-6 bg-slate-700 dark:bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="font-medium text-black dark:text-white whitespace-pre"
+        className="font-medium text-slate-700 dark:text-white whitespace-pre"
       >
         Nexus Workspace
       </motion.span>

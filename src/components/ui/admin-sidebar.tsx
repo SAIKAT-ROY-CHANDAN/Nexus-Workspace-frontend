@@ -16,6 +16,7 @@ interface Links {
     href: string;
     icon: React.JSX.Element | React.ReactNode;
     children?: ChildLink[]
+    action?: () => void
 }
 
 interface SidebarContextProps {
@@ -28,6 +29,7 @@ const SidebarContext = createContext<SidebarContextProps | undefined>(
     undefined
 );
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useSidebar = () => {
     const context = useContext(SidebarContext);
     if (!context) {
@@ -177,12 +179,14 @@ export const SidebarLink = ({
     const handleClick = () => {
         if (link.children) {
             setIsOpen(!isOpen);
+        } else if (link.action) {
+            link.action()
         }
     };
 
     return (
         <div className={cn("flex flex-col", className)}>
-            {/* For links that have children, keep the toggleable behavior */}
+            {/* Conditional rendering based on children presence */}
             {link.children ? (
                 <div
                     className={cn(
@@ -204,6 +208,7 @@ export const SidebarLink = ({
                         {link.label}
                     </motion.span>
 
+                    {/* Arrow icon for expandable links */}
                     <motion.div
                         className="ml-auto"
                         animate={{ rotate: isOpen ? 180 : 0 }}
@@ -215,30 +220,36 @@ export const SidebarLink = ({
                     </motion.div>
                 </div>
             ) : (
-                // For links that don't have children, make the entire div a link
+                // Link for items without children; supports action on click if provided
                 <Link
-                    to={link.href}
-                    className={cn(
-                        "flex items-center justify-start gap-2 group/sidebar py-2 cursor-pointer",
-                        className
-                    )}
-                    {...props}
+                to={link.href}
+                onClick={(e) => {
+                    if (link.action) {
+                        e.preventDefault(); // Prevent navigation if there's an action
+                        link.action();
+                    }
+                }}
+                className={cn(
+                    "flex items-center justify-start gap-2 group/sidebar py-2 cursor-pointer",
+                    className
+                )}
+                {...props}
+            >
+                {link.icon}
+            
+                <motion.span
+                    animate={{
+                        display: animate ? (open ? "inline-block" : "none") : "inline-block",
+                        opacity: animate ? (open ? 1 : 0) : 1,
+                    }}
+                    className="text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
                 >
-                    {link.icon}
-
-                    <motion.span
-                        animate={{
-                            display: animate ? (open ? "inline-block" : "none") : "inline-block",
-                            opacity: animate ? (open ? 1 : 0) : 1,
-                        }}
-                        className="text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
-                    >
-                        {link.label}
-                    </motion.span>
-                </Link>
+                    {link.label}
+                </motion.span>
+            </Link>
             )}
 
-            {/* Children links */}
+            {/* Render children links if available */}
             {link.children && isOpen && (
                 <motion.div
                     className="ml-4 mt-2 flex flex-col gap-1"

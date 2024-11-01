@@ -10,6 +10,7 @@ import { useGetMyBookingsQuery } from "@/redux/api/bookingApi"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { setBookingIds, setTotalPrice } from "@/redux/slices/totalPrice"
 import { useEffect } from "react"
+import CheckoutLoading from "./loading/CheckoutLoading"
 
 const CheckoutItem = () => {
     const token = useAppSelector((state) => state.auth.token)
@@ -29,7 +30,9 @@ const CheckoutItem = () => {
     }, [data, dispatch]);
 
     if (isLoading) {
-        return <p className="text-center text-3xl">Loading....</p>
+        return (
+            <CheckoutLoading />
+        )
     }
 
     return (
@@ -69,7 +72,6 @@ const CheckoutItem = () => {
                 ))}
             </TableBody>
         </Table>
-
     )
 }
 
