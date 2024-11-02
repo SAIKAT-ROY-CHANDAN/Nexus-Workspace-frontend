@@ -17,7 +17,6 @@ const CheckoutItem = () => {
     const { data, isLoading } = useGetMyBookingsQuery(token)
     const dispatch = useAppDispatch()
 
-    console.log(data);
     useEffect(() => {
         if (data) {
             const totalPrice = data.reduce((acc, booking) => acc + (booking?.totalAmount || 0), 0);

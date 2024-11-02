@@ -44,7 +44,7 @@ const Rooms = () => {
         setCurrentPage(page);
     };
 
-    if(!isLoading){
+    if(isLoading){
         return <RoomLoading />
     }
 

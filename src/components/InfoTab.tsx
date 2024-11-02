@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useMediaQuery } from '@/hooks/use-outside-click';
 import { tabs } from '@/constant';
@@ -21,16 +21,16 @@ function InfoTab() {
                         <motion.div
                             key={index}
                             className={`rounded-lg overflow-hidden mb-2  ${activeIndex === index
-                                    ? 'active border-2 dark:border-[#656fe2]  border-[#F2F2F2] dark:bg-[#E0ECFB] bg-[#F2F2F2]'
-                                    : 'bg-transparent border-2 dark:hover:border-[#656fe2]'
+                                ? 'active border-2 dark:border-[#656fe2]  border-[#F2F2F2] dark:bg-[#E0ECFB] bg-[#F2F2F2]'
+                                : 'bg-transparent border-2 dark:hover:border-[#656fe2]'
                                 }
             `}
                             onClick={() => handleClick(index)}
                         >
                             <h3
                                 className={`p-4 cursor-pointer transition-all font-semibold    dark:text-white text-black dark:hover:bg-[#1e2a78] hover:bg-[#F2F2F2] dark:hover:text-white hover:text-black flex justify-between items-center ${activeIndex === index
-                                        ? 'active  dark:bg-[#1e2a78] bg-[#F2F2F2] '
-                                        : 'dark:bg-[#11112b] bg-white'
+                                    ? 'active  dark:bg-[#1e2a78] bg-[#F2F2F2] '
+                                    : 'dark:bg-[#11112b] bg-white'
                                     }
                `}
                             >
@@ -66,7 +66,7 @@ function InfoTab() {
                     {isDesktop &&
                         tabs.map((tab, index) => {
                             return (
-                                <>
+                                <React.Fragment key={index}>
                                     <AnimatePresence mode='popLayout' key={index}>
                                         {activeIndex === index && (
                                             <motion.div className='p-4 h-[400px] overflow-hidden col-span-7'>
@@ -87,7 +87,7 @@ function InfoTab() {
                                             </motion.div>
                                         )}
                                     </AnimatePresence>
-                                </>
+                                </React.Fragment>
                             );
                         })}
                 </>

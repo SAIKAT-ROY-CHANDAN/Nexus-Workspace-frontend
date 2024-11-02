@@ -16,7 +16,6 @@ const SlotBooking = () => {
     const [createBooking] = useCreateBookingMutation()
     const token = useAppSelector((state) => state.auth.token)
 
-    console.log(data);
 
     const handleSlotSelection = (slot: { _id: string; date: string; startTime: string; endTime: string }) => {
         dispatch(toggleSlotSelection(slot._id));

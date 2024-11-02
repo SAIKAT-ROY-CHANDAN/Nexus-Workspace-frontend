@@ -34,7 +34,6 @@ const MyBookings = () => {
     )
   }
 
-  console.log(data);
   return (
     <div className="w-full">
       <Table className="max-w-screen-xl mx-auto mt-24">
