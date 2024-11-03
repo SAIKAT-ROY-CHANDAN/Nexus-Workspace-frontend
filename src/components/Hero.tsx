@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { Button } from "./ui/button"
-import workspaceVideo from '/video/workspace.mp4'
+import workspaceVideo from '/video/workspace.webm'
 
 
 const Hero = () => {

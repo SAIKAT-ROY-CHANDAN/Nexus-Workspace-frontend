@@ -7,7 +7,6 @@ interface FeatureCardProps {
 }
 
 const FeatureCard = ({ feature, index }: FeatureCardProps) => {
-
     const imageUrl = feature?.image[0] || "https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80";
 
     const descriptions = [
@@ -19,13 +18,13 @@ const FeatureCard = ({ feature, index }: FeatureCardProps) => {
         "Discover this chic room featuring elegant furnishings and soft lighting."
     ];
 
-    // Get a unique description based on the room’s index
     const description = descriptions[index % descriptions.length];
+
 
     return (
         <article className="overflow-hidden rounded-lg h-[410px] shadow transition hover:shadow-lg">
             <img
-                alt=""
+                alt="room"
                 src={imageUrl}
                 className="h-56 w-full object-cover hover:scale-105 transition-transform duration-300"
             />

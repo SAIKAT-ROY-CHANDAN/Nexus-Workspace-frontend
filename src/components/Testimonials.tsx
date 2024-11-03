@@ -106,7 +106,7 @@ const SingleTestimonial = ({
             <div className="relative w-full pb-16 md:w-11/12 lg:w-10/12 xl:w-8/12">
                 <div className="w-full items-center md:flex">
                     <div className="relative mb-12 w-full max-w-[310px] md:mb-0 md:mr-12 md:max-w-[250px] lg:mr-14 lg:max-w-[280px] 2xl:mr-16">
-                        <img src={image} alt="image" className="w-full h-96 object-cover" />
+                        <img src={image} loading="lazy" alt="image" className="w-full h-96 object-cover" />
                         <span className="absolute -left-6 -top-6 z-[-1] hidden sm:block">
                             <DotShape />
                         </span>

@@ -2,7 +2,7 @@ import '@/global.css/unauthorized.css'
 
 const Unauthorized = () => {
   return (
-    <div className="unauthorized-page h-screen"> {/* Add a unique wrapper class here */}
+    <div className="unauthorized-page h-screen">
       <div className="gandalf">
         <div className="fireball"></div>
         <div className="skirt"></div>

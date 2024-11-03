@@ -225,7 +225,7 @@ export const SidebarLink = ({
                 to={link.href}
                 onClick={(e) => {
                     if (link.action) {
-                        e.preventDefault(); // Prevent navigation if there's an action
+                        e.preventDefault();
                         link.action();
                     }
                 }}
