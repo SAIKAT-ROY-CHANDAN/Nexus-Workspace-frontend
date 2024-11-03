@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useGetRoomsQuery } from "@/redux/api/baseApi";
-import FeatureCard from "./FeatureCard"
+import FeatureCard from "../FeatureCard";
+
 
 
 const FeaturedRoom = () => {

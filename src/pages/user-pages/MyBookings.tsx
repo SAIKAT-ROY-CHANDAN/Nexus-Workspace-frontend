@@ -1,4 +1,4 @@
-import DataPagination from "@/components/DataPagination"
+import DataPagination from "@/components/shared/DataPagination"
 import MyBookingLoading from "@/components/loading/MyBookingLoading"
 
 import {

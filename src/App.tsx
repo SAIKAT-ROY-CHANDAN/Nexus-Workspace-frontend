@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom"
-import Footer from "./components/Footer"
-import Header from "./components/Header"
-import ScrollToTop from "./components/ScrollTop"
+import Footer from "./components/shared/Footer"
+import ScrollToTop from "./components/home/ScrollTop"
+import Header from "./components/shared/Header"
 
 function App() {
   return (

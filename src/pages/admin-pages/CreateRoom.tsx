@@ -139,14 +139,14 @@ const CreateRoom = () => {
                 {amenitiesFromRedux.map((amenity, index) => (
                   <div key={index} className="p-1 bg-slate-200 rounded-lg text-xs mt-2 capitalize flex items-center justify-between">
                     <span>{amenity}</span>
-                    <button
+                    <Button
                       onClick={() => handleRemove(index)}
                       className="ml-4 text-red-500 hover:text-red-700 focus:outline-none"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-3">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                       </svg>
-                    </button>
+                    </Button>
                   </div>
                 ))}
               </div>

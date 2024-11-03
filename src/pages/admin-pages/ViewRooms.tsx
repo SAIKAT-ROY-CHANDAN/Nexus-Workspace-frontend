@@ -1,4 +1,4 @@
-import DataPagination from "@/components/DataPagination";
+import DataPagination from "@/components/shared/DataPagination";
 import { RoomUpdateModal } from "@/components/RoomUpdateModal"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { useDeleteRoomMutation, useGetRoomsQuery } from "@/redux/api/baseApi"

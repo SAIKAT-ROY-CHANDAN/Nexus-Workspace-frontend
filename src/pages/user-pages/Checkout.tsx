@@ -43,7 +43,6 @@ const Checkout = () => {
                 <div className="col-span-2">
                     <CheckoutItem />
                 </div>
-
                 <div className="bg-gradient-to-tl bg-slate-100/35 rounded-lg p-10 lg:sticky top-0">
                     <ul className="text-gray-800 divide-gray-300">
                         <li className="flex flex-wrap gap-4 text-sm  font-semibold">{userInfo.name}</li>

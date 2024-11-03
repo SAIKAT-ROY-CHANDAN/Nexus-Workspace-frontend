@@ -1,4 +1,4 @@
-import DataPagination from "@/components/DataPagination";
+import DataPagination from "@/components/shared/DataPagination";
 import RoomLoading from "@/components/loading/RoomLoading";
 import RoomCard from "@/components/RoomCard";
 import { Button } from "@/components/ui/button";

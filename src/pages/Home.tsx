@@ -1,9 +1,9 @@
-import FeaturedRoom from "@/components/FeaturedRoom"
-import Hero from "@/components/Hero"
+import FeaturedRoom from "@/components/home/FeaturedRoom"
+import Hero from "@/components/home/Hero"
 import HowItWorks from "@/components/HowItWorks"
-import InfoTab from "@/components/InfoTab"
-import Services from "@/components/Services"
-import Testimonial from "@/components/Testimonials"
+import InfoTab from "@/components/home/InfoTab"
+import Services from "@/components/home/Services"
+import Testimonial from "@/components/home/Testimonials"
 
 
 const Home = () => {

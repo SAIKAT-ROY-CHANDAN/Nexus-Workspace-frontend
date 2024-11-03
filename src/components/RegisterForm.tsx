@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "./ui/button"
 import { registerFormSchema } from "@/validation/auth.validation"
 import { FaAddressBook } from "react-icons/fa";
-import { FormData } from "@/pages/Register"
+import { FormData } from "@/pages/auth/Register"
 
 type RegisterFormProps = {
     onSubmit: (data: FormData) => Promise<void>;

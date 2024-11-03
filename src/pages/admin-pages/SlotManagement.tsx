@@ -1,4 +1,4 @@
-import DataPagination from "@/components/DataPagination"
+import DataPagination from "@/components/shared/DataPagination"
 import SlotForm from "@/components/SlotForm"
 import SlotUpdateModal from "@/components/SlotUpdateModal"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
