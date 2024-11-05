@@ -1,3 +1,4 @@
+import { useAppSelector } from "@/redux/hooks";
 import { TRoom } from "@/types/global";
 import { Link } from "react-router-dom";
 
@@ -7,6 +8,9 @@ interface FeatureCardProps {
 }
 
 const FeatureCard = ({ feature, index }: FeatureCardProps) => {
+    const role = useAppSelector((state) => state.auth.role)
+
+
     const imageUrl = feature?.image[0] || "https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80";
 
     const descriptions = [
@@ -36,7 +40,15 @@ const FeatureCard = ({ feature, index }: FeatureCardProps) => {
                 <p className="mt-2 line-clamp-2 text-sm/relaxed text-gray-500">{description}</p>
 
                 <div className="flex justify-end mt-2">
-                    <Link to={`/rooms/${feature._id}`} className="bg-black text-xs rounded-3xl text-white py-1 px-2 font-medium">Add Cart</Link>
+                    {role === 'admin' ? (
+                        <span className="bg-gray-500 text-xs rounded-3xl text-white py-1 px-2 font-medium opacity-50 cursor-not-allowed">
+                            Add Cart
+                        </span>
+                    ) : (
+                        <Link to={`/rooms/${feature._id}`} className="bg-black text-xs rounded-3xl text-white py-1 px-2 font-medium">
+                            Add Cart
+                        </Link>
+                    )}
                 </div>
             </div>
         </article>

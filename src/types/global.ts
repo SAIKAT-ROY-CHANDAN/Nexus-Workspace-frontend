@@ -9,7 +9,8 @@ export type TRoom = {
     amenities: string[],
     isDeleted: boolean,
     _id?: string,
-    image: string[]
+    image: string[],
+    images?: File[]
 }
 
 export type TRoomsResponse = {

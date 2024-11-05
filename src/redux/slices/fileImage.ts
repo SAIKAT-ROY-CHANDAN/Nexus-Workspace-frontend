@@ -1,13 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface UploadState {
+    files: File[];
     links: string[];
-    loading: boolean; 
+    loading: boolean;
 }
 
 const initialState: UploadState = {
+    files: [],
     links: [],
-    loading: false, 
+    loading: false,
 };
 
 const uploadSlice = createSlice({
@@ -24,8 +26,11 @@ const uploadSlice = createSlice({
             state.links = [];
             state.loading = false;
         },
+        addFiles: (state, action: PayloadAction<File[]>) => {
+            state.files.push(...action.payload);
+        },
     },
 });
 
-export const { addLinks, setLoading, clearLinks } = uploadSlice.actions;
+export const { addLinks, setLoading, clearLinks, addFiles } = uploadSlice.actions;
 export const uploadReducer = uploadSlice.reducer;

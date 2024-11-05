@@ -16,6 +16,7 @@ type RoomFormValues = z.infer<typeof roomSchema>;
 
 const CreateRoom = () => {
   const images = useAppSelector((state) => state.imageLink.links);
+  // const images = useAppSelector((state) => state.imageLink.files);
   const amenitiesFromRedux = useAppSelector((state) => state.amenities.amenities);
   const loading = useAppSelector((state) => state.imageLink.loading);
   const token = useAppSelector((state) => state.auth.token);
@@ -64,14 +65,16 @@ const CreateRoom = () => {
       isDeleted: false,
       image: images,
     };
-
+    console.log(roomData, 'room-data');
     try {
       const response = await createRoom({
         roomData,
         token,
       }).unwrap();
+
       toast.success('Room created successfully')
       console.log("Room create successfully:", response);
+
     } catch (error) {
       console.error("Room creation failed:", error);
       toast.success('Room creation failed')
@@ -139,14 +142,14 @@ const CreateRoom = () => {
                 {amenitiesFromRedux.map((amenity, index) => (
                   <div key={index} className="p-1 bg-slate-200 rounded-lg text-xs mt-2 capitalize flex items-center justify-between">
                     <span>{amenity}</span>
-                    <Button
+                    <button
                       onClick={() => handleRemove(index)}
                       className="ml-4 text-red-500 hover:text-red-700 focus:outline-none"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-3">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                       </svg>
-                    </Button>
+                    </button>
                   </div>
                 ))}
               </div>

@@ -20,8 +20,8 @@ export const uploadFilesToImgBB = async (files: File[], dispatch: Dispatch) => {
 
             const result = await response.json();
             if (result.success) {
-                imageLinks.push(result.data.url); 
-                console.log('Uploaded to ImgBB:', result.data.url); 
+                imageLinks.push(result.data.url);
+                console.log('Uploaded to ImgBB:', result.data.url);
             } else {
                 console.error('Upload failed:', result.message);
             }
