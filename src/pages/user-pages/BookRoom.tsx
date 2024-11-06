@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import ProductCarousel from "@/components/ui/ProductCarousel"
+import { Skeleton } from "@/components/ui/skeleton";
 import { useGetSingleRoomQuery } from "@/redux/api/baseApi";
 import { Link, useParams } from "react-router-dom"
 
@@ -9,7 +10,16 @@ const BookRoom = () => {
   const { data: room, isLoading } = useGetSingleRoomQuery(id);
 
   if (isLoading) {
-    return <div className="text-center mt-20 font-bold">Loading....</div>
+    return <div className="grid lg:grid-cols-2 2xl:grid-cols-3 p-8 gap-6 lg:gap-20 mt-36 max-w-screen-2xl mx-auto bg-gray-50/60">
+      <Skeleton className="h-[30vh]" />
+      <div className="2xl:col-span-2 flex flex-col gap-y-7 mb-10">
+        <Skeleton className="h-8 w-1/2" />
+        <Skeleton className="h-5 w-40" />
+        <Skeleton className="h-5 w-40" />
+        <Skeleton className="h-5 w-40" />
+        <Skeleton className="w-1/3 h-10 flex items-center justify-center" />
+      </div>
+    </div>
   }
 
   return (

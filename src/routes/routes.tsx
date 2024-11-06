@@ -6,7 +6,7 @@ import App from "@/App";
 import Register from "@/pages/auth/Register";
 import Login from "@/pages/auth/Login";
 import Rooms from "@/pages/Rooms";
-import BookRoom from "@/pages/BookRoom";
+import BookRoom from "@/pages/user-pages/BookRoom";
 import MyBookings from "@/pages/user-pages/MyBookings";
 import Dashboard from "@/pages/admin-pages/Dashboard";
 import SlotBooking from "@/pages/SlotBooking";
