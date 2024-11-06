@@ -1,5 +1,7 @@
 import { useAppSelector } from "@/redux/hooks";
 import { TRoom } from "@/types/global";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import { Link } from "react-router-dom";
 
 interface RoomCardProps {
@@ -14,12 +16,13 @@ const RoomCard = ({ room }: RoomCardProps) => {
     return (
         <div className="max-[350px] mx-auto space-y-4 rounded bg-gray-50/30 p-6 md:w-[350px] dark:border-zinc-700 dark:bg-zinc-900">
             <div className="relative rounded-2xl group overflow-hidden">
-                <img
+                <LazyLoadImage
                     width={350}
                     height={190}
                     className="h-44 w-full object-cover"
                     src={imageUrl}
                     alt="card navigate ui"
+                    effect="blur"
                 />
                 <div className="absolute bottom-0 left-0 right-0 h-0 group-hover:h-full transition-all duration-500 bg-gradient-to-r from-[#93c5fd] via-[#60a5fa] to-[#3b82f6] opacity-20"></div>
             </div>
